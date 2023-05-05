@@ -1,16 +1,18 @@
-import React from "react";
-import Navbar from "../components/Navbar/Navbar";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ExploreIdeaCard from "../components/ExploreIdeaCard/ExploreIdeaCard";
-import imageUrl from '../assets/Group 6.png'
-import image2 from '../assets/Group 16.png'
-import image3 from '../assets/Cactus 2 by Streamlinehq.png'
-import image4 from '../assets/Ram by Streamlinehq.png'
+import imageUrl from "../assets/Group 6.png";
+import image2 from "../assets/Group 16.png";
+import image3 from "../assets/Cactus 2 by Streamlinehq.png";
+import image4 from "../assets/Ram by Streamlinehq.png";
 import FeatureIdeaCard from "../components/FeatureIdeaCard/FeatureIdeaCard";
-import BannerImage from '../assets/landingImage.png';
-import {AiFillCaretDown} from 'react-icons/ai';
+import BannerImage from "../assets/landingImage.png";
+import { AiFillCaretDown } from "react-icons/ai";
+import Modal from "../components/Modal/Modal";
 
 const LandingPage = () => {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <div>
       <div
@@ -26,127 +28,142 @@ const LandingPage = () => {
             <h1 className="mt-2">Startup Ideas</h1>
           </h1>
           <div className="ml-16 space-x-4">
-            <button className="bg-violet-500  rounded-3xl py-3 text-white font-medium px-6">
+            <button
+              className="bg-violet-500  rounded-3xl py-3 text-white font-medium px-6"
+              onClick={() => setShowModal(true)}
+            >
               add yours
             </button>
+      {/* Modal Compoenent */}
+            {showModal && <Modal setShowModal={setShowModal} />}
             <button className="border-2 rounded-3xl p-2 border-violet-500 text-violet-500 font-medium">
               support Ideas
             </button>
           </div>
         </div>
-        <img
-          src={BannerImage}
-          className="ml-[400px]"
-        />
+        <img src={BannerImage} className="ml-[400px]" />
       </div>
 
       <div className=" mx-12  mt-20 ">
         <div className="flex justify-between">
           <h1 className="font-bold text-2xl">Featured Ideas</h1>
           <div>
-            
-          <Link className="">
-            <h1 className="mr-2 text-xl border-b-2  border-gray-500">view all featured ideas</h1>
-          </Link>
-          
+            <Link className="">
+              <h1 className="mr-2 text-xl border-b-2  border-gray-500">
+                view all featured ideas
+              </h1>
+            </Link>
           </div>
         </div>
 
-{/* FeatureIdeaCard */}
-        <div className="flex mb-20 space-x-20 mt-10 overflow-x-auto">
+        {/* FeatureIdeaCard */}
+        <div className="flex mb-20 space-x-14 scrollbar-hide  mt-10 overflow-x-scroll ">
+          <FeatureIdeaCard
+            title="A plarform for token gated scheduled booking."
+            description="  Admittedly, it is a surrogate experience, but so are love stories
+            and travel novels. It is artificial, but not vulgar. And more
+            importantly, it substantially changes Read more"
+            imageUrl={imageUrl}
+          />
+          <FeatureIdeaCard
+            title="A plarform for token gated scheduled booking."
+            description="  Admittedly, it is a surrogate experience, but so are love stories
+            and travel novels. It is artificial, but not vulgar. And more
+            importantly, it substantially changes Read more"
+            imageUrl={imageUrl}
+          />
+
+          <FeatureIdeaCard
+            title="A plarform for token gated scheduled booking."
+            description="  Admittedly, it is a surrogate experience, but so are love stories
+            and travel novels. It is artificial, but not vulgar. And more
+            importantly, it substantially changes Read more"
+            imageUrl={imageUrl}
+          />
           
-          <FeatureIdeaCard 
+          <FeatureIdeaCard
             title="A plarform for token gated scheduled booking."
             description="  Admittedly, it is a surrogate experience, but so are love stories
             and travel novels. It is artificial, but not vulgar. And more
             importantly, it substantially changes Read more"
             imageUrl={imageUrl}
           />
-
-          <FeatureIdeaCard 
+          
+           <FeatureIdeaCard
             title="A plarform for token gated scheduled booking."
             description="  Admittedly, it is a surrogate experience, but so are love stories
             and travel novels. It is artificial, but not vulgar. And more
             importantly, it substantially changes Read more"
             imageUrl={imageUrl}
           />
-
-          <FeatureIdeaCard 
-            title="A plarform for token gated scheduled booking."
-            description="  Admittedly, it is a surrogate experience, but so are love stories
-            and travel novels. It is artificial, but not vulgar. And more
-            importantly, it substantially changes Read more"
-            imageUrl={imageUrl}
-          />
-
+          
         </div>
       </div>
 
-{/* Explore Ideas */}
+      {/* Explore Ideas */}
       <div className=" mx-12  mt-20 ">
         <div className="flex justify-between">
           <h1 className="font-bold text-2xl">Explore Ideas</h1>
           <div className="flex items-center">
-<AiFillCaretDown className="text-[25px] mt-2 mr-2"/>
-          <Link>
-            <h1 className="mr-2 text-xl">show tags</h1>
-          </Link>
+            <AiFillCaretDown className="text-[25px] mt-2 mr-2" />
+            <Link>
+              <h1 className="mr-2 text-xl">show tags</h1>
+            </Link>
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-y-14 gap-x-32 mb-20  mt-10 ">
-        {/* card 1 */}
-                  <ExploreIdeaCard 
+          {/* card 1 */}
+          <ExploreIdeaCard
             title=" A plarform for token gated scheduled booking."
-            description=' Admittedly, it is a surrogate experience, but so are love stories
-            and travel novels. It is artificial, but not vulgar. And more
-            importantly, it substantially changes Read more'
+            description=" Admittedly, it is a surrogate experience, but so are love stories
+                    and travel novels. It is artificial, but not vulgar. And more
+                    importantly, it substantially changes Read more"
             imageUrl={image2}
           />
           {/* Card 2 */}
-                    <ExploreIdeaCard 
+          <ExploreIdeaCard
             title=" A plarform for token gated scheduled booking."
-            description=' Admittedly, it is a surrogate experience, but so are love stories
-            and travel novels. It is artificial, but not vulgar. And more
-            importantly, it substantially changes Read more'
+            description=" Admittedly, it is a surrogate experience, but so are love stories
+                        and travel novels. It is artificial, but not vulgar. And more
+                        importantly, it substantially changes Read more"
             imageUrl={imageUrl}
           />
 
           {/* card 3 */}
-          <ExploreIdeaCard 
+          <ExploreIdeaCard
             title=" A plarform for token gated scheduled booking."
-            description=' Admittedly, it is a surrogate experience, but so are love stories
-            and travel novels. It is artificial, but not vulgar. And more
-            importantly, it substantially changes Read more'
+            description=" Admittedly, it is a surrogate experience, but so are love stories
+                      and travel novels. It is artificial, but not vulgar. And more
+                      importantly, it substantially changes Read more"
             imageUrl={image3}
           />
           {/* card 4 */}
-          <ExploreIdeaCard 
+          <ExploreIdeaCard
             title=" A plarform for token gated scheduled booking."
-            description=' Admittedly, it is a surrogate experience, but so are love stories
-            and travel novels. It is artificial, but not vulgar. And more
-            importantly, it substantially changes Read more'
+            description=" Admittedly, it is a surrogate experience, but so are love stories
+                    and travel novels. It is artificial, but not vulgar. And more
+                    importantly, it substantially changes Read more"
             imageUrl={image4}
           />
           {/* card 5 */}
 
-          <ExploreIdeaCard 
+          <ExploreIdeaCard
             title=" A plarform for token gated scheduled booking."
-            description=' Admittedly, it is a surrogate experience, but so are love stories
-            and travel novels. It is artificial, but not vulgar. And more
-            importantly, it substantially changes Read more'
+            description=" Admittedly, it is a surrogate experience, but so are love stories
+                  and travel novels. It is artificial, but not vulgar. And more
+                  importantly, it substantially changes Read more"
             imageUrl={imageUrl}
           />
 
           {/* card 6 */}
-          <ExploreIdeaCard 
+          <ExploreIdeaCard
             title=" A plarform for token gated scheduled booking."
-            description=' Admittedly, it is a surrogate experience, but so are love stories
-            and travel novels. It is artificial, but not vulgar. And more
-            importantly, it substantially changes Read more'
+            description=" Admittedly, it is a surrogate experience, but so are love stories
+                and travel novels. It is artificial, but not vulgar. And more
+                importantly, it substantially changes Read more"
             imageUrl={imageUrl}
           />
-
         </div>
       </div>
     </div>
