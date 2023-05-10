@@ -1,10 +1,7 @@
 import React, { useContext, useState } from "react";
 import img from "../assets/Cactus 2 by Streamlinehq.png";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  signInWithEmailAndPassword,
-  sendEmailVerification,
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { AuthContext } from "../Context/AuthContext";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
@@ -13,7 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const {} = useContext(AuthContext);
+  
 
   const login = (e) => {
     e.preventDefault();
@@ -69,7 +66,6 @@ const Login = () => {
               />
             </div>
           </div>
-
           <div>
             <div className="flex items-center justify-between">
               <label

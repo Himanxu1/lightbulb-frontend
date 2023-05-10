@@ -9,25 +9,34 @@ import { AuthContext, AuthProvider } from "./Context/AuthContext";
 import { useState, useEffect } from "react";
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import EmailVerify from "./pages/EmailVerify";
 import Community from "./pages/Community";
 import Explore from "./pages/Explore";
 import Help from "./pages/Help";
+import {IdeasProvider} from '../src/Context/IdeasContext'
+import IdeaDescription from "./pages/IdeaDescription";
+
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
+//  console.log(currentUser?.photoURL)
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
+      if (user) {
+        setCurrentUser(user);
+      } else {
+        setCurrentUser(null);
+      }
     });
-  }, []);
+  }, [currentUser]);
 
-  console.log(currentUser);
+// console.log(currentUser);
   return (
     <Router>
-      {currentUser && <Navbar />}
       <AuthProvider value={{ currentUser }}>
+      
+       {currentUser && <Navbar />}
+        <IdeasProvider>
         {/* <Navbar/> */}
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -37,7 +46,10 @@ function App() {
           <Route path="/community" element={<Community />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/help" element={<Help/>} />
+          <Route path="/ideas/:ideaID" element={<IdeaDescription/>} />
         </Routes>
+        </IdeasProvider>
+     
       </AuthProvider>
     </Router>
   );
