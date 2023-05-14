@@ -11,18 +11,26 @@ import { AiFillCaretDown } from "react-icons/ai";
 import Modal from "../components/Modal/Modal";
 import { IdeasContext } from "../Context/IdeasContext";
 import { AuthContext } from "../Context/AuthContext";
+import { VouchContext } from "../Context/VouchContext";
 
 const LandingPage = () => {
   const [showModal, setShowModal] = useState(false);
-  const {ideas} = useContext(IdeasContext);
-  const {currentUser} = useContext(AuthContext)
+  const { ideas } = useContext(IdeasContext);
+  const { currentUser } = useContext(AuthContext);
+  const {vouchedData} = useContext(VouchContext);
+ 
+  // console.log(vouchedData)
   // console.log(ideas)
-    
-  const newIdeas = ideas.slice(0,5)
+  // for(let key in vouchedData){
+  //   console.log(vouchedData[key])
+  // }
+
+  const newIdeas = ideas.slice(0, 5);
+  const exploreid = ideas.reverse();
   return (
     <div>
       <div
-        className="flex mx-12 w-[1260px] mt-10 h-96 border border-black"
+        className="flex mx-12 w-[1260px] mt-10 h-[420px]"
         style={{
           background:
             "linear-gradient(109.52deg, rgba(140, 100, 255, 0.010109) 23.62%, rgba(144, 105, 255, 0) 23.62%, rgba(66, 0, 255, 0.21) 105.39%, rgba(144, 105, 255, 0.21) 111.72%)",
@@ -40,14 +48,14 @@ const LandingPage = () => {
             >
               add yours
             </button>
-      {/* Modal Compoenent */}
+            {/* Modal Compoenent */}
             {showModal && <Modal setShowModal={setShowModal} />}
             <button className="border-2 rounded-3xl p-2 border-violet-500 text-violet-500 font-medium hover:bg-violet-500 hover:text-white">
               explore Ideas
             </button>
           </div>
         </div>
-        <img src={BannerImage} className="ml-[400px]" />
+        <img src={BannerImage} className="ml-[400px] w-[420px] h-[420px] " />
       </div>
 
       <div className=" mx-12  mt-20 ">
@@ -63,22 +71,21 @@ const LandingPage = () => {
         </div>
         {/* FeatureIdeaCard */}
         <div className="flex mb-20 space-x-14 scrollbar-hide  mt-10 overflow-x-scroll ">
-         {
-          newIdeas.map((idea)=>{
+          {newIdeas.map((idea) => {
             return (
-              // <Link to={`/ideas/${idea.ideaID}`} >    
-                <FeatureIdeaCard
-                  title={idea.title}
-                  description={idea.description}
-                  imageUrl={imageUrl}
-                  key={idea.ideaID}
-                  userId={idea.userID}
-                  ideaId={idea.ideaID}
+              // <Link to={`/ideas/${idea.ideaID}`} >
+              <FeatureIdeaCard
+                
+                title={idea.title}
+                description={idea.description}
+                imageUrl={imageUrl}
+                key={idea.ideaID}
+                userId={idea.userID}
+                ideaId={idea.ideaID}
               />
               // </Link>
-            )
-          })
-         }
+            );
+          })}
         </div>
       </div>
       {/* Explore Ideas */}
@@ -96,27 +103,21 @@ const LandingPage = () => {
         <div className="grid grid-cols-2 gap-y-14 gap-x-32 mb-20  mt-10 ">
           {/* card 1 */}
 
-          {
-            ideas.map((idea,key)=>{
-              return (
-                <>
-                  <ExploreIdeaCard
-                    title={idea.title}
-                    description={idea.description}
-                    imageUrl={imageUrl}
-                    key={key}
-              />
-                </>
-              )
-            })
-          }
-        
-
-         
-
-         
-
-         
+          {exploreid.map((idea, key) => {
+            return (
+              <>
+                <ExploreIdeaCard
+               
+                  userId={idea.userID}
+                  title={idea.title}
+                  description={idea.description}
+                  imageUrl={imageUrl}
+                  key={key}
+                  ideaId={idea.ideaID}
+                />
+              </>
+            );
+          })}
         </div>
       </div>
     </div>

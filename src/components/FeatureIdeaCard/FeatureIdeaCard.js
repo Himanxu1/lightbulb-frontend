@@ -1,21 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 import Toastify from "toastify-js";
+import { VouchContext } from "../../Context/VouchContext";
 
 
 const FeatureIdeaCard = (props) => {
+
   const idea = props.ideaId;
+  const [isVouched,setIsVouched] = useState(false)
+  const {vouchedData,setVouchedData}  = useContext(VouchContext);
 
   const vouch = (userId) => {
-
-
     Axios.post(
-      "http://lightbulb-server-env.eba-je399ubq.ap-south-1.elasticbeanstalk.com/api/vouches/vouch",
+      "http://localhost:8000/api/vouches/vouch",
       { userID: userId, ideaID: idea }
     )
       .then((res) => {
-        console.log("idea vouched success");
+       
+     setVouchedData([...vouchedData,res.data])
+
       })
       .catch((err) => console.log(err));
 
@@ -36,6 +40,11 @@ const FeatureIdeaCard = (props) => {
     }).showToast();
   };
 
+  const handleVouch = ()=>{
+    vouch(props.userId)
+    setIsVouched(true)
+  }
+
   return (
     <div className="shadow-md border shadow-gray-300 hover:shadow-2xl rounded-md w-96  h-[380px]">
       <img src={props.imageUrl} className="w-12 h-12 mt-8 ml-6" />
@@ -54,9 +63,9 @@ const FeatureIdeaCard = (props) => {
         </Link>
         <button
           className="rounded-md py-2  px-6 border-2 border-violet-500 font-bold text-violet-500 hover:bg-violet-500 hover:text-white"
-          onClick={() => vouch(props.userId)}
+          onClick={handleVouch}
         >
-          Vouch
+         {isVouched ?  "Vouched" :"Vouch"}
         </button>
       </div>
     </div>

@@ -14,6 +14,7 @@ import Explore from "./pages/Explore";
 import Help from "./pages/Help";
 import {IdeasProvider} from '../src/Context/IdeasContext'
 import IdeaDescription from "./pages/IdeaDescription";
+import { VouchProvider } from "./Context/VouchContext";
 
 
 function App() {
@@ -34,21 +35,23 @@ function App() {
   return (
     <Router>
       <AuthProvider value={{ currentUser }}>
-      
+      <VouchProvider>
        {currentUser && <Navbar />}
         <IdeasProvider>
         {/* <Navbar/> */}
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/landingpage" element={<LandingPage/>}/>
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
+          {/* <Route path="/signup" element={<SignUp />} /> */}
           <Route path="/community" element={<Community />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/help" element={<Help/>} />
           <Route path="/ideas/:ideaID" element={<IdeaDescription/>} />
         </Routes>
         </IdeasProvider>
+      </VouchProvider>
      
       </AuthProvider>
     </Router>

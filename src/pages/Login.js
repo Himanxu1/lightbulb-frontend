@@ -10,7 +10,6 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
 
   const login = (e) => {
     e.preventDefault();
@@ -27,8 +26,8 @@ const Login = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((res) => {
-        console.log(res.user.displayName);
-        navigate("/");
+        // console.log(res.user.displayName);
+        navigate("/landingpage");
       })
       .catch((err) => {
         console.log(err);
@@ -38,14 +37,17 @@ const Login = () => {
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 ">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img className="mx-auto h-10 w-auto" src={img} alt="Your Company" />
+        <div className="flex justify-center items-cente">
+          <h1 className="font-bold text-[25px] mr-4 ">Lightbulb</h1>
+          <img className=" h-10 w-auto" src={img} alt="Your Company" />
+        </div>
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Sign in to your account
         </h2>
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6">
+        {/* <form className="space-y-6">
           <div>
             <label
               for="email"
@@ -103,12 +105,12 @@ const Login = () => {
               Sign in
             </button>
           </div>
-        </form>
-        <div class="w-full flex items-center justify-between py-5">
+        </form> */}
+        {/* <div class="w-full flex items-center justify-between py-5">
           <hr class="w-full bg-gray-400" />
           <p class="text-base font-medium leading-4 px-2.5 text-gray-400">OR</p>
           <hr class="w-full bg-gray-400  " />
-        </div>
+        </div> */}
         <div className="flex justify-center">
           <button
             aria-label="Continue with google"
@@ -128,7 +130,7 @@ const Login = () => {
           </button>
         </div>
 
-        <p className="mt-10 text-center text-sm text-gray-500">
+        {/* <p className="mt-10 text-center text-sm text-gray-500">
           New member ?
           <Link
             to="/signup"
@@ -136,7 +138,7 @@ const Login = () => {
           >
             Sign up{" "}
           </Link>
-        </p>
+        </p> */}
       </div>
     </div>
   );

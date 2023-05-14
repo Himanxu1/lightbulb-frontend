@@ -7,7 +7,7 @@ import "react-comments-section/dist/index.css";
 import { AuthContext } from "../Context/AuthContext";
 import userImg from "../assets/user (1).png";
 import Comment from "../components/Comment/Comment";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 const IdeaDescription = () => {
   const { ideaID } = useParams();
@@ -17,15 +17,15 @@ const IdeaDescription = () => {
   const [loading, setLoading] = useState(true);
   const [currentthought, setCurrentthrought] = useState("");
   const [usercomment, setUsercomment] = useState("");
- const [replyingTo, setReplyingTo] = useState(null);
- const [added,setAdded] = useState(false);
+  const [replyingTo, setReplyingTo] = useState(null);
+  const [added, setAdded] = useState(false);
 
- const handleReply = (id) => {
-  setReplyingTo(id);
-};
+  const handleReply = (id) => {
+    setReplyingTo(id);
+  };
 
   useEffect(() => {
-    Axios.get(`http://lightbulb-server-env.eba-je399ubq.ap-south-1.elasticbeanstalk.com/http://lightbulb-server-env.eba-je399ubq.ap-south-1.elasticbeanstalk.com/api/ideas/${ideaID}`)
+    Axios.get(`http://lightbulb-server-env.eba-je399ubq.ap-south-1.elasticbeanstalk.com/api/ideas/${ideaID}`)
       .then((res) => {
         setSingleIdea(res.data?.data);
         setLoading(false);
@@ -36,40 +36,42 @@ const IdeaDescription = () => {
       });
 
     Axios.get(
-      `http://localhost:3002/api/discussions/get-by-id?ideaID=${ideaID}`
+      `http://lightbulb-server-env.eba-je399ubq.ap-south-1.elasticbeanstalk.com/api/discussions/get-by-id?ideaID=${ideaID}`
     )
       .then((res) => {
-       console.log( res.data.data)
+        // console.log(res.data.data);
         setComments(res.data?.data);
         setLoading(false);
       })
       .catch((err) => console.log(err));
   }, [added]);
 
-
   const title = singleIdea[0]?.title;
   const description = singleIdea[0]?.description;
   const images = singleIdea[0]?.images;
- 
 
-  const handlePostClick = () =>{
-      Axios.post('http://localhost:3002/api/discussions/save',{
-        comId:uuidv4(),
-        name:currentUser.displayName,
-        userID:currentUser.uid,
-        avatarUrl:currentUser.photoURL,
-        ideaID:ideaID,
-        comment:usercomment,
-        replies:[]
-      }).then((res)=>{
-        console.log("successful")
+  const handlePostClick = () => {
+    Axios.post(
+      "http://lightbulb-server-env.eba-je399ubq.ap-south-1.elasticbeanstalk.com/api/discussions/save",
+      {
+        comId: uuidv4(),
+        name: currentUser.displayName,
+        userID: currentUser.uid,
+        avatarUrl: currentUser.photoURL,
+        ideaID: ideaID,
+        comment: usercomment,
+        replies: [],
+      }
+    )
+      .then((res) => {
+        console.log("successful");
         setUsercomment("");
-        setAdded(!added)
-      }).catch((err)=>{
-        console.log(err)
+        setAdded(!added);
       })
-
-  }
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <>
@@ -106,29 +108,30 @@ const IdeaDescription = () => {
             type="text"
             placeholder="Share your thought on our Idea..."
             value={usercomment}
-            onChange={(e)=>setUsercomment(e.target.value)}
-           
+            onChange={(e) => setUsercomment(e.target.value)}
           />
-          <button  onClick={handlePostClick} className="bg-black text-white px-8 rounded-md ml-28 py-0">
+          <button
+            onClick={handlePostClick}
+            className="bg-black text-white px-8 rounded-md ml-28 py-0"
+          >
             Post
           </button>
         </div>
         <div className="grid ml-10 mt-10 gap-y-6">
           {comments?.map((userComment) => {
-            return(
-            <>
-             <Comment 
-              username={"max"} 
-              fullname={userComment.name} 
-              id={userComment.comId} 
-              text={userComment.comment} 
-              onReply={handleReply}
-              image={userComment.avatarUrl}
-              />
-            </>
-            )
+            return (
+              <>
+                <Comment
+                  username={"max"}
+                  fullname={userComment.name}
+                  id={userComment.comId}
+                  text={userComment.comment}
+                  onReply={handleReply}
+                  image={userComment.avatarUrl}
+                />
+              </>
+            );
           })}
-         
         </div>
       </div>
     </>

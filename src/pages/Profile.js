@@ -9,10 +9,13 @@ import BuildCard from "../components/BuildCard/BuildCard";
 import CreatedCard from "../components/CreatedCard/CreatedCard";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
+import BioModal from "../components/BioModal/BioModal";
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
   const [currentComponent, setCurrentComponent] = useState("vouched");
+  const [bio,setBio] = useState("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus enim vitae eget facilisis eget dignissim congue. Ac dolor cras arcu dui  dictum. Nam venenatis diam et consequat pellentesque gravida dolor bibendum. Vehicula in bibendum quis justo.")
+  const [show,setShow] = useState(false)
   const navigate = useNavigate();
 
   const handleClick = (componentName) => {
@@ -33,23 +36,33 @@ const Profile = () => {
     navigate("/login");
   };
 
+  const editBio = () =>{
+        setShow(!show)
+  }
+
   // console.log(currentUser?.photoURL);
   return (
     <div className="mt-20 mx-12 shadow-2xl  shadow-gray-300 ">
       <div className="grid place-items-center mt-20 pt-20">
         <img src={currentUser?.photoURL} className="w-28 h-28 rounded-xl " />
+        <div className="flex space-x-4">
         <button
           className=" mt-2 p-2 border border-violet-400 rounded-xl hover:bg-violet-500 hover:text-white"
           onClick={logout}
         >
           Signout
         </button>
+        <button
+          className=" mt-2 p-2 border border-violet-400 rounded-xl hover:bg-violet-500 hover:text-white"
+          onClick={editBio}
+        >
+          Edit Bio
+        </button>
+        {show && <BioModal show={show} setBio={setBio} setShow={setShow} />}
+        </div>
         <h1 className="font-bold text-xl mt-4">@{currentUser?.displayName}</h1>
         <p className="text-center mx-60 mt-4 text-[18px]">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus enim
-          vitae eget facilisis eget dignissim congue. Ac dolor cras arcu duis
-          dictum. Nam venenatis diam et consequat pellentesque gravida dolor
-          bibendum. Vehicula in bibendum quis justo.
+          {bio}
         </p>
       </div>
       <div className="flex justify-center mt-14 space-x-64 font-bold text-xl ">
