@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import Axios from "axios";
 import { useParams } from "react-router-dom";
 import imageUrl from "../assets/Group 6.png";
-import { CommentSection } from "react-comments-section";
-import "react-comments-section/dist/index.css";
 import { AuthContext } from "../Context/AuthContext";
 import userImg from "../assets/user (1).png";
 import Comment from "../components/Comment/Comment";
