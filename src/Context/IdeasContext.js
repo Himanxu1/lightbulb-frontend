@@ -12,7 +12,7 @@ export function IdeasProvider({ children }) {
         //  console.log(res.data.data)
       })
       .catch((err) => console.log(err));
-  }, [ideas]);
+  }, []);
 
   return (
     <IdeasContext.Provider value={{ ideas }}>{children}</IdeasContext.Provider>
