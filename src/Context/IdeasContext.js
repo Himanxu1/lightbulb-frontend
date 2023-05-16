@@ -9,7 +9,7 @@ export function IdeasProvider({ children }) {
     Axios.get("http://lightbulb-server-env.eba-je399ubq.ap-south-1.elasticbeanstalk.com/api/ideas/get-all")
       .then((res) => {
         setIdeas(res.data.data);
-        //  console.log(res.data.data)
+        console.log(res.data.data)
       })
       .catch((err) => console.log(err));
   }, []);
