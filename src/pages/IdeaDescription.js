@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import Axios from "axios";
 import { useParams } from "react-router-dom";
 import imageUrl from "../assets/Group 6.png";
-import { CommentSection } from "react-comments-section";
-import "react-comments-section/dist/index.css";
 import { AuthContext } from "../Context/AuthContext";
 import userImg from "../assets/user (1).png";
 import Comment from "../components/Comment/Comment";
@@ -20,12 +18,15 @@ const IdeaDescription = () => {
   const [replyingTo, setReplyingTo] = useState(null);
   const [added, setAdded] = useState(false);
 
+  // console.log("IdeaDescription")
+  const base_url = process.env.REACT_APP_BACKEND_URL;
+
   const handleReply = (id) => {
     setReplyingTo(id);
   };
 
   useEffect(() => {
-    Axios.get(`http://lightbulb-server-env.eba-je399ubq.ap-south-1.elasticbeanstalk.com/api/ideas/${ideaID}`)
+    Axios.get(`${base_url}/api/ideas/${ideaID}`)
       .then((res) => {
         setSingleIdea(res.data?.data);
         setLoading(false);
@@ -35,9 +36,7 @@ const IdeaDescription = () => {
         console.log(err);
       });
 
-    Axios.get(
-      `http://lightbulb-server-env.eba-je399ubq.ap-south-1.elasticbeanstalk.com/api/discussions/get-by-id?ideaID=${ideaID}`
-    )
+    Axios.get(`${base_url}/api/discussions/get-by-id?ideaID=${ideaID}`)
       .then((res) => {
         // console.log(res.data.data);
         setComments(res.data?.data);
@@ -51,20 +50,17 @@ const IdeaDescription = () => {
   const images = singleIdea[0]?.images;
 
   const handlePostClick = () => {
-    Axios.post(
-      "http://lightbulb-server-env.eba-je399ubq.ap-south-1.elasticbeanstalk.com/api/discussions/save",
-      {
-        comId: uuidv4(),
-        name: currentUser.displayName,
-        userID: currentUser.uid,
-        avatarUrl: currentUser.photoURL,
-        ideaID: ideaID,
-        comment: usercomment,
-        replies: [],
-      }
-    )
+    Axios.post(`${base_url}/api/discussions/save`, {
+      comId: uuidv4(),
+      name: currentUser.displayName,
+      userID: currentUser.uid,
+      avatarUrl: currentUser.photoURL,
+      ideaID: ideaID,
+      comment: usercomment,
+      replies: [],
+    })
       .then((res) => {
-        console.log("successful");
+        // console.log("successful");
         setUsercomment("");
         setAdded(!added);
       })

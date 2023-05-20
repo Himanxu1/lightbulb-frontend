@@ -9,10 +9,11 @@ import Axios from "axios";
 import { VouchContext } from "../../Context/VouchContext";
 
 const VouchedCard = () => {
+  // console.log("VouchedCard")
 
- const {loading,vouchedData} = useContext(VouchContext); 
- const newVouchData = vouchedData.reverse()
-
+  const { loading, vouchedData } = useContext(VouchContext);
+  const newVouchData = vouchedData.reverse();
+  // console.log(vouchedData)
   return (
     <div className="mx-60 grid grid-cols-2 mt-20 gap-x-14 gap-y-10 pb-20">
       {loading ? (

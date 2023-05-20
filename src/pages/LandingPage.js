@@ -17,13 +17,14 @@ const LandingPage = () => {
   const [showModal, setShowModal] = useState(false);
   const { ideas } = useContext(IdeasContext);
   const { currentUser } = useContext(AuthContext);
-  const {vouchedData} = useContext(VouchContext);
- 
+  const { vouchedData } = useContext(VouchContext);
+
   // console.log(vouchedData)
   // console.log(ideas)
   // for(let key in vouchedData){
   //   console.log(vouchedData[key])
   // }
+  // console.log("Landing Page")
 
   const newIdeas = ideas.slice(0, 5);
   const exploreid = ideas.reverse();
@@ -75,13 +76,15 @@ const LandingPage = () => {
             return (
               // <Link to={`/ideas/${idea.ideaID}`} >
               <FeatureIdeaCard
-                
+                noofvouches={idea.vouches}
+                category={idea.category}
                 title={idea.title}
                 description={idea.description}
                 imageUrl={imageUrl}
-                key={idea.ideaID}
+                id={idea._id}
                 userId={idea.userID}
                 ideaId={idea.ideaID}
+                key={idea._id}
               />
               // </Link>
             );
@@ -102,17 +105,18 @@ const LandingPage = () => {
 
         <div className="grid grid-cols-2 gap-y-14 gap-x-32 mb-20  mt-10 ">
           {/* card 1 */}
-
           {exploreid.map((idea, key) => {
             return (
               <>
                 <ExploreIdeaCard
-               
+                  noofvouches={idea.vouches}
+                  category={idea.category}
                   userId={idea.userID}
                   title={idea.title}
                   description={idea.description}
                   imageUrl={imageUrl}
-                  key={key}
+                  id={idea._id}
+                  key={idea._id}
                   ideaId={idea.ideaID}
                 />
               </>
@@ -125,6 +129,3 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
-
-// background: linear-gradient(0deg, #9069FF, #9069FF),
-// linear-gradient(0deg, #C3AEFF, #C3AEFF);

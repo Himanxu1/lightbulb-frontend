@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import image from "../../assets/upload.png";
 import border from "../../assets/Rectangle 21.png";
 import image1 from "../../assets/Rectangle 23.png";
@@ -11,6 +11,7 @@ import image7 from "../../assets/Rectangle 29.png";
 import Axios from "axios";
 import { AuthContext } from "../../Context/AuthContext";
 import FormData from "form-data";
+import { IdeasContext } from "../../Context/IdeasContext";
 
 export default function Modal({ setShowModal }) {
   const [title, setTitle] = useState("");
@@ -18,7 +19,10 @@ export default function Modal({ setShowModal }) {
   const [category, setCategory] = useState("");
   const [files, setFiles] = useState([]);
   const { currentUser } = useContext(AuthContext);
-
+  const { ideas, setIdeas } = useContext(IdeasContext);
+  // const titleRef = useRef()
+  // console.log("modal")
+  const base_url = process.env.REACT_APP_BACKEND_URL;
   const handleFile = (e) => {
     // console.log(e.target.files)
     setFiles([...files, ...e.target.files]);
@@ -41,14 +45,11 @@ export default function Modal({ setShowModal }) {
         },
       };
 
-      Axios.post(
-        "http://lightbulb-server-env.eba-je399ubq.ap-south-1.elasticbeanstalk.com/api/ideas/save",
-        formData,
-        option
-      )
+      Axios.post(`${base_url}/api/ideas/save`, formData, option)
         .then((res) => {
-          console.log("uploaded");
+          // console.log("uploaded");
           alert("Uploaded");
+          setIdeas([...ideas, res.data.response_data.data]);
         })
         .catch((err) => {
           console.log(err);
@@ -118,6 +119,7 @@ export default function Modal({ setShowModal }) {
               <input
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+                // ref={titleRef}
                 type="text"
                 className="w-[500px] py-2 m-auto bg-gray-200 outline-none mt-6 placeholder:pl-4"
                 placeholder="title"

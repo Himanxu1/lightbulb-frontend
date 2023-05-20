@@ -115,7 +115,7 @@ const Login = () => {
           <button
             aria-label="Continue with google"
             role="button"
-            class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-2 px-4 border rounded-lg border-gray-700 flex items-center w-72 justify-center mt-4"
+            className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-2 px-4 border rounded-lg border-gray-700 flex items-center w-72 justify-center mt-4"
           >
             <img
               src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg2.svg"

@@ -8,16 +8,18 @@ export function VouchProvider({ children }) {
     const {currentUser} = useContext(AuthContext)
     const [vouchedData, setVouchedData] = useState([]);
     const [loading, setLoading] = useState(true);
- 
-  useEffect(() => {
-    Axios.get(
-      `http://lightbulb-server-env.eba-je399ubq.ap-south-1.elasticbeanstalk.com/api/vouches/vouched-ideas?userID=${currentUser?.uid}`
-    ).then((res) => {
-      console.log(res.data.data);
+    const base_url = process.env.REACT_APP_BACKEND_URL
+    
+  // console.log(currentUser?.uid)
+ useEffect(() => {
+    Axios.get(`${base_url}/api/vouches/vouched-ideas?userID=${currentUser?.uid}`).then((res) => {
+      // console.log(res.data.data);
       setVouchedData(res.data.data);
       setLoading(false);
     });
-  }, [currentUser]);
+  }, [ currentUser]);
+
+  // console.log(vouchedData)
 
   return (
     <VouchContext.Provider value={{ vouchedData,loading,setVouchedData }}>{children}</VouchContext.Provider>

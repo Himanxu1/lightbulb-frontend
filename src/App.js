@@ -52,7 +52,6 @@ function App() {
         </Routes>
         </IdeasProvider>
       </VouchProvider>
-     
       </AuthProvider>
     </Router>
   );
