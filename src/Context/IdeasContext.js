@@ -11,7 +11,7 @@ export function IdeasProvider({ children }) {
     Axios.get(`${base_url}/api/ideas/get-all`)
       .then((res) => {
         setIdeas(res.data.data);
-        //  console.log(res.data.data)
+        console.log(res.data.data)
       })
       .catch((err) => console.log(err));
   }, []);
