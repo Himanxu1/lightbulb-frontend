@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 import Axios from "axios";
-
 export const IdeasContext = createContext();
 
 export function IdeasProvider({ children }) {
