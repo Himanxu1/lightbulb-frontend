@@ -25,7 +25,7 @@ const LandingPage = () => {
   //   console.log(vouchedData[key])
   // }
   // console.log("Landing Page")
-
+console.log(ideas)
   const newIdeas = ideas.slice(0, 5);
   const exploreid = ideas.reverse();
   return (
