@@ -3,7 +3,7 @@ import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAnAhjI6xwBtMiJrTFS3kHh_OPSWEeK4yg",
-  authDomain: "authentication-911d8.firebaseapp.com",
+  authDomain: "lightbulb-frontend.vercel.app",
   projectId: "authentication-911d8",
   storageBucket: "authentication-911d8.appspot.com",
   messagingSenderId: "331974360309",
