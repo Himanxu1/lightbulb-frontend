@@ -1,20 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import Axios from "axios";
+import { IdeasContext } from "../../Context/IdeasContext";
 
 const DeleteModal = ({ show, setShow, id, setCreated, created }) => {
   const handleClick = () => {
     setShow(!show);
   };
   const base_url = process.env.REACT_APP_BACKEND_URL;
-
+  const {setIdeas,ideas} = useContext(IdeasContext)
   const handleDelete = () => {
     Axios.delete(`${base_url}/api/ideas/remove?id=${id}`)
       .then((res) => {
-        console.log(res);
         const newCreated = created.filter((item) => item._id !== id);
         // console.log(newCreated)
         setCreated(newCreated);
         setShow(!show);
+        setIdeas(Axios.get(`${base_url}/api/ideas/get-all`)
+        .then((res) => {
+          setIdeas(res.data.data);
+        })
+        .catch((err) => console.log(err)))
       })
       .catch((err) => {
         console.log(err);

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BsPen } from "react-icons/bs";
 import { IoBuildOutline } from "react-icons/io5";
@@ -10,14 +10,15 @@ import CreatedCard from "../components/CreatedCard/CreatedCard";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import BioModal from "../components/BioModal/BioModal";
+import axios from "axios";
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
   const [currentComponent, setCurrentComponent] = useState("vouched");
-  const [bio,setBio] = useState("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus enim vitae eget facilisis eget dignissim congue. Ac dolor cras arcu dui  dictum. Nam venenatis diam et consequat pellentesque gravida dolor bibendum. Vehicula in bibendum quis justo.")
+  const [bio,setBio] = useState("")
   const [show,setShow] = useState(false)
   const navigate = useNavigate();
-
+  const base_url = process.env.REACT_APP_BACKEND_URL;
   const handleClick = (componentName) => {
     setCurrentComponent(componentName);
   };
@@ -36,11 +37,18 @@ const Profile = () => {
     navigate("/login");
   };
 
+  useEffect(()=>{
+  axios.get(`${base_url}/api/auth?userId=${currentUser?.uid}`).then((res)=>{
+    setBio(res.data.data[0].bio)
+  }).catch((err)=>{
+    console.log(err)
+  })
+  },[])
+
   const editBio = () =>{
         setShow(!show)
   }
 
-  // console.log(currentUser?.photoURL);
   return (
     <div className="mt-20 mx-12 shadow-2xl  shadow-gray-300 ">
       <div className="grid place-items-center mt-20 pt-20">
@@ -58,7 +66,7 @@ const Profile = () => {
         >
           Edit Bio
         </button>
-        {show && <BioModal show={show} setBio={setBio} setShow={setShow} />}
+        {show && <BioModal id={currentUser?.uid} show={show} setBio={setBio} setShow={setShow} />}
         </div>
         <h1 className="font-bold text-xl mt-4">@{currentUser?.displayName}</h1>
         <p className="text-center mx-60 mt-4 text-[18px]">

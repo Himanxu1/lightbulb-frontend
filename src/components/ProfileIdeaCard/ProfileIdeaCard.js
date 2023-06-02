@@ -24,7 +24,7 @@ const ProfileIdeaCard = (props) => {
         </p>
         {props.showDelete && (
           <AiFillDelete
-            className="text-3xl  ml-56 hover:text-red-500"
+            className="text-3xl mt-10  ml-56 hover:text-red-500"
             onClick={handleClick}
           />
         )}

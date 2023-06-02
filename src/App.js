@@ -15,6 +15,7 @@ import Help from "./pages/Help";
 import {IdeasProvider} from '../src/Context/IdeasContext'
 import IdeaDescription from "./pages/IdeaDescription";
 import { VouchProvider } from "./Context/VouchContext";
+import {  UserProvider } from "./Context/UserContext";
 
 
 function App() {
@@ -22,19 +23,21 @@ function App() {
 //  console.log(currentUser?.photoURL)
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+   onAuthStateChanged(auth, (user) => {
       if (user) {
         setCurrentUser(user);
-      } else {
-        setCurrentUser(null);
       }
     });
   }, [currentUser]);
+
+  
+
 
 // console.log(currentUser);
   return (
     <Router>
       <AuthProvider value={{ currentUser }}>
+        <UserProvider>
       <VouchProvider>
        {currentUser && <Navbar />}
         <IdeasProvider>
@@ -52,6 +55,7 @@ function App() {
         </Routes>
         </IdeasProvider>
       </VouchProvider>
+        </UserProvider>
       </AuthProvider>
     </Router>
   );

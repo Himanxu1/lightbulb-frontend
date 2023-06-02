@@ -18,7 +18,6 @@ const IdeaDescription = () => {
   const [replyingTo, setReplyingTo] = useState(null);
   const [added, setAdded] = useState(false);
 
-  // console.log("IdeaDescription")
   const base_url = process.env.REACT_APP_BACKEND_URL;
 
   const handleReply = (id) => {
@@ -60,7 +59,6 @@ const IdeaDescription = () => {
       replies: [],
     })
       .then((res) => {
-        // console.log("successful");
         setUsercomment("");
         setAdded(!added);
       })

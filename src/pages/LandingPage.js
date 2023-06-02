@@ -19,15 +19,8 @@ const LandingPage = () => {
   const { currentUser } = useContext(AuthContext);
   const { vouchedData } = useContext(VouchContext);
 
-  // console.log(vouchedData)
-  // console.log(ideas)
-  // for(let key in vouchedData){
-  //   console.log(vouchedData[key])
-  // }
-  // console.log("Landing Page")
-console.log(ideas)
+
   const newIdeas = ideas.slice(0, 5);
-  const exploreid = ideas.reverse();
   return (
     <div>
       <div
@@ -72,11 +65,11 @@ console.log(ideas)
         </div>
         {/* FeatureIdeaCard */}
         <div className="flex mb-20 space-x-14 scrollbar-hide  mt-10 overflow-x-scroll ">
-          {newIdeas.map((idea) => {
+          { newIdeas.map((idea) => {
             return (
-              // <Link to={`/ideas/${idea.ideaID}`} >
+             
               <FeatureIdeaCard
-                noofvouches={idea.vouches}
+                noofvouches={(idea.vouches.length)-1}
                 category={idea.category}
                 title={idea.title}
                 description={idea.description}
@@ -86,7 +79,7 @@ console.log(ideas)
                 ideaId={idea.ideaID}
                 key={idea._id}
               />
-              // </Link>
+ 
             );
           })}
         </div>
@@ -105,11 +98,11 @@ console.log(ideas)
 
         <div className="grid grid-cols-2 gap-y-14 gap-x-32 mb-20  mt-10 ">
           {/* card 1 */}
-          {exploreid.map((idea, key) => {
+          {ideas.map((idea, key) => {
             return (
               <>
                 <ExploreIdeaCard
-                  noofvouches={idea.vouches}
+                  noofvouches={idea.vouches.length-1}
                   category={idea.category}
                   userId={idea.userID}
                   title={idea.title}

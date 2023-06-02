@@ -8,47 +8,55 @@ import { VouchContext } from "../../Context/VouchContext";
 const ExploreIdeaCard = (props) => {
   const idea = props.ideaId;
   const [isVouched, setIsVouched] = useState(false);
-  const { vouchedData } = useContext(VouchContext);
+  const { vouchedData, setVouchedData } = useContext(VouchContext);
   const [noOfVouches, setNoOfVouches] = useState(props.noofvouches);
   const base_url = process.env.REACT_APP_BACKEND_URL;
   // console.log(vouchedData)
   // console.log("ExploreIdeaCard")
   const vouch = (userId) => {
-    Axios.put(`${base_url}/api/ideas/vouch?id=${props.id}`)
-      .then((res) => {
-        // console.log(res);
-        setNoOfVouches(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    Axios.post(`${base_url}/api/vouches/vouch`, {
-      userID: userId,
-      ideaID: idea,
+  
+    const result = vouchedData.filter((item) =>  {
+      return item.userID !== userId
     })
-      .then((res) => {
-        // console.log(res.data.data)
-
-        console.log("idea vouched success");
+    if(result.length > 0){
+      alert("Already Vouched")
+      setIsVouched(true)
+    }else{
+           Axios.put(`${base_url}/api/ideas/vouch?id=${props.id}`,{userID:userId})
+          .then((res) => {
+            
+            setNoOfVouches((res.data.data.length)-1)
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+  
+      Axios.post(`${base_url}/api/vouches/vouch`, {
+        userID: userId,
+        ideaID: idea,
       })
-      .catch((err) => console.log(err));
-
-    Toastify({
-      text: "Vouched Idea",
-      duration: 2000,
-      destination: "https://github.com/apvarun/toastify-js",
-      newWindow: true,
-      close: true,
-      gravity: "top", // `top` or `bottom`
-      position: "right", // `left`, `center` or `right`
-      stopOnFocus: true, // Prevents dismissing of toast on hover
-      style: {
-        background: " white",
-        color: "black",
-      },
-      onClick: function () {}, // Callback after click
-    }).showToast();
+        .then((res) => {
+          setVouchedData([...vouchedData, res.data]);
+        })
+        .catch((err) => console.log(err));
+  
+      Toastify({
+        text: "Vouched Idea",
+        duration: 2000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: " white",
+          color: "black",
+        },
+        onClick: function () {}, // Callback after click
+      }).showToast()
+    }
+  
   };
   const handleVouch = () => {
     vouch(props.userId);

@@ -12,13 +12,11 @@ const CreatedCard = () => {
   const [showModal, setShowModal] = useState(false);
   const [showDelete, setShowDelete] = useState(true);
 
-  //  console.log(currentUser)
   const base_url = process.env.REACT_APP_BACKEND_URL;
-  // console.log(base_url)
+
   useEffect(() => {
     Axios.get(`${base_url}/api/ideas/user?userID=${currentUser.uid}`)
       .then((res) => {
-         console.log(res.data.data)
         setCreated(res.data.data);
         setLoading(false);
       })

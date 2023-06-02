@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import Axios from "axios";
 import { AuthContext } from "./AuthContext";
 
-export const VouchContext = createContext();
+export const VouchContext = createContext({});
 
 export function VouchProvider({ children }) {
     const {currentUser} = useContext(AuthContext)
@@ -18,8 +18,6 @@ export function VouchProvider({ children }) {
       setLoading(false);
     });
   }, [ currentUser]);
-
-  // console.log(vouchedData)
 
   return (
     <VouchContext.Provider value={{ vouchedData,loading,setVouchedData }}>{children}</VouchContext.Provider>

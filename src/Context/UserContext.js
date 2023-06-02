@@ -1,22 +1,22 @@
 import { createContext, useEffect, useState } from "react";
 import Axios from "axios";
-export const IdeasContext = createContext();
+export const UserContext = createContext();
 
-export function IdeasProvider({ children }) {
-  const [ideas, setIdeas] = useState([]);
+export function UserProvider({ children }) {
+  const [user, setUser] = useState([]);
   const base_url = process.env.REACT_APP_BACKEND_URL;
   // console.log(base_url)
   useEffect(() => {
-    Axios.get(`${base_url}/api/ideas/get-all`)
+    Axios.get(`${base_url}/api/auth/get-all`)
       .then((res) => {
-        setIdeas(res.data.data);
+       setUser(res.data.data)
       })
       .catch((err) => console.log(err));
   }, []);
 
   return (
-    <IdeasContext.Provider value={{ ideas, setIdeas }}>
+    <UserContext.Provider value={{ user, setUser }}>
       {children}
-    </IdeasContext.Provider>
+    </UserContext.Provider>
   );
 }

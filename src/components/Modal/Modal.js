@@ -20,8 +20,6 @@ export default function Modal({ setShowModal }) {
   const [files, setFiles] = useState([]);
   const { currentUser } = useContext(AuthContext);
   const { ideas, setIdeas } = useContext(IdeasContext);
-  // const titleRef = useRef()
-  // console.log("modal")
   const base_url = process.env.REACT_APP_BACKEND_URL;
   const handleFile = (e) => {
     // console.log(e.target.files)
@@ -47,9 +45,8 @@ export default function Modal({ setShowModal }) {
 
       Axios.post(`${base_url}/api/ideas/save`, formData, option)
         .then((res) => {
-          // console.log("uploaded");
-          alert("Uploaded");
           setIdeas([...ideas, res.data.response_data.data]);
+          alert("Uploaded");
         })
         .catch((err) => {
           console.log(err);

@@ -1,11 +1,22 @@
-import React from "react";
+import React,{useState} from "react";
+import Axios from 'axios'
 
-const BioModal = ({ setShow, show, setBio }) => {
+const base_url = process.env.REACT_APP_BACKEND_URL;
+
+const BioModal = ({ setShow, show, setBio,id }) => {
+  const [updatedBio,setUpdatedBio] = useState("")
   const handleDelete = () => {
     setShow(!show);
   };
 
-  const handleClick = () => {};
+  const handleClick = () => {
+    Axios.put(`${base_url}/api/auth/update?userId=${id}`,{bio:updatedBio}).then((res)=>{
+        setBio(res.data.data) 
+        setShow(false)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  };
 
   return (
     <div
@@ -48,7 +59,7 @@ const BioModal = ({ setShow, show, setBio }) => {
                     <input
                       type="text"
                       className="bg-gray-100 h-10 w-56"
-                      onChange={(e) => setBio(e.target.value)}
+                      onChange={(e) => setUpdatedBio(e.target.value)}
                     />
                   </div>
                 </div>
@@ -58,14 +69,14 @@ const BioModal = ({ setShow, show, setBio }) => {
               <button
                 type="button"
                 class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto"
-                onClick={handleDelete}
+                onClick={handleClick}
               >
                 update
               </button>
               <button
                 type="button"
                 class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                onClick={handleClick}
+                onClick={handleDelete}
               >
                 Cancel
               </button>

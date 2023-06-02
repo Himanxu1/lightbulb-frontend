@@ -12,14 +12,8 @@ const Comment = ({ id, text, onReply, image, username, fullname }) => {
   };
 
   const handleReplyPost = () => {
-    // Axios.post('').then((res)=>{
-    //   console.log(res)
-    // }).catch((err)=>{
-    //   console.log(err)
-    // })
+   
   };
-
-  // console.log(replyText)
 
   return (
     <>
