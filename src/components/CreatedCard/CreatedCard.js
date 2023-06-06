@@ -19,6 +19,7 @@ const CreatedCard = () => {
       .then((res) => {
         setCreated(res.data.data);
         setLoading(false);
+        // console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -28,10 +29,10 @@ const CreatedCard = () => {
   return (
     <>
       {created.length === 0 && (
-        <div className="grid justify-center mt-10">
-          <h1 className="font-bold text-xl">Share your Idea</h1>
+        <div className='grid justify-center mt-10'>
+          <h1 className='font-bold text-xl'>Share your Idea</h1>
           <button
-            className="bg-violet-500 mt-10 rounded-3xl py-3 text-white font-medium px-6 hover:text-violet-500 border-2 hover:border-violet-400 hover:bg-transparent "
+            className='bg-violet-500 mt-10 rounded-3xl py-3 text-white font-medium px-6 hover:text-violet-500 border-2 hover:border-violet-400 hover:bg-transparent '
             onClick={() => setShowModal(true)}
           >
             add yours
@@ -40,22 +41,24 @@ const CreatedCard = () => {
           {showModal && <Modal setShowModal={setShowModal} />}
         </div>
       )}
-      <div className="mx-60 grid grid-cols-2 mt-20 gap-x-14 gap-y-10 pb-20">
-        {loading && <h1>Loading</h1>}
-        {created.map((item) => {
-          return (
-            <ProfileIdeaCard
-              id={item._id}
-              title={item.title}
-              description={item.description}
-              imageUrl={image4}
-              key={item.userID}
-              showDelete={showDelete}
-              setCreated={setCreated}
-              created={created}
-            />
-          );
-        })}
+      <div className='flex justify-center items-center'>
+        <div className='grid grid-cols-2 mt-10 gap-5'>
+          {loading && <h1>Loading</h1>}
+          {created.map((item) => {
+            return (
+              <ProfileIdeaCard
+                key={item._id}
+                id={item._id}
+                title={item.title}
+                description={item.description}
+                imageUrl={item.images[0]}
+                showDelete={showDelete}
+                setCreated={setCreated}
+                created={created}
+              />
+            );
+          })}
+        </div>
       </div>
     </>
   );
