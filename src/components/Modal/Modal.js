@@ -22,9 +22,9 @@ export default function Modal({ setShowModal, successNotify }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const [files, setFiles] = useState([]);
-
   const [avatar, setAvatar] = useState([]);
+  const [uploadedAvatar, setUploadedAvatar] = useState([]);
+
   const { currentUser } = useContext(AuthContext);
   const { ideas, setIdeas } = useContext(IdeasContext);
   const base_url = process.env.REACT_APP_BACKEND_URL;
@@ -44,16 +44,16 @@ export default function Modal({ setShowModal, successNotify }) {
   };
 
   const handleFile = (e) => {
-    setFiles([...e.target.files, ...files]);
+    setUploadedAvatar([...e.target.files, ...uploadedAvatar]);
+    setAvatar([...e.target.files, ...avatar]);
   };
 
   const publish = () => {
     if (title && description && category && avatar[0]) {
       const formData = new FormData();
-      for (let i = 0; i < files.length; i++) {
-        formData.append("data", files[i]);
+      for (let i = 0; i < avatar.length; i++) {
+        formData.append("data", avatar[i]);
       }
-      formData.append("data", avatar[0]);
       formData.append("userID", currentUser.uid);
       formData.append("title", title);
       formData.append("description", description);
@@ -131,7 +131,7 @@ export default function Modal({ setShowModal, successNotify }) {
 
               <div className='grid grid-cols-3 px-4 gap-x-2 gap-y-2 ml-16'>
                 {/*----------- Rendering browsed images -----------*/}
-                {files.map((idea, index) => (
+                {uploadedAvatar.map((idea, index) => (
                   <img
                     src={URL.createObjectURL(idea)}
                     alt=''
@@ -142,12 +142,11 @@ export default function Modal({ setShowModal, successNotify }) {
                         : ""
                     }`}
                     onClick={() => {
-                      setAvatar([idea]);
                       const clickedFile = idea;
-                      const remainingFiles = files.filter(
+                      const remainingFiles = avatar.filter(
                         (_, i) => i !== index
                       );
-                      setFiles([clickedFile, ...remainingFiles]);
+                      setAvatar([clickedFile, ...remainingFiles]);
                     }}
                   />
                 ))}

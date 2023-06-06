@@ -5,6 +5,10 @@ import ProfileIdeaCard from "../ProfileIdeaCard/ProfileIdeaCard";
 import image4 from "../../assets/Group 16.png";
 import Modal from "../Modal/Modal";
 
+// for notifivation
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const CreatedCard = () => {
   const { currentUser } = useContext(AuthContext);
   const [created, setCreated] = useState([]);
@@ -13,6 +17,20 @@ const CreatedCard = () => {
   const [showDelete, setShowDelete] = useState(true);
 
   const base_url = process.env.REACT_APP_BACKEND_URL;
+
+  //----------- notification -------------
+  const successNotify = (val) => {
+    toast.success(val, {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
 
   useEffect(() => {
     Axios.get(`${base_url}/api/ideas/user?userID=${currentUser.uid}`)
@@ -38,7 +56,9 @@ const CreatedCard = () => {
             add yours
           </button>
           {/* Modal Compoenent */}
-          {showModal && <Modal setShowModal={setShowModal} />}
+          {showModal && (
+            <Modal setShowModal={setShowModal} successNotify={successNotify} />
+          )}
         </div>
       )}
       <div className='flex justify-center items-center'>
@@ -60,6 +80,7 @@ const CreatedCard = () => {
           })}
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };
