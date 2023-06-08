@@ -69,25 +69,26 @@ const IdeaDescription = () => {
 
   return (
     <>
-      <div className="mt-20 mx-12  h-[600px] shadow-2xl mb-10 shadow-gray-300">
-        <div className="flex mx-8 justify-between">
-          <img src={imageUrl} className="w-20 h-20 mt-8 ml-6" />
-          <div className="space-x-6 ml-6 mt-10 mr-10">
-            <button className="rounded-md py-2 bg-violet-500 px-6 text-white font-bold border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent ">
+      <div className='mt-20 mx-12 shadow-2xl mb-10 shadow-gray-300 pb-20'>
+        <div className='flex mx-8 justify-between'>
+          <img src={imageUrl} className='w-20 h-20 mt-8 ml-6' />
+          <div className='space-x-6 ml-6 mt-10 mr-10'>
+            <button className='rounded-md py-2 bg-violet-500 px-6 text-white font-bold border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent '>
               Build
             </button>
-            <button className="rounded-md py-2  px-6 border-2 border-violet-500 font-bold text-violet-500 hover:bg-violet-500 hover:text-white">
+            <button className='rounded-md py-2  px-6 border-2 border-violet-500 font-bold text-violet-500 hover:bg-violet-500 hover:text-white'>
               Vouch
             </button>
           </div>
         </div>
-        <p className="font-medium px-6 mt-8 ml-10 text-[20px]">{title}</p>
-        <p className=" px-6 mt-8 ml-10 text-[16px]">{description}</p>
-        <div className="flex px-6 mx-12 mt-12 overflow-x-scroll scrollbar-hide ">
+        <p className='font-medium px-6 mt-8 ml-10 text-[20px]'>{title}</p>
+        <p className=' px-6 mt-2 ml-10 text-[16px]'>{description}</p>
+        {/* <div className='flex px-6 mx-12 mt-12 overflow-x-scroll scrollbar-hide '> */}
+        <div className='grid grid-cols-3 gap-6 place-items-center px-6 mx-auto mt-12 overflow-x-scroll scrollbar-hide '>
           {images?.map((img) => {
             return (
               <>
-                <img src={img} className="w-66 h-56 mr-4 rounded-xl" />
+                <img src={img} className='w-66 h-56 rounded-xl' />
               </>
             );
           })}
@@ -95,23 +96,23 @@ const IdeaDescription = () => {
       </div>
       {/* Comment Section */}
       {loading && <h1>Loading</h1>}
-      <div className="grid  mx-12 mb-20">
-        <div className="flex w-full mx-12 ">
+      <div className='grid  mx-12 mb-20'>
+        <div className='flex w-full mx-12 '>
           <input
-            className="outline-none border-b-2 h-12 w-[600px] bg-transparent "
-            type="text"
-            placeholder="Share your thought on our Idea..."
+            className='outline-none border-b-2 h-12 w-[600px] bg-transparent '
+            type='text'
+            placeholder='Share your thought on our Idea...'
             value={usercomment}
             onChange={(e) => setUsercomment(e.target.value)}
           />
           <button
             onClick={handlePostClick}
-            className="bg-black text-white px-8 rounded-md ml-28 py-0"
+            className='bg-black text-white px-8 rounded-md ml-28 py-0'
           >
             Post
           </button>
         </div>
-        <div className="grid ml-10 mt-10 gap-y-6">
+        <div className='grid ml-10 mt-10 gap-y-6'>
           {comments?.map((userComment) => {
             return (
               <>

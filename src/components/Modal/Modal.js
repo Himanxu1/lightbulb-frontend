@@ -1,13 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import image from "../../assets/upload.png";
-import border from "../../assets/Rectangle 21.png";
-// import image1 from "../../assets/Rectangle 23.png";
-// import image2 from "../../assets/Rectangle 24.png";
-// import image3 from "../../assets/Rectangle 25.png";
-// import image4 from "../../assets/Rectangle 26.png";
-// import image5 from "../../assets/Rectangle 27.png";
-// import image6 from "../../assets/Rectangle 28.png";
-// import image7 from "../../assets/Rectangle 29.png";
 import Axios from "axios";
 import { AuthContext } from "../../Context/AuthContext";
 import FormData from "form-data";
@@ -17,13 +9,13 @@ import { IoStorefrontOutline } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { upload } from "@testing-library/user-event/dist/upload";
+import { useLoaderData } from "react-router-dom";
 
 export default function Modal({ setShowModal, successNotify }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const [avatar, setAvatar] = useState([]);
-  const [uploadedAvatar, setUploadedAvatar] = useState([]);
+  const [uploadedImages, setUploadedImages] = useState([]);
 
   const { currentUser } = useContext(AuthContext);
   const { ideas, setIdeas } = useContext(IdeasContext);
@@ -44,16 +36,17 @@ export default function Modal({ setShowModal, successNotify }) {
   };
 
   const handleFile = (e) => {
-    setUploadedAvatar([...e.target.files, ...uploadedAvatar]);
-    setAvatar([...e.target.files, ...avatar]);
+    setUploadedImages([...uploadedImages, ...e.target.files]);
   };
 
   const publish = () => {
-    if (title && description && category && avatar[0]) {
+    if (title && description && category) {
       const formData = new FormData();
-      for (let i = 0; i < avatar.length; i++) {
-        formData.append("data", avatar[i]);
+
+      for (let i = 0; i < uploadedImages.length; i++) {
+        formData.append("data", uploadedImages[i]);
       }
+
       formData.append("userID", currentUser.uid);
       formData.append("title", title);
       formData.append("description", description);
@@ -68,16 +61,17 @@ export default function Modal({ setShowModal, successNotify }) {
       Axios.post(`${base_url}/api/ideas/save`, formData, option)
         .then((res) => {
           setIdeas([...ideas, res.data.response_data.data]);
+          console.log(res.data.response_data.data);
           // successNotify("Uploaded");
+          setShowModal(false);
+          setTitle("");
+          setCategory("");
+          setDescription("");
+          successNotify("Uploaded");
         })
         .catch((err) => {
           console.log(err);
         });
-      setShowModal(false);
-      setTitle("");
-      setCategory("");
-      setDescription("");
-      successNotify("Uploaded");
     } else {
       if (!title) {
         errNotify("Enter Title");
@@ -87,9 +81,6 @@ export default function Modal({ setShowModal, successNotify }) {
       }
       if (!category) {
         errNotify("Enter Category");
-      }
-      if (!avatar.length) {
-        errNotify("Select Avatar");
       }
     }
   };
@@ -131,23 +122,12 @@ export default function Modal({ setShowModal, successNotify }) {
 
               <div className='grid grid-cols-3 px-4 gap-x-2 gap-y-2 ml-16'>
                 {/*----------- Rendering browsed images -----------*/}
-                {uploadedAvatar.map((idea, index) => (
+                {uploadedImages.map((idea, index) => (
                   <img
                     src={URL.createObjectURL(idea)}
                     alt=''
                     key={index}
-                    className={`w-28 h-20 object-cover object-center rounded-xl ${
-                      avatar[0] === idea
-                        ? "border-2 border-violet-400 shadow-md"
-                        : ""
-                    }`}
-                    onClick={() => {
-                      const clickedFile = idea;
-                      const remainingFiles = avatar.filter(
-                        (_, i) => i !== index
-                      );
-                      setAvatar([clickedFile, ...remainingFiles]);
-                    }}
+                    className='w-28 h-20 object-cover object-center rounded-xl'
                   />
                 ))}
               </div>
