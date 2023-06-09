@@ -19,13 +19,25 @@ import "react-toastify/dist/ReactToastify.css";
 
 const LandingPage = () => {
   const [showModal, setShowModal] = useState(false);
-  const { ideas } = useContext(IdeasContext);
+  const { ideas, setIdeas } = useContext(IdeasContext);
   const { currentUser } = useContext(AuthContext);
   const { vouchedData } = useContext(VouchContext);
 
   //----------- notification -------------
   const successNotify = (val) => {
     toast.success(val, {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+  const errNotify = (val) => {
+    toast.error(val, {
       position: "top-center",
       autoClose: 1000,
       hideProgressBar: false,
@@ -64,6 +76,7 @@ const LandingPage = () => {
               <Modal
                 setShowModal={setShowModal}
                 successNotify={successNotify}
+                errNotify={errNotify}
               />
             )}
             <button className='border-2 rounded-3xl p-2 border-violet-500 text-violet-500 font-medium hover:bg-violet-500 hover:text-white'>
@@ -87,18 +100,21 @@ const LandingPage = () => {
         </div>
         {/* FeatureIdeaCard */}
         <div className='flex mb-20 space-x-14 scrollbar-hide  mt-10 overflow-x-scroll '>
-          {newIdeas.map((idea) => {
+          {newIdeas.map((idea, key) => {
             return (
               <FeatureIdeaCard
-                noofvouches={idea.vouches.length - 1}
+                noofvouches={idea.vouches.length}
                 category={idea.category}
+                userId={idea.userID}
                 title={idea.title}
                 description={idea.description}
                 imageUrl={imageUrl}
                 id={idea._id}
-                userId={idea.userID}
-                ideaId={idea.ideaID}
                 key={idea._id}
+                ideaId={idea.ideaID}
+                setIdeas={setIdeas}
+                successNotify={successNotify}
+                errNotify={errNotify}
               />
             );
           })}
@@ -122,7 +138,7 @@ const LandingPage = () => {
             return (
               <>
                 <ExploreIdeaCard
-                  noofvouches={idea.vouches.length - 1}
+                  noofvouches={idea.vouches.length}
                   category={idea.category}
                   userId={idea.userID}
                   title={idea.title}
@@ -131,6 +147,9 @@ const LandingPage = () => {
                   id={idea._id}
                   key={idea._id}
                   ideaId={idea.ideaID}
+                  setIdeas={setIdeas}
+                  successNotify={successNotify}
+                  errNotify={errNotify}
                 />
               </>
             );

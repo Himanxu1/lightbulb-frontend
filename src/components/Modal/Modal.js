@@ -5,13 +5,10 @@ import { AuthContext } from "../../Context/AuthContext";
 import FormData from "form-data";
 import { IdeasContext } from "../../Context/IdeasContext";
 import { IoStorefrontOutline } from "react-icons/io5";
-// for notifivation
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { upload } from "@testing-library/user-event/dist/upload";
 import { useLoaderData } from "react-router-dom";
 
-export default function Modal({ setShowModal, successNotify }) {
+export default function Modal({ setShowModal, successNotify, errNotify }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -20,20 +17,6 @@ export default function Modal({ setShowModal, successNotify }) {
   const { currentUser } = useContext(AuthContext);
   const { ideas, setIdeas } = useContext(IdeasContext);
   const base_url = process.env.REACT_APP_BACKEND_URL;
-
-  //----------- notification -------------
-  const errNotify = (val) => {
-    toast.error(val, {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
-  };
 
   const handleFile = (e) => {
     setUploadedImages([...uploadedImages, ...e.target.files]);
@@ -169,7 +152,6 @@ export default function Modal({ setShowModal, successNotify }) {
         </div>
       </div>
       <div className='opacity-25 fixed inset-0 z-40 bg-black'></div>
-      <ToastContainer />
     </>
   );
 }
