@@ -21,10 +21,12 @@ const FeatureIdeaCard = (props) => {
       .then((res) => {
         // console.log(res.data.data[0].vouches);
         setNoOfVouches(res.data.data[0].vouches.length);
-        if (res.data.data[0].vouches.includes(currentUser.uid)) {
-          setIsVouched(true);
-        } else {
-          setIsVouched(false);
+        if (res.data.data[0].vouches.length && currentUser) {
+          if (res.data.data[0].vouches.includes(currentUser.uid)) {
+            setIsVouched(true);
+          } else {
+            setIsVouched(false);
+          }
         }
       })
       .catch((err) => console.log(err));
