@@ -22,6 +22,7 @@ const LandingPage = () => {
   const { ideas, setIdeas } = useContext(IdeasContext);
   const { currentUser } = useContext(AuthContext);
   const { vouchedData } = useContext(VouchContext);
+  const [isVouched, setIsVouched] = useState(false);
 
   //----------- notification -------------
   const successNotify = (val) => {

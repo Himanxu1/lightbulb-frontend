@@ -6,7 +6,7 @@ import { IdeasContext } from "../../Context/IdeasContext";
 import { VouchContext } from "../../Context/VouchContext";
 import { AuthContext } from "../../Context/AuthContext";
 
-const ExploreIdeaCard = (props, { setIdeas }) => {
+const ExploreIdeaCard = (props) => {
   const { currentUser } = useContext(AuthContext);
 
   const idea = props.ideaId;
@@ -14,19 +14,24 @@ const ExploreIdeaCard = (props, { setIdeas }) => {
   const [noOfVouches, setNoOfVouches] = useState(0);
   const { vouchedData, setVouchedData } = useContext(VouchContext);
   const base_url = process.env.REACT_APP_BACKEND_URL;
-  let result;
 
+  //--------- getting no of vouches and checking if already vouched -----------
   useEffect(() => {
     Axios.get(`${base_url}/api/ideas/${idea}`)
       .then((res) => {
-        // console.log(res.data.data[0].vouches.length);
+        // console.log(res.data.data[0].vouches);
         setNoOfVouches(res.data.data[0].vouches.length);
+        if (res.data.data[0].vouches.includes(currentUser.uid)) {
+          setIsVouched(true);
+        } else {
+          setIsVouched(false);
+        }
       })
       .catch((err) => console.log(err));
-  });
+  }, [vouchedData]);
 
   const vouch = (ideaId) => {
-    result = vouchedData.filter((item) => {
+    const result = vouchedData.filter((item) => {
       return item.ideaID == ideaId;
     });
 
@@ -38,7 +43,6 @@ const ExploreIdeaCard = (props, { setIdeas }) => {
       })
         .then((res) => {
           props.successNotify("Vouched Successfully");
-          setIsVouched(true);
           setVouchedData([...vouchedData, res.data.data]);
         })
         .catch((err) => console.log(err));
@@ -46,15 +50,7 @@ const ExploreIdeaCard = (props, { setIdeas }) => {
       Axios.put(`${base_url}/api/ideas/vouch?ideaId=${ideaId}`, {
         userID: currentUser.uid,
       })
-        .then((res) => {
-          // setIdeas(
-          //   Axios.get(`${base_url}/api/ideas/get-all`)
-          //     .then((res) => {
-          //       setIdeas(res.data.data);
-          //     })
-          //     .catch((err) => console.log(err))
-          // );
-        })
+        .then((res) => {})
         .catch((err) => {
           console.log(err);
         });
@@ -65,7 +61,6 @@ const ExploreIdeaCard = (props, { setIdeas }) => {
       )
         .then((res) => {
           props.errNotify("Unvouched Successfully");
-          setIsVouched(false);
           setVouchedData(vouchedData.filter((item) => item.ideaID !== ideaId));
         })
         .catch((err) => console.log(err));
@@ -73,15 +68,7 @@ const ExploreIdeaCard = (props, { setIdeas }) => {
       Axios.put(`${base_url}/api/ideas/vouch?ideaId=${ideaId}`, {
         userID: currentUser.uid,
       })
-        .then((res) => {
-          // setIdeas(
-          //   Axios.get(`${base_url}/api/ideas/get-all`)
-          //     .then((res) => {
-          //       setIdeas(res.data.data);
-          //     })
-          //     .catch((err) => console.log(err))
-          // );
-        })
+        .then((res) => {})
         .catch((err) => {
           console.log(err);
         });
