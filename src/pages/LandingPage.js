@@ -54,13 +54,13 @@ const LandingPage = () => {
   return (
     <div>
       <div
-        className='flex mx-12 w-[1260px] mt-10 h-[420px]'
+        className='flex w-full h-[420px]'
         style={{
           background:
             "linear-gradient(109.52deg, rgba(140, 100, 255, 0.010109) 23.62%, rgba(144, 105, 255, 0) 23.62%, rgba(66, 0, 255, 0.21) 105.39%, rgba(144, 105, 255, 0.21) 111.72%)",
         }}
       >
-        <div className='grid'>
+        <div className='grid w-1/2 pl-14'>
           <h1 className='text-6xl font-bold bg-gradient-to-r  from-purple-300 via-purple-500 to-purple-600 text-transparent bg-clip-text mt-20 w-96 ml-16'>
             Explore <br />
             <h1 className='mt-2'>Startup Ideas</h1>
@@ -85,7 +85,9 @@ const LandingPage = () => {
             </button>
           </div>
         </div>
-        <img src={BannerImage} className='ml-[400px] w-[420px] h-[420px] ' />
+        <div className='w-1/2'>
+          <img src={BannerImage} className='mx-auto w-[420px] h-[420px] ' />
+        </div>
       </div>
 
       <div className=' mx-12  mt-20 '>
