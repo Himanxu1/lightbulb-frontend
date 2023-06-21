@@ -11,7 +11,7 @@ const Navbar = () => {
     <div className="h-20 shadow-sm shadow-gray ">
       <div className="flex justify-between pt-4 px-14 items-center">
         <Link to="/landingpage">
-          <h3 className="font-bold text-2xl">Lightbulb</h3>
+          <h3 className="font-bold text-2xl">Litebulb</h3>
         </Link>
         <ul className="flex space-x-14 mr-72 text-xl">
           <Link to="/community">

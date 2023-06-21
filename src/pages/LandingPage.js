@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import ExploreIdeaCard from "../components/ExploreIdeaCard/ExploreIdeaCard";
 import imageUrl from "../assets/Group 6.png";
@@ -23,6 +23,16 @@ const LandingPage = () => {
   const { currentUser } = useContext(AuthContext);
   const { vouchedData } = useContext(VouchContext);
   const [isVouched, setIsVouched] = useState(false);
+  // const ref = useRef(null)
+  // scroll to explore
+  const handleClickScroll = () => {
+    console.log("sc")
+    const element = document.getElementById('section-1');
+    if (element) {
+      // 👇 Will scroll smoothly to the top of the next section
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   //----------- notification -------------
   const successNotify = (val) => {
@@ -61,7 +71,7 @@ const LandingPage = () => {
         }}
       >
         <div className='grid'>
-          <h1 className='text-6xl font-bold bg-gradient-to-r  from-purple-300 via-purple-500 to-purple-600 text-transparent bg-clip-text mt-20 w-96 ml-16'>
+          <h1 className='text-6xl font-bold bg-gradient-to-r  from-purple-300 via-purple-500 to-purple-600 text-transparent bg-clip-text mt-20 w-96 ml-16'  >
             Explore <br />
             <h1 className='mt-2'>Startup Ideas</h1>
           </h1>
@@ -80,7 +90,7 @@ const LandingPage = () => {
                 errNotify={errNotify}
               />
             )}
-            <button className='border-2 rounded-3xl p-2 border-violet-500 text-violet-500 font-medium hover:bg-violet-500 hover:text-white'>
+            <button className='border-2 rounded-3xl p-2 border-violet-500 text-violet-500 font-medium hover:bg-violet-500 hover:text-white' onClick={handleClickScroll}>
               explore Ideas
             </button>
           </div>
@@ -122,9 +132,9 @@ const LandingPage = () => {
         </div>
       </div>
       {/* Explore Ideas */}
-      <div className=' mx-12  mt-20 '>
+      <div className=' mx-12  mt-20 ' >
         <div className='flex justify-between'>
-          <h1 className='font-bold text-2xl'>Explore Ideas</h1>
+          <h1 className='font-bold text-2xl' id="section-1" >Explore Ideas</h1>
           <div className='flex items-center'>
             <AiFillCaretDown className='text-[25px] mt-2 mr-2' />
             <Link>
