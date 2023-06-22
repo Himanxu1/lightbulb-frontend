@@ -26,11 +26,11 @@ const Navbar = () => {
   return (
     <div className=' p-3 shadow-sm shadow-gray '>
       <div className='flex items-center justify-between lg:mx-16 md:mx-4'>
-        <div className='flex lg:space-x-14 space-x-6 md:mr-9 mr-4 '>
+        <div className='flex lg:space-x-14 space-x-2 md:mr-9 mr-4 '>
           <Link to='/landingpage'>
-            <h3 className='font-bold text-2xl'>Lightbulb</h3>
+            <h3 className='font-bold md:text-2xl text-xl'>Lightbulb</h3>
           </Link>
-          <ul className='_navlinks flex items-center lg:space-x-14 space-x-6 text-xl'>
+          <ul className='_navlinks flex items-center lg:space-x-14 space-x-4 md:text-xl text-lg'>
             <i className='_icon1 fa fa-times' onClick={() => hideMenu()}></i>
             <Link to='/community'>
               <li>Community</li>
