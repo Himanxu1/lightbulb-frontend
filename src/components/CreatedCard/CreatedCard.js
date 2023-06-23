@@ -61,26 +61,26 @@ const CreatedCard = () => {
           )}
         </div>
       )}
-      <div className='flex justify-center items-center'>
-        <div className='grid grid-cols-2 mt-10 gap-5'>
-          {loading && <h1>Loading</h1>}
-          {created.map((item) => {
-            return (
-              <ProfileIdeaCard
-                key={item._id}
-                id={item._id}
-                title={item.title}
-                description={item.description}
-                ideaID={item.ideaID}
-                imageUrl={image4}
-                showDelete={showDelete}
-                setCreated={setCreated}
-                created={created}
-              />
-            );
-          })}
-        </div>
+      {/* <div className='flex justify-center items-center'> */}
+      <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-items-center mt-10 gap-5'>
+        {loading && <h1>Loading</h1>}
+        {created.map((item) => {
+          return (
+            <ProfileIdeaCard
+              key={item._id}
+              id={item._id}
+              title={item.title}
+              description={item.description}
+              ideaID={item.ideaID}
+              imageUrl={image4}
+              showDelete={showDelete}
+              setCreated={setCreated}
+              created={created}
+            />
+          );
+        })}
       </div>
+      {/* </div> */}
       <ToastContainer />
     </>
   );
