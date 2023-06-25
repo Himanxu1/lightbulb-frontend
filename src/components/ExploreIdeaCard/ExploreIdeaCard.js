@@ -80,25 +80,32 @@ const ExploreIdeaCard = (props) => {
     vouch(props.ideaId);
   };
   return (
-    <div className=' flex shadow-md border shadow-gray-300 hover:shadow-2xl rounded-md w-[550px]  h-[310px]'>
-      <img src={props.imageUrl} className='w-12 h-12 mt-10 ml-6' />
-      <div className='mt-6'>
-        <p className='font-medium px-6 mt-4 text-[18px]'>{props.title}</p>
-        <p className='text-[15px] px-6 mt-4'>{props.description}</p>
-        <div className='space-x-6 ml-6 mt-8'>
-          <Link to={`/ideas/${props.ideaId}`}>
-            <button className='rounded-md py-2 bg-violet-500 px-6 text-white font-bold border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent '>
-              Build
-            </button>
-          </Link>
-          <button
-            className='rounded-md py-2  px-6 border-2 border-violet-500 font-bold text-violet-500 hover:bg-violet-500 hover:text-white'
-            onClick={handleVouch}
-          >
-            {isVouched ? "Vouched" : "Vouch"}{" "}
-            <span className=''>({noOfVouches})</span>
-          </button>
+    <div className='relative flex flex-col shadow-md border shadow-gray-100 hover:shadow-lg rounded-md  h-[280px]'>
+      <div className='flex'>
+        <img src={props.imageUrl} className='w-12 h-12 mt-10 ml-6' />
+        <div className='mt-6'>
+          <p className='font-medium px-6 mt-4 text-[18px]'>{props.title}</p>
+          {/* <div className='flex relative'> */}
+          <p className='text-[15px] px-6 mt-2 truncate text-ellipsis whitespace-normal break-all max-h-[90px]'>
+            {props.description}
+          </p>
+          {/* <p className='absolute bottom-0 right-5'>...</p> */}
+          {/* </div> */}
         </div>
+      </div>
+      <div className='absolute bottom-10 right-10 space-x-6'>
+        <Link to={`/ideas/${props.ideaId}`}>
+          <button className='rounded-md py-2 bg-violet-500 px-6 text-white font-bold border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent '>
+            Build
+          </button>
+        </Link>
+        <button
+          className='rounded-md py-2  px-6 border-2 border-violet-500 font-bold text-violet-500 hover:bg-violet-500 hover:text-white'
+          onClick={handleVouch}
+        >
+          {isVouched ? "Vouched" : "Vouch"}{" "}
+          <span className=''>({noOfVouches})</span>
+        </button>
       </div>
     </div>
   );

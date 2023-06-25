@@ -14,8 +14,12 @@ const VouchedCard = () => {
   const { loading, vouchedData } = useContext(VouchContext);
   const newVouchData = vouchedData.reverse();
   // console.log(vouchedData)
-  return  vouchedData.length === 0 ? <h1 className="text-center mt-10 pb-10">You haven't vouched any idea yet</h1> : (
-    <div className="mx-60 grid grid-cols-2 mt-20 gap-x-14 gap-y-10 pb-20">
+  return vouchedData.length === 0 ? (
+    <h1 className='text-center mt-10 pb-10'>
+      You haven't vouched any idea yet
+    </h1>
+  ) : (
+    <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-items-center mt-10 gap-5'>
       {loading ? (
         <h1>Loading</h1>
       ) : (

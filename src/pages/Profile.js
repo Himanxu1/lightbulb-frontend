@@ -53,10 +53,13 @@ const Profile = () => {
   };
 
   return (
-    <div className='mt-20 mx-12 shadow-2xl  shadow-gray-300 '>
-      <div className='grid place-items-center mt-20 pt-20'>
-        <img src={currentUser?.photoURL} className='w-28 h-28 rounded-xl ' />
-        <div className='flex space-x-4'>
+    <div className='md:mt-20 sm:mt-10 mt-0 md:mx-12 sm:mx-8 mx-4'>
+      <div className='grid place-items-center'>
+        <img
+          src={currentUser?.photoURL}
+          className='sm:w-28 w-22 sm:h-28 h-22 sm:mt-2 mt-14 rounded-xl '
+        />
+        <div className='flex space-x-4 sm:text-lg text-base my-4'>
           <button
             className=' mt-2 p-2 border border-violet-400 rounded-xl hover:bg-violet-500 hover:text-white'
             onClick={logout}
@@ -78,31 +81,45 @@ const Profile = () => {
             />
           )}
         </div>
-        <h1 className='font-bold text-xl mt-4'>@{currentUser?.displayName}</h1>
-        <p className='text-center mx-60 mt-4 text-[18px]'>{bio}</p>
+        <h1 className='font-bold sm:text-xl text-lg sm:mt-4 mt-2'>
+          @{currentUser?.displayName}
+        </h1>
+        <p className='text-center sm:text-xl text-lg sm:mt-4 mt-2 text-[18px]'>
+          {bio}
+        </p>
       </div>
-      <div className='flex justify-center mt-14 space-x-64 font-bold text-xl '>
-        <Link className='flex' onClick={() => handleClick("vouched")}>
+      <div className='flex justify-around sm:mt-14 mt-10 md:font-medium md:text-lg text-base '>
+        <Link
+          // className='flex items-center text-gray-400'
+          className={`flex items-center  ${
+            currentComponent === "vouched" ? "" : "text-gray-400"
+          }`}
+          onClick={() => handleClick("vouched")}
+        >
           <h1 className='mr-2 ml-4'>Vouched</h1>
           <IoBulbOutline className='text-[22px]' />
         </Link>
         <Link
-          className='flex items-center text-gray-400'
+          className={`flex items-center  ${
+            currentComponent === "created" ? "" : "text-gray-400"
+          }`}
           onClick={() => handleClick("created")}
         >
           <h1 className=''>Created</h1>
           <BsPen className='ml-2' />
         </Link>
         <Link
-          className='flex items-center text-gray-400 mr-4'
+          className={`flex items-center  ${
+            currentComponent === "build" ? "" : "text-gray-400"
+          }`}
           onClick={() => handleClick("build")}
         >
           <h1 className='mr-2'>Build</h1>
           <IoBuildOutline className='' />
         </Link>
       </div>
-      <div className='h-1 bg-gray-300 mx-60 mt-1'></div>
-      {currentRenderedComponent}
+      <div className='h-[1px] bg-gray-300 mx-auto mt-1'></div>
+      <div className='mb-20 pb-32'>{currentRenderedComponent}</div>
     </div>
   );
 };
