@@ -84,14 +84,14 @@ const LandingPage = () => {
             </button>
             {/* Modal Compoenent */}
             {showModal && (
-              <div className=''>
-                <div className='absolute left-[1%] right-[1%]'>
-                  <Modal
-                    setShowModal={setShowModal}
-                    successNotify={successNotify}
-                    errNotify={errNotify}
-                  />
-                </div>
+              <div className='fixed w-full top-20 -left-4 z-50'>
+                {/* <div className='absolute left-[1%] right-[1%]'> */}
+                <Modal
+                  setShowModal={setShowModal}
+                  successNotify={successNotify}
+                  errNotify={errNotify}
+                />
+                {/* </div> */}
               </div>
             )}
             <button

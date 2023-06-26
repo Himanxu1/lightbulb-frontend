@@ -74,13 +74,15 @@ const Profile = () => {
           </button>
           {show && (
             <div className='bg-gray-200'>
-              <div className='absolute left-[1%] right-[1%]'>
+              <div className='fixed w-full top-50 -left-1 z-50'>
+                {/* <div className='absolute left-[1%] right-[1%]'> */}
                 <BioModal
                   id={currentUser?.uid}
                   show={show}
                   setBio={setBio}
                   setShow={setShow}
                 />
+                {/* </div> */}
               </div>
             </div>
           )}
