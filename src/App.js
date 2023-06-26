@@ -36,7 +36,7 @@ function App() {
         <UserProvider>
           <VouchProvider>
             <div className=''>
-              <div className=' fixed w-full top-0 left-0 z-50'>
+              <div className=' fixed w-full top-0 left-0 z-50 bg-white'>
                 {currentUser && <Navbar />}
               </div>
               <IdeasProvider>
