@@ -73,13 +73,15 @@ const IdeaDescription = () => {
         <div className='max-w-[1000px] mx-auto md:mt-20 sm:16 mt-12  shadow-lg mb-10 shadow-gray-200 pb-20'>
           <div className='flex mx-9 justify-between'>
             <img src={imageUrl} className='sm:w-20 w-16 mt-8' />
-            <div className='space-x-6 ml-6 mt-10 sm:font-bold font-medium sm:text-[16px] text-[14px]'>
-              <button className='rounded-md py-2 bg-violet-500 px-6 text-white border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent '>
-                Build
-              </button>
-              <button className='rounded-md py-2  px-6 border-2 border-violet-500 text-violet-500 hover:bg-violet-500 hover:text-white'>
-                Vouch
-              </button>
+            <div className='ml-6 mt-10 sm:font-bold font-medium sm:text-[16px] text-[14px]'>
+              <div className='flex sm:space-x-6 space-x-3'>
+                <button className='rounded-md py-2 px-6 bg-violet-500  text-white border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent '>
+                  Build
+                </button>
+                <button className='rounded-md py-2  px-6 border-2 border-violet-500 text-violet-500 hover:bg-violet-500 hover:text-white'>
+                  Vouch
+                </button>
+              </div>
             </div>
           </div>
           <div className='mx-11 '>

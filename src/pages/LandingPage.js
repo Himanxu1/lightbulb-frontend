@@ -54,14 +54,14 @@ const LandingPage = () => {
   return (
     <div>
       <div
-        className='flex flex-col sm:flex-row  w-full '
+        className='relative flex flex-col sm:flex-row  w-full '
         style={{
           background:
             "linear-gradient(109.52deg, rgba(140, 100, 255, 0.010109) 23.62%, rgba(144, 105, 255, 0) 23.62%, rgba(66, 0, 255, 0.21) 105.39%, rgba(144, 105, 255, 0.21) 111.72%)",
         }}
       >
         <div className='grid w-1/2  sm:mx-auto  lg:pl-14 pl-12'>
-          <h1 className=' mt-12 sm:mt-20 w-96 sm:ml-16 lg:text-6xl text-4xl font-bold bg-gradient-to-r from-purple-300 via-purple-500 to-purple-600 text-transparent bg-clip-text'>
+          <h1 className=' mt-12 sm:mt-20 sm:w-96 w-64 sm:ml-16 lg:text-6xl text-4xl font-bold bg-gradient-to-r from-purple-300 via-purple-500 to-purple-600 text-transparent bg-clip-text'>
             Explore <br />
             <p className='mt-2'>Startup Ideas</p>
           </h1>
@@ -74,11 +74,15 @@ const LandingPage = () => {
             </button>
             {/* Modal Compoenent */}
             {showModal && (
-              <Modal
-                setShowModal={setShowModal}
-                successNotify={successNotify}
-                errNotify={errNotify}
-              />
+              <div className=''>
+                <div className='absolute left-[1%] right-[1%]'>
+                  <Modal
+                    setShowModal={setShowModal}
+                    successNotify={successNotify}
+                    errNotify={errNotify}
+                  />
+                </div>
+              </div>
             )}
             <button className='border-2 rounded-3xl p-2  text-sm sm:text-base border-violet-500 text-violet-500 font-medium hover:bg-violet-500 hover:text-white'>
               explore Ideas

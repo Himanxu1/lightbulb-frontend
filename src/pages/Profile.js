@@ -53,13 +53,13 @@ const Profile = () => {
   };
 
   return (
-    <div className='md:mt-20 sm:mt-10 mt-0 md:mx-12 sm:mx-8 mx-4'>
+    <div className='relative md:mt-20 sm:mt-10 mt-0 md:mx-12 sm:mx-8 mx-4'>
       <div className='grid place-items-center'>
         <img
           src={currentUser?.photoURL}
           className='sm:w-28 w-22 sm:h-28 h-22 sm:mt-2 mt-14 rounded-xl '
         />
-        <div className='flex space-x-4 sm:text-lg text-base my-4'>
+        <div className=' flex space-x-4 sm:text-lg text-base my-4'>
           <button
             className=' mt-2 p-2 border border-violet-400 rounded-xl hover:bg-violet-500 hover:text-white'
             onClick={logout}
@@ -73,12 +73,16 @@ const Profile = () => {
             Edit Bio
           </button>
           {show && (
-            <BioModal
-              id={currentUser?.uid}
-              show={show}
-              setBio={setBio}
-              setShow={setShow}
-            />
+            <div className='bg-gray-200'>
+              <div className='absolute left-[1%] right-[1%]'>
+                <BioModal
+                  id={currentUser?.uid}
+                  show={show}
+                  setBio={setBio}
+                  setShow={setShow}
+                />
+              </div>
+            </div>
           )}
         </div>
         <h1 className='font-bold sm:text-xl text-lg sm:mt-4 mt-2'>
