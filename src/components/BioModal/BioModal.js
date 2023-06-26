@@ -59,7 +59,7 @@ const BioModal = ({ setShow, show, setBio, id }) => {
               <div class='mt-2'>
                 <input
                   type='text'
-                  className='bg-gray-100 h-10 w-56'
+                  className='h-10 w-56 px-4 py-2 h-fit bg-gray-100 '
                   onChange={(e) => setUpdatedBio(e.target.value)}
                 />
               </div>
