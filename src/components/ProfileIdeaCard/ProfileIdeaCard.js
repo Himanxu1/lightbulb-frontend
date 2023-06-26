@@ -40,7 +40,6 @@ const ProfileIdeaCard = (props) => {
               setCreated={props.setCreated}
               setShow={setShow}
               id={props.id}
-              ideaID={props.ideaID}
             />
           )}
         </div>
