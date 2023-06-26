@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import ExploreIdeaCard from "../components/ExploreIdeaCard/ExploreIdeaCard";
 import imageUrl from "../assets/Group 6.png";
@@ -23,6 +23,16 @@ const LandingPage = () => {
   const { currentUser } = useContext(AuthContext);
   const { vouchedData } = useContext(VouchContext);
   const [isVouched, setIsVouched] = useState(false);
+  // const ref = useRef(null)
+  // scroll to explore
+  const handleClickScroll = () => {
+    console.log("sc");
+    const element = document.getElementById("section-1");
+    if (element) {
+      // 👇 Will scroll smoothly to the top of the next section
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   //----------- notification -------------
   const successNotify = (val) => {
@@ -52,7 +62,7 @@ const LandingPage = () => {
 
   const newIdeas = ideas.slice(0, 5);
   return (
-    <div>
+    <div className='mb-28'>
       <div
         className='relative flex flex-col sm:flex-row  w-full '
         style={{
@@ -84,7 +94,10 @@ const LandingPage = () => {
                 {/* </div> */}
               </div>
             )}
-            <button className='border-2 rounded-3xl p-2  text-sm sm:text-base border-violet-500 text-violet-500 font-medium hover:bg-violet-500 hover:text-white'>
+            <button
+              className='border-2 rounded-3xl p-2  text-sm sm:text-base border-violet-500 text-violet-500 font-medium hover:bg-violet-500 hover:text-white'
+              onClick={handleClickScroll}
+            >
               explore Ideas
             </button>
           </div>
@@ -136,7 +149,10 @@ const LandingPage = () => {
       {/* Explore Ideas */}
       <div className='sm:mx-12 mx-4 md:mt-20 sm:mt-10 mt-6 '>
         <div className='flex justify-between'>
-          <h1 className='font-bold  lg:text-2xl md:text-xl text-lg'>
+          <h1
+            className='font-bold  lg:text-2xl md:text-xl text-lg'
+            id='section-1'
+          >
             Explore Ideas
           </h1>
           <div className='flex items-center'>
