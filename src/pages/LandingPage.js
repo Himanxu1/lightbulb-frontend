@@ -62,7 +62,7 @@ const LandingPage = () => {
 
   const newIdeas = ideas.slice(0, 5);
   return (
-    <div>
+    <div className='mb-28'>
       <div
         className='relative flex flex-col sm:flex-row  w-full '
         style={{

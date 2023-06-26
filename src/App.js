@@ -35,21 +35,25 @@ function App() {
       <AuthProvider value={{ currentUser }}>
         <UserProvider>
           <VouchProvider>
-            {currentUser && <Navbar />}
-            <IdeasProvider>
-              {/* <Navbar/> */}
-              <Routes>
-                <Route path='/' element={<Login />} />
-                <Route path='/landingpage' element={<LandingPage />} />
-                <Route path='/profile' element={<Profile />} />
-                <Route path='/login' element={<Login />} />
-                {/* <Route path="/signup" element={<SignUp />} /> */}
-                <Route path='/community' element={<Community />} />
-                <Route path='/explore' element={<Explore />} />
-                <Route path='/help' element={<Help />} />
-                <Route path='/ideas/:ideaID' element={<IdeaDescription />} />
-              </Routes>
-            </IdeasProvider>
+            <div className=''>
+              <div className=' fixed w-full top-0 left-0 z-50'>
+                {currentUser && <Navbar />}
+              </div>
+              <IdeasProvider>
+                {/* <Navbar/> */}
+                <Routes>
+                  <Route path='/' element={<Login />} />
+                  <Route path='/landingpage' element={<LandingPage />} />
+                  <Route path='/profile' element={<Profile />} />
+                  <Route path='/login' element={<Login />} />
+                  {/* <Route path="/signup" element={<SignUp />} /> */}
+                  <Route path='/community' element={<Community />} />
+                  <Route path='/explore' element={<Explore />} />
+                  <Route path='/help' element={<Help />} />
+                  <Route path='/ideas/:ideaID' element={<IdeaDescription />} />
+                </Routes>
+              </IdeasProvider>
+            </div>
           </VouchProvider>
         </UserProvider>
       </AuthProvider>
