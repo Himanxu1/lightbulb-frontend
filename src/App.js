@@ -39,20 +39,25 @@ function App() {
               <div className=' fixed w-full top-0 left-0 z-50 bg-white'>
                 {currentUser && <Navbar />}
               </div>
-              <IdeasProvider>
-                {/* <Navbar/> */}
-                <Routes>
-                  <Route path='/' element={<Login />} />
-                  <Route path='/landingpage' element={<LandingPage />} />
-                  <Route path='/profile' element={<Profile />} />
-                  <Route path='/login' element={<Login />} />
-                  {/* <Route path="/signup" element={<SignUp />} /> */}
-                  <Route path='/community' element={<Community />} />
-                  <Route path='/explore' element={<Explore />} />
-                  <Route path='/help' element={<Help />} />
-                  <Route path='/ideas/:ideaID' element={<IdeaDescription />} />
-                </Routes>
-              </IdeasProvider>
+              <div className='mt-[55px]'>
+                <IdeasProvider>
+                  {/* <Navbar/> */}
+                  <Routes>
+                    <Route path='/' element={<Login />} />
+                    <Route path='/landingpage' element={<LandingPage />} />
+                    <Route path='/profile' element={<Profile />} />
+                    <Route path='/login' element={<Login />} />
+                    {/* <Route path="/signup" element={<SignUp />} /> */}
+                    <Route path='/community' element={<Community />} />
+                    <Route path='/explore' element={<Explore />} />
+                    <Route path='/help' element={<Help />} />
+                    <Route
+                      path='/ideas/:ideaID'
+                      element={<IdeaDescription />}
+                    />
+                  </Routes>
+                </IdeasProvider>
+              </div>
             </div>
           </VouchProvider>
         </UserProvider>

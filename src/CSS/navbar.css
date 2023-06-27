@@ -66,11 +66,11 @@
   ._icon2 {
     display: block;
   }
-}
 
-/* navbar seach btn */
+  /* navbar seach btn */
 
-._search {
-  width: 0px;
-  transition: 0.2s;
+  ._search {
+    width: 0px;
+    transition: 0.2s;
+  }
 }

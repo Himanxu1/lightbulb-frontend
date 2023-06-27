@@ -62,7 +62,7 @@ const Navbar = () => {
           <input
             type='text'
             placeholder='search ideas'
-            className='_search  sm:h-12 h-10 md:w-3/5 sm:pl-12 pl-[46px] sm:text-base text-sm sm:font-normal font-medium text-gray-500 border rounded-3xl outline-none bg-gray-50 focus:bg-white focus:border-indigo-600'
+            className='_search w-full sm:h-12 h-10 sm:pl-12 pl-[46px] sm:text-base text-sm sm:font-normal font-medium text-gray-500 border rounded-3xl outline-none bg-gray-50 focus:bg-white focus:border-indigo-600'
           />
           <Link to='/profile'>
             <div className='w-12 h-12 ml-2 sm:mr-4'>
