@@ -89,8 +89,8 @@ const ExploreIdeaCard = (props) => {
     <div className='relative flex flex-col shadow-md border shadow-gray-100 hover:shadow-lg rounded-md  h-[280px]'>
       <div className='flex'>
         <img
-          src={userImage}
-          className='sm:w-16 w-12 sm:h-16 h-12 mt-10 ml-6 shadow-md hover:border-[.1px] hover:shadow rounded-xl'
+          src={userImage ? userImage : props.imageUrl}
+          className='md:w-16 sm:w-14 w-12 md:h-16 sm:h-14 h-12 mt-10 ml-6 shadow-md hover:border-[.1px] hover:shadow rounded-xl'
         />
         <div className='mt-6'>
           <p className='font-medium px-6 mt-4 text-[18px]'>{props.title}</p>
