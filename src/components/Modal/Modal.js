@@ -29,7 +29,7 @@ export default function Modal({ setShowModal, successNotify, errNotify }) {
       for (let i = 0; i < uploadedImages.length; i++) {
         formData.append("data", uploadedImages[i]);
       }
-      formData.append("UserPhotoUrl", currentUser.photoURL);
+      formData.append("userPhotoUrl", currentUser.photoURL);
       formData.append("userID", currentUser.uid);
       formData.append("title", title);
       formData.append("description", description);

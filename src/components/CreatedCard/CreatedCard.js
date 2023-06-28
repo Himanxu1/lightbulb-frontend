@@ -72,6 +72,7 @@ const CreatedCard = () => {
               title={item.title}
               description={item.description}
               ideaID={item.ideaID}
+              userPhotoUrl={item.userPhotoUrl}
               imageUrl={image4}
               showDelete={showDelete}
               setCreated={setCreated}

@@ -18,22 +18,22 @@ const ExploreIdeaCard = (props) => {
 
   //--------- getting the idea creator image -------
   useEffect(() => {
-    setUserImage(props.UserPhotoUrl);
+    setUserImage(props.userPhotoUrl);
   });
 
-  //--------- getting no of vouches and checking if already vouched -----------
+  //--------- getting no of vouches  -----------
   useEffect(() => {
     Axios.get(`${base_url}/api/ideas/${idea}`)
       .then((res) => {
         // console.log(res.data.data[0].vouches);
         setNoOfVouches(res.data.data[0].vouches.length);
-        if (res.data.data[0].vouches.length && currentUser) {
-          if (res.data.data[0].vouches.includes(currentUser.uid)) {
-            setIsVouched(true);
-          } else {
-            setIsVouched(false);
-          }
-        }
+        // if (res.data.data[0].vouches.length && currentUser) {
+        //   if (res.data.data[0].vouches.includes(currentUser.uid)) {
+        //     setIsVouched(true);
+        //   } else {
+        //     setIsVouched(false);
+        //   }
+        // }
       })
       .catch((err) => console.log(err));
   }, [vouchedData]);
@@ -52,6 +52,7 @@ const ExploreIdeaCard = (props) => {
         .then((res) => {
           props.successNotify("Vouched Successfully");
           setVouchedData([...vouchedData, res.data.data]);
+          setIsVouched(true);
         })
         .catch((err) => console.log(err));
       // ----------- adding user in ideas schema vouches --------------
@@ -70,6 +71,7 @@ const ExploreIdeaCard = (props) => {
         .then((res) => {
           props.errNotify("Unvouched Successfully");
           setVouchedData(vouchedData.filter((item) => item.ideaID !== ideaId));
+          setIsVouched(false);
         })
         .catch((err) => console.log(err));
       //----------- removing user from ideas schema vouches --------------

@@ -23,10 +23,8 @@ const LandingPage = () => {
   const { currentUser } = useContext(AuthContext);
   const { vouchedData } = useContext(VouchContext);
   const [isVouched, setIsVouched] = useState(false);
-
   // const ref = useRef(null)
   // scroll to explore
-
   const handleClickScroll = () => {
     console.log("sc");
     const element = document.getElementById("section-1");
@@ -35,10 +33,6 @@ const LandingPage = () => {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
-
-  // useEffect(() => {
-  //   console.log(ideas);
-  // });
 
   //----------- notification -------------
   const successNotify = (val) => {
@@ -137,7 +131,7 @@ const LandingPage = () => {
               <FeatureIdeaCard
                 noofvouches={idea.vouches.length}
                 category={idea.category}
-                UserPhotoUrl={idea.UserPhotoUrl}
+                userPhotoUrl={idea.userPhotoUrl}
                 userId={idea.userID}
                 title={idea.title}
                 description={idea.description}
@@ -180,7 +174,7 @@ const LandingPage = () => {
                 <ExploreIdeaCard
                   noofvouches={idea.vouches.length}
                   category={idea.category}
-                  UserPhotoUrl={idea.UserPhotoUrl}
+                  userPhotoUrl={idea.userPhotoUrl}
                   userId={idea.userID}
                   title={idea.title}
                   description={idea.description}

@@ -12,8 +12,8 @@ const ProfileIdeaCard = (props) => {
     <div className='relative w-full max-w-[420px] '>
       <div className=' flex shadow-md border shadow-gray-200 hover:shadow-lg rounded-md   h-[250px]'>
         <img
-          src={props.imageUrl}
-          className='w-12 h-12 mt-10 ml-6  object-cover object-center '
+          src={props.userPhotoUrl ? props.userPhotoUrl : props.imageUrl}
+          className='md:w-14 sm:w-12 w-12 md:h-14 sm:h-12 h-12 mt-10 ml-6 shadow-md hover:border-[.1px] hover:shadow rounded-xl'
         />
         <div className='mt-6'>
           <p className='font-medium px-6 mt-4 text-[16px]'>{props.title}</p>
@@ -29,7 +29,7 @@ const ProfileIdeaCard = (props) => {
           {/* <p className='text-[13px] px-6 mt-4'>{props.description}...<Linkto={`/ideas/${props.ideaID}`}className='text-blue-500 hover:text-black'>read more</Linkto=></p> */}
           {props.showDelete && (
             <AiFillDelete
-              className='absolute -top-1 right-8 text-2xl mt-10  ml-56 hover:text-red-500'
+              className='absolute -top-1 right-8 text-2xl mt-10  ml-56 hover:text-red-500 hover:-top-[5px]'
               onClick={handleClick}
             />
           )}

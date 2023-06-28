@@ -39,7 +39,7 @@ function App() {
               <div className=' fixed w-full top-0 left-0 z-50 bg-white'>
                 {currentUser && <Navbar />}
               </div>
-              <div className='mt-[55px]'>
+              <div className='sm:mt-[72px] mt-[56px]'>
                 <IdeasProvider>
                   {/* <Navbar/> */}
                   <Routes>

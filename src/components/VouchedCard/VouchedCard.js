@@ -31,6 +31,7 @@ const VouchedCard = () => {
                   title={item?.title}
                   description={item?.description}
                   imageUrl={image1}
+                  userPhotoUrl={item?.userPhotoUrl}
                   key={item?.userID}
                   ideaID={item?.ideaID}
                 />

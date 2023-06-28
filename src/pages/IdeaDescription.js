@@ -3,6 +3,7 @@ import Axios from "axios";
 import { useParams } from "react-router-dom";
 import imageUrl from "../assets/Group 6.png";
 import { AuthContext } from "../Context/AuthContext";
+import { VouchContext } from "../Context/VouchContext";
 import userImg from "../assets/user (1).png";
 import Comment from "../components/Comment/Comment";
 import { v4 as uuidv4 } from "uuid";
@@ -10,6 +11,11 @@ import { v4 as uuidv4 } from "uuid";
 const IdeaDescription = () => {
   const { ideaID } = useParams();
   const { currentUser } = useContext(AuthContext);
+
+  const { vouchedData, setVouchedData } = useContext(VouchContext);
+  const [isVouched, setIsVouched] = useState(false);
+  const [noOfVouches, setNoOfVouches] = useState(0);
+
   const [singleIdea, setSingleIdea] = useState([]);
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -19,6 +25,66 @@ const IdeaDescription = () => {
   const [added, setAdded] = useState(false);
 
   const base_url = process.env.REACT_APP_BACKEND_URL;
+
+  //--------- getting no of vouches -----------
+  useEffect(() => {
+    Axios.get(`${base_url}/api/ideas/${ideaID}`)
+      .then((res) => {
+        // console.log(res.data.data[0].vouches);
+        setNoOfVouches(res.data.data[0].vouches.length);
+      })
+      .catch((err) => console.log(err));
+  }, [vouchedData]);
+
+  const vouch = (ideaId) => {
+    const result = vouchedData.filter((item) => {
+      return item.ideaID == ideaId;
+    });
+
+    if (result.length == 0) {
+      // ----------- adding in Vouch schema --------------
+      Axios.post(`${base_url}/api/vouches/vouch`, {
+        userID: currentUser.uid,
+        ideaID: ideaID,
+      })
+        .then((res) => {
+          // props.successNotify("Vouched Successfully");
+          setVouchedData([...vouchedData, res.data.data]);
+          setIsVouched(true);
+        })
+        .catch((err) => console.log(err));
+      // ----------- adding user in ideas schema vouches --------------
+      Axios.put(`${base_url}/api/ideas/vouch?ideaId=${ideaId}`, {
+        userID: currentUser.uid,
+      })
+        .then((res) => {})
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      //----------- removing from Vouch schema --------------
+      Axios.delete(
+        `${base_url}/api/vouches/delete-vouched?ideaID=${ideaId}&userID=${currentUser.uid}`
+      )
+        .then((res) => {
+          // props.errNotify("Unvouched Successfully");
+          setVouchedData(vouchedData.filter((item) => item.ideaID !== ideaId));
+          setIsVouched(false);
+        })
+        .catch((err) => console.log(err));
+      //----------- removing user from ideas schema vouches --------------
+      Axios.put(`${base_url}/api/ideas/vouch?ideaId=${ideaId}`, {
+        userID: currentUser.uid,
+      })
+        .then((res) => {})
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+  const handleVouch = () => {
+    vouch(ideaID);
+  };
 
   const handleReply = (id) => {
     setReplyingTo(id);
@@ -47,6 +113,7 @@ const IdeaDescription = () => {
   const title = singleIdea[0]?.title;
   const description = singleIdea[0]?.description;
   const images = singleIdea[0]?.images;
+  const userPhotoUrl = singleIdea[0]?.userPhotoUrl;
 
   const handlePostClick = () => {
     Axios.post(`${base_url}/api/discussions/save`, {
@@ -72,14 +139,21 @@ const IdeaDescription = () => {
       <div className='sm:mx-8 mx-4'>
         <div className='max-w-[1000px] mx-auto md:mt-20 sm:16 mt-12  shadow-lg mb-10 shadow-gray-200 pb-20'>
           <div className='flex mx-9 justify-between'>
-            <img src={imageUrl} className='sm:w-20 w-16 mt-8' />
+            <img
+              src={userPhotoUrl ? userPhotoUrl : imageUrl}
+              className='sm:w-20 w-[65px] mt-10 shadow-md hover:border-[.1px] hover:shadow rounded-xl'
+            />
             <div className='ml-6 mt-10 sm:font-bold font-medium sm:text-[16px] text-[14px]'>
               <div className='flex sm:space-x-6 space-x-3'>
                 <button className='rounded-md py-2 px-6 bg-violet-500  text-white border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent '>
                   Build
                 </button>
-                <button className='rounded-md py-2  px-6 border-2 border-violet-500 text-violet-500 hover:bg-violet-500 hover:text-white'>
-                  Vouch
+                <button
+                  className='rounded-md py-2  px-6 border-2 border-violet-500 text-violet-500 hover:bg-violet-500 hover:text-white'
+                  onClick={handleVouch}
+                >
+                  {isVouched ? "Vouched" : "Vouch"}
+                  <span className=''>({noOfVouches})</span>
                 </button>
               </div>
             </div>
