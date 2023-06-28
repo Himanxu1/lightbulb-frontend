@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import ExploreIdeaCard from "../components/ExploreIdeaCard/ExploreIdeaCard";
 import imageUrl from "../assets/Group 6.png";
@@ -23,8 +23,10 @@ const LandingPage = () => {
   const { currentUser } = useContext(AuthContext);
   const { vouchedData } = useContext(VouchContext);
   const [isVouched, setIsVouched] = useState(false);
+
   // const ref = useRef(null)
   // scroll to explore
+
   const handleClickScroll = () => {
     console.log("sc");
     const element = document.getElementById("section-1");
@@ -33,6 +35,10 @@ const LandingPage = () => {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  // useEffect(() => {
+  //   console.log(ideas);
+  // });
 
   //----------- notification -------------
   const successNotify = (val) => {
@@ -131,6 +137,7 @@ const LandingPage = () => {
               <FeatureIdeaCard
                 noofvouches={idea.vouches.length}
                 category={idea.category}
+                UserPhotoUrl={idea.UserPhotoUrl}
                 userId={idea.userID}
                 title={idea.title}
                 description={idea.description}
@@ -173,6 +180,7 @@ const LandingPage = () => {
                 <ExploreIdeaCard
                   noofvouches={idea.vouches.length}
                   category={idea.category}
+                  UserPhotoUrl={idea.UserPhotoUrl}
                   userId={idea.userID}
                   title={idea.title}
                   description={idea.description}
