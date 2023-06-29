@@ -2,9 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 import Toastify from "toastify-js";
+import { FaListUl } from "react-icons/fa";
+
 import { IdeasContext } from "../../Context/IdeasContext";
 import { VouchContext } from "../../Context/VouchContext";
 import { AuthContext } from "../../Context/AuthContext";
+
+import VouchersList from "../VouchersList/VouchersList";
 
 const FeatureIdeaCard = (props) => {
   const { currentUser } = useContext(AuthContext);
@@ -15,6 +19,8 @@ const FeatureIdeaCard = (props) => {
   const [noOfVouches, setNoOfVouches] = useState(0);
   const { vouchedData, setVouchedData } = useContext(VouchContext);
   const base_url = process.env.REACT_APP_BACKEND_URL;
+
+  const [showVouchers, setShowVouchers] = useState(false);
 
   //--------- getting the idea creator image -------
   useEffect(() => {
@@ -105,19 +111,43 @@ const FeatureIdeaCard = (props) => {
           {/* </div> */}
         </div>
       </div>
-      <div className='absolute bottom-10 right-10 font-bold sm:text-[16px] text-[14px] space-x-6 '>
-        <Link to={`/ideas/${props.ideaId}`}>
-          <button className='rounded-md py-2 bg-violet-500 px-6 text-white  border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent '>
-            Build
-          </button>
-        </Link>
-        <button
-          className='rounded-md py-2  sm:px-6 px-4 border-2 border-violet-500  text-violet-500 hover:bg-violet-500 hover:text-white'
-          onClick={handleVouch}
-        >
-          {isVouched ? "Vouched" : "Vouch"}
-          <span className=''>({noOfVouches})</span>
-        </button>
+      <div className='absolute bottom-10 right-10 font-bold sm:text-[16px] text-[14px]'>
+        {/* <button className='font-medium text-left'>Vouchers</button> */}
+        <div className='flex sm:space-x-6 space-x-2'>
+          <Link to={`/ideas/${props.ideaId}`}>
+            <button className='rounded-md py-2 bg-violet-500 px-6 text-white  border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent '>
+              Build
+            </button>
+          </Link>
+          <div className='flex space-x-1'>
+            <button
+              className='rounded-md py-2  sm:px-6 px-4 border-2 border-violet-500  text-violet-500 hover:bg-violet-500 hover:text-white'
+              onClick={handleVouch}
+            >
+              {isVouched ? "Vouched" : "Vouch"}
+              <span className=''>({noOfVouches})</span>
+            </button>
+            <button
+              className='rounded-md px-3 border-2 border-violet-500  text-violet-500 hover:bg-violet-500 hover:text-white'
+              onClick={() => setShowVouchers(!showVouchers)}
+            >
+              <div className='text-xl '>
+                <FaListUl />
+              </div>
+            </button>
+            {showVouchers && (
+              <div className='bg-gray-200'>
+                <div className='fixed top-44 lg:left-28 md:left-1 left-1 lg:w-4/5 w-full min-w-fit z-50'>
+                  <VouchersList
+                    showVouchers={showVouchers}
+                    setShowVouchers={setShowVouchers}
+                    ideaId={props.ideaId}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

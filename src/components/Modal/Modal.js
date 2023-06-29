@@ -70,7 +70,7 @@ export default function Modal({ setShowModal, successNotify, errNotify }) {
 
   return (
     <div className='relative z-10'>
-      <div class='fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity'></div>
+      <div className='fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity'></div>
 
       {/* <div className='justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none overflow-y-hidden'> */}
       <div className='relative w-11/12 my-6 mx-auto'>

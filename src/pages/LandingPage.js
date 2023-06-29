@@ -125,7 +125,7 @@ const LandingPage = () => {
         </div>
         {/* FeatureIdeaCard */}
         {/* <div className='flex mb-20 space-x-14 scrollbar-hide  mt-10 overflow-x-scroll '> */}
-        <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-10 '>
+        <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-10 '>
           {newIdeas.map((idea, key) => {
             return (
               <FeatureIdeaCard
@@ -166,7 +166,7 @@ const LandingPage = () => {
           </div>
         </div>
 
-        <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-10 '>
+        <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-10 '>
           {/* card 1 */}
           {ideas.map((idea, key) => {
             return (
