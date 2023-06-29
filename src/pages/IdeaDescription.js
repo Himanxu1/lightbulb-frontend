@@ -32,6 +32,13 @@ const IdeaDescription = () => {
       .then((res) => {
         // console.log(res.data.data[0].vouches);
         setNoOfVouches(res.data.data[0].vouches.length);
+        if (res.data.data[0].vouches.length && currentUser) {
+          if (res.data.data[0].vouches.includes(currentUser.uid)) {
+            setIsVouched(true);
+          } else {
+            setIsVouched(false);
+          }
+        }
       })
       .catch((err) => console.log(err));
   }, [vouchedData]);
@@ -50,7 +57,7 @@ const IdeaDescription = () => {
         .then((res) => {
           // props.successNotify("Vouched Successfully");
           setVouchedData([...vouchedData, res.data.data]);
-          setIsVouched(true);
+          // setIsVouched(true);
         })
         .catch((err) => console.log(err));
       // ----------- adding user in ideas schema vouches --------------
@@ -69,7 +76,7 @@ const IdeaDescription = () => {
         .then((res) => {
           // props.errNotify("Unvouched Successfully");
           setVouchedData(vouchedData.filter((item) => item.ideaID !== ideaId));
-          setIsVouched(false);
+          // setIsVouched(false);
         })
         .catch((err) => console.log(err));
       //----------- removing user from ideas schema vouches --------------

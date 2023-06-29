@@ -28,12 +28,12 @@ const VouchedCard = () => {
             return (
               <>
                 <ProfileIdeaCard
-                  title={item?.title}
-                  description={item?.description}
+                  title={item.title}
+                  description={item.description}
                   imageUrl={image1}
-                  userPhotoUrl={item?.userPhotoUrl}
-                  key={item?.userID}
-                  ideaID={item?.ideaID}
+                  userPhotoUrl={item.userPhotoUrl}
+                  key={item.userID}
+                  ideaID={item.ideaID}
                 />
               </>
             );
