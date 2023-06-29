@@ -5,6 +5,7 @@ const base_url = process.env.REACT_APP_BACKEND_URL;
 
 const VouchersList = ({ showVouchers, setShowVouchers, ideaId }) => {
   const [vouchersData, setVouchersData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // console.log(vouchersData);
@@ -14,9 +15,11 @@ const VouchersList = ({ showVouchers, setShowVouchers, ideaId }) => {
     Axios.get(`${base_url}/api/ideas/vouchersList?ideaID=${ideaId}`)
       .then((res) => {
         setVouchersData(res.data.data);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setIsLoading(false);
       });
   }, []);
 
@@ -31,15 +34,17 @@ const VouchersList = ({ showVouchers, setShowVouchers, ideaId }) => {
             </h2>
             <hr className='mb-2' />
 
-            {vouchersData.length == 0 ? (
+            {isLoading ? (
+              <p className='text-gray-500 font-normal m-5'>Loading...</p>
+            ) : vouchersData.length === 0 ? (
               <p className='text-gray-500 font-normal m-5'>
-                No one has vouched yet !
+                No one has vouched yet!
               </p>
             ) : (
               vouchersData.map((voucher, ind) => (
                 <div
                   key={ind}
-                  className=' flex items-center font-medium sm:py-2 py-2'
+                  className='flex items-center font-medium sm:py-2 py-2'
                 >
                   <div className='w-14 min-w-fit ml-3 '>
                     <img
