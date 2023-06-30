@@ -33,10 +33,6 @@ const CreatedCard = ({ stranger, id }) => {
   };
 
   useEffect(() => {
-    console.log("created" + stranger);
-  });
-
-  useEffect(() => {
     if (stranger) {
       Axios.get(`${base_url}/api/ideas/user?userID=${id}`)
         .then((res) => {
@@ -58,7 +54,7 @@ const CreatedCard = ({ stranger, id }) => {
           console.log(err);
         });
     }
-  }, [loading]);
+  }, [stranger]);
 
   return (
     <>

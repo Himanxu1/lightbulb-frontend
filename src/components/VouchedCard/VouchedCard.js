@@ -17,10 +17,6 @@ const VouchedCard = ({ stranger, id }) => {
   const [load, setLoad] = useState(true);
 
   useEffect(() => {
-    console.log("vouched " + stranger);
-  });
-
-  useEffect(() => {
     if (stranger) {
       Axios.get(`${base_url}/api/vouches/vouched-ideas?userID=${id}`).then(
         (res) => {
@@ -33,7 +29,7 @@ const VouchedCard = ({ stranger, id }) => {
       setMyVouchedData(newVouchData);
       setLoad(false);
     }
-  }, []);
+  }, [stranger]);
 
   return load ? (
     <h1>Loading</h1>
@@ -47,17 +43,17 @@ const VouchedCard = ({ stranger, id }) => {
         <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-items-center mt-10 gap-5'>
           {myVouchedData.map((item) => {
             return (
-              <>
+              <div key={item.userID} className='w-full'>
                 <ProfileIdeaCard
+                  key={item.userID}
+                  userID={item.userID}
                   title={item.title}
                   description={item.description}
                   imageUrl={image1}
                   userPhotoUrl={item.userPhotoUrl}
-                  userID={item.userID}
-                  key={item.userID}
                   ideaID={item.ideaID}
                 />
-              </>
+              </div>
             );
           })}
         </div>

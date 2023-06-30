@@ -33,11 +33,6 @@ const Profile = () => {
     setStranger(id === currentUser?.uid ? false : true);
   }, [id, currentUser]);
 
-  useEffect(() => {
-    console.log(stranger);
-    console.log(id);
-  }, []);
-
   let currentRenderedComponent = null;
   if (currentComponent === "vouched") {
     currentRenderedComponent = <VouchedCard stranger={stranger} id={id} />;
@@ -62,7 +57,7 @@ const Profile = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [stranger]);
 
   const editBio = () => {
     setShow(!show);
