@@ -11,6 +11,8 @@ import { v4 as uuidv4 } from "uuid";
 const IdeaDescription = () => {
   const { ideaID } = useParams();
   const { currentUser } = useContext(AuthContext);
+  const [id, setId] = useState("");
+  const [stranger, setStranger] = useState(false);
 
   const { vouchedData, setVouchedData } = useContext(VouchContext);
   const [isVouched, setIsVouched] = useState(false);
@@ -26,11 +28,16 @@ const IdeaDescription = () => {
 
   const base_url = process.env.REACT_APP_BACKEND_URL;
 
+  useEffect(() => {
+    setStranger(id === currentUser?.uid ? false : true);
+  }, [id, currentUser]);
+
   //--------- getting no of vouches -----------
   useEffect(() => {
     Axios.get(`${base_url}/api/ideas/${ideaID}`)
       .then((res) => {
-        // console.log(res.data.data[0].vouches);
+        // console.log(res.data.data[0].userID);
+        setId(res.data.data[0].userID);
         setNoOfVouches(res.data.data[0].vouches.length);
         if (res.data.data[0].vouches.length && currentUser) {
           if (res.data.data[0].vouches.includes(currentUser.uid)) {
@@ -155,13 +162,15 @@ const IdeaDescription = () => {
                 <button className='rounded-md py-2 px-6 bg-violet-500  text-white border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent '>
                   Build
                 </button>
-                <button
-                  className='rounded-md py-2  px-6 border-2 border-violet-500 text-violet-500 hover:bg-violet-500 hover:text-white'
-                  onClick={handleVouch}
-                >
-                  {isVouched ? "Vouched" : "Vouch"}
-                  <span className=''>({noOfVouches})</span>
-                </button>
+                {!stranger && (
+                  <button
+                    className='rounded-md py-2  px-6 border-2 border-violet-500 text-violet-500 hover:bg-violet-500 hover:text-white'
+                    onClick={handleVouch}
+                  >
+                    {isVouched ? "Vouched" : "Vouch"}
+                    <span className=''>({noOfVouches})</span>
+                  </button>
+                )}
               </div>
             </div>
           </div>
