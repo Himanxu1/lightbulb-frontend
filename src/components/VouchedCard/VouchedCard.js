@@ -8,23 +8,44 @@ import { AuthContext } from "../../Context/AuthContext";
 import Axios from "axios";
 import { VouchContext } from "../../Context/VouchContext";
 
-const VouchedCard = () => {
-  // console.log("VouchedCard")
+const base_url = process.env.REACT_APP_BACKEND_URL;
 
+const VouchedCard = ({ stranger, id }) => {
   const { loading, vouchedData } = useContext(VouchContext);
-  const newVouchData = vouchedData.reverse();
-  // console.log(vouchedData)
-  return vouchedData.length === 0 ? (
-    <h1 className='text-center mt-10 pb-10'>
-      You haven't vouched any idea yet
-    </h1>
+
+  const [myVouchedData, setMyVouchedData] = useState([]);
+  const [load, setLoad] = useState(true);
+
+  useEffect(() => {
+    console.log("vouched " + stranger);
+  });
+
+  useEffect(() => {
+    if (stranger) {
+      Axios.get(`${base_url}/api/vouches/vouched-ideas?userID=${id}`).then(
+        (res) => {
+          setMyVouchedData(res.data.data.reverse());
+          setLoad(false);
+        }
+      );
+    } else {
+      const newVouchData = vouchedData.reverse();
+      setMyVouchedData(newVouchData);
+      setLoad(false);
+    }
+  }, []);
+
+  return load ? (
+    <h1>Loading</h1>
   ) : (
-    <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-items-center mt-10 gap-5'>
-      {loading ? (
-        <h1>Loading</h1>
+    <div>
+      {myVouchedData.length === 0 ? (
+        <h1 className='text-center mt-10 pb-10'>
+          Haven't vouched any idea yet
+        </h1>
       ) : (
-        <>
-          {newVouchData.map((item) => {
+        <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-items-center mt-10 gap-5'>
+          {myVouchedData.map((item) => {
             return (
               <>
                 <ProfileIdeaCard
@@ -32,13 +53,14 @@ const VouchedCard = () => {
                   description={item.description}
                   imageUrl={image1}
                   userPhotoUrl={item.userPhotoUrl}
+                  userID={item.userID}
                   key={item.userID}
                   ideaID={item.ideaID}
                 />
               </>
             );
           })}
-        </>
+        </div>
       )}
     </div>
   );

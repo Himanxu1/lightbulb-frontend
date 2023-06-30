@@ -9,7 +9,7 @@ import Modal from "../Modal/Modal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const CreatedCard = () => {
+const CreatedCard = ({ stranger, id }) => {
   const { currentUser } = useContext(AuthContext);
   const [created, setCreated] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -33,20 +33,36 @@ const CreatedCard = () => {
   };
 
   useEffect(() => {
-    Axios.get(`${base_url}/api/ideas/user?userID=${currentUser.uid}`)
-      .then((res) => {
-        setCreated(res.data.data);
-        setLoading(false);
-        // console.log(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    console.log("created" + stranger);
+  });
+
+  useEffect(() => {
+    if (stranger) {
+      Axios.get(`${base_url}/api/ideas/user?userID=${id}`)
+        .then((res) => {
+          setCreated(res.data.data);
+          setLoading(false);
+          // console.log(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      Axios.get(`${base_url}/api/ideas/user?userID=${currentUser.uid}`)
+        .then((res) => {
+          setCreated(res.data.data);
+          setLoading(false);
+          // console.log(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [loading]);
 
   return (
     <>
-      {created.length === 0 && (
+      {!stranger && created.length === 0 && (
         <div className='grid justify-center mt-10'>
           <h1 className='font-bold text-xl'>Share your Idea</h1>
           <button
@@ -77,6 +93,7 @@ const CreatedCard = () => {
               showDelete={showDelete}
               setCreated={setCreated}
               created={created}
+              stranger={stranger}
             />
           );
         })}

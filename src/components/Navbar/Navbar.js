@@ -64,7 +64,7 @@ const Navbar = () => {
             placeholder='search ideas'
             className='_search w-full sm:h-12 h-10 sm:pl-12 pl-[46px] sm:text-base text-sm sm:font-normal font-medium text-gray-500 border rounded-3xl outline-none bg-gray-50 focus:bg-white focus:border-indigo-600'
           />
-          <Link to='/profile'>
+          <Link to={`/profile/${currentUser?.uid}`}>
             <div className='w-12 h-12 ml-2 sm:mr-4'>
               <img src={currentUser ? currentUser?.photoURL : avatar} />
             </div>

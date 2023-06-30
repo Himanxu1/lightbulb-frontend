@@ -27,7 +27,7 @@ const ProfileIdeaCard = (props) => {
             read more ...
           </Link>
           {/* <p className='text-[13px] px-6 mt-4'>{props.description}...<Linkto={`/ideas/${props.ideaID}`}className='text-blue-500 hover:text-black'>read more</Linkto=></p> */}
-          {props.showDelete && (
+          {!props.stranger && props.showDelete && (
             <AiFillDelete
               className='absolute -top-1 right-8 text-2xl mt-10  ml-56 hover:text-red-500 hover:-top-[5px]'
               onClick={handleClick}

@@ -45,7 +45,7 @@ function App() {
                   <Routes>
                     <Route path='/' element={<Login />} />
                     <Route path='/landingpage' element={<LandingPage />} />
-                    <Route path='/profile' element={<Profile />} />
+                    <Route path='/profile/:id' element={<Profile />} />
                     <Route path='/login' element={<Login />} />
                     {/* <Route path="/signup" element={<SignUp />} /> */}
                     <Route path='/community' element={<Community />} />
