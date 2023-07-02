@@ -136,9 +136,9 @@ const LandingPage = () => {
         {!newIdeas.length || !currentUser ? (
           <div className='w-full text-center'>Loading...</div>
         ) : (
-          newIdeas.map((idea, key) => {
-            return (
-              <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-10 '>
+          <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-10 '>
+            {newIdeas.map((idea, key) => {
+              return (
                 <FeatureIdeaCard
                   noofvouches={idea.vouches.length}
                   category={idea.category}
@@ -154,9 +154,9 @@ const LandingPage = () => {
                   successNotify={successNotify}
                   errNotify={errNotify}
                 />
-              </div>
-            );
-          })
+              );
+            })}
+          </div>
         )}
       </div>
       {/* Explore Ideas */}
@@ -182,10 +182,10 @@ const LandingPage = () => {
         {!ideas.length || !currentUser ? (
           <div className='w-full text-center'>Loading...</div>
         ) : (
-          ideas.map((idea, key) => {
-            return (
-              <>
-                <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-10 '>
+          <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-10 '>
+            {ideas.map((idea, key) => {
+              return (
+                <>
                   <ExploreIdeaCard
                     noofvouches={idea.vouches.length}
                     category={idea.category}
@@ -201,10 +201,10 @@ const LandingPage = () => {
                     successNotify={successNotify}
                     errNotify={errNotify}
                   />
-                </div>
-              </>
-            );
-          })
+                </>
+              );
+            })}
+          </div>
         )}
       </div>
       <ToastContainer />
