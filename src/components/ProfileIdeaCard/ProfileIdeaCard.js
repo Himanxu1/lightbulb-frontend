@@ -21,10 +21,18 @@ const ProfileIdeaCard = (props) => {
           </Link>
         </div>
         <div className='w-10/12 mt-6'>
-          <p className='font-medium px-6 mt-4 text-[16px]'>{props.title}</p>
-          <p className='text-[13px] px-6 mt-4 truncate text-ellipsis whitespace-normal break-all max-h-[60px]'>
+          {/* <div className='w-10/12 mt-6'> */}
+          <p className='w-10/12 font-medium px-6 mt-4 overflow-hidden text-overflow-ellipsis line-clamp-2'>
+            {props.title}
+          </p>
+          <p className='text-[15.5px] px-6 mt-2 overflow-hidden text-overflow-ellipsis line-clamp-4'>
             {props.description}
           </p>
+          {/* </div> */}
+          {/* <p className='font-medium px-6 mt-4 text-[16px]'>{props.title}</p>
+          <p className='text-[13px] px-6 mt-4 truncate text-ellipsis whitespace-normal break-all max-h-[60px]'>
+            {props.description}
+          </p> */}
           <Link
             to={`/ideas/${props.ideaID}`}
             className='text-[13px] px-6 mt-4 text-blue-500 hover:text-black'

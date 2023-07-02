@@ -64,7 +64,7 @@ const Profile = () => {
   };
 
   if (!UserDetails || !currentUser) {
-    return <div>Loading...</div>;
+    return <div className='w-full mt-36 text-center'>Loading...</div>;
   }
 
   return (

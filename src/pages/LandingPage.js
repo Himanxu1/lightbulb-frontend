@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import ExploreIdeaCard from "../components/ExploreIdeaCard/ExploreIdeaCard";
 import imageUrl from "../assets/Group 6.png";
 import image2 from "../assets/Group 16.png";
@@ -20,10 +20,11 @@ import "react-toastify/dist/ReactToastify.css";
 const LandingPage = () => {
   const [showModal, setShowModal] = useState(false);
   const { ideas, setIdeas } = useContext(IdeasContext);
+  // const [ideas, setIdeas] = useState([]);
   const { currentUser } = useContext(AuthContext);
   const { vouchedData } = useContext(VouchContext);
   const [isVouched, setIsVouched] = useState(false);
-  // const ref = useRef(null)
+
   // scroll to explore
   const handleClickScroll = () => {
     console.log("sc");
@@ -33,6 +34,13 @@ const LandingPage = () => {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  //------- if no user ---------
+  // useEffect(() => {
+  //   if (currentUser && !currentUser.uid) {
+  //     Navigate("/");
+  //   }
+  // }, [currentUser]);
 
   //----------- notification -------------
   const successNotify = (val) => {
@@ -125,27 +133,31 @@ const LandingPage = () => {
         </div>
         {/* FeatureIdeaCard */}
         {/* <div className='flex mb-20 space-x-14 scrollbar-hide  mt-10 overflow-x-scroll '> */}
-        <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-10 '>
-          {newIdeas.map((idea, key) => {
+        {!newIdeas.length || !currentUser ? (
+          <div className='w-full text-center'>Loading...</div>
+        ) : (
+          newIdeas.map((idea, key) => {
             return (
-              <FeatureIdeaCard
-                noofvouches={idea.vouches.length}
-                category={idea.category}
-                userPhotoUrl={idea.userPhotoUrl}
-                userId={idea.userID}
-                title={idea.title}
-                description={idea.description}
-                imageUrl={imageUrl}
-                id={idea._id}
-                key={idea._id}
-                ideaId={idea.ideaID}
-                setIdeas={setIdeas}
-                successNotify={successNotify}
-                errNotify={errNotify}
-              />
+              <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-10 '>
+                <FeatureIdeaCard
+                  noofvouches={idea.vouches.length}
+                  category={idea.category}
+                  userPhotoUrl={idea.userPhotoUrl}
+                  userId={idea.userID}
+                  title={idea.title}
+                  description={idea.description}
+                  imageUrl={imageUrl}
+                  id={idea._id}
+                  key={idea._id}
+                  ideaId={idea.ideaID}
+                  setIdeas={setIdeas}
+                  successNotify={successNotify}
+                  errNotify={errNotify}
+                />
+              </div>
             );
-          })}
-        </div>
+          })
+        )}
       </div>
       {/* Explore Ideas */}
       <div className='sm:mx-12 mx-4 md:mt-20 sm:mt-10 mt-6 '>
@@ -166,30 +178,34 @@ const LandingPage = () => {
           </div>
         </div>
 
-        <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-10 '>
-          {/* card 1 */}
-          {ideas.map((idea, key) => {
+        {/* card 1 */}
+        {!ideas.length || !currentUser ? (
+          <div className='w-full text-center'>Loading...</div>
+        ) : (
+          ideas.map((idea, key) => {
             return (
               <>
-                <ExploreIdeaCard
-                  noofvouches={idea.vouches.length}
-                  category={idea.category}
-                  userPhotoUrl={idea.userPhotoUrl}
-                  userId={idea.userID}
-                  title={idea.title}
-                  description={idea.description}
-                  imageUrl={imageUrl}
-                  id={idea._id}
-                  key={idea._id}
-                  ideaId={idea.ideaID}
-                  setIdeas={setIdeas}
-                  successNotify={successNotify}
-                  errNotify={errNotify}
-                />
+                <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-10 '>
+                  <ExploreIdeaCard
+                    noofvouches={idea.vouches.length}
+                    category={idea.category}
+                    userPhotoUrl={idea.userPhotoUrl}
+                    userId={idea.userID}
+                    title={idea.title}
+                    description={idea.description}
+                    imageUrl={imageUrl}
+                    id={idea._id}
+                    key={idea._id}
+                    ideaId={idea.ideaID}
+                    setIdeas={setIdeas}
+                    successNotify={successNotify}
+                    errNotify={errNotify}
+                  />
+                </div>
               </>
             );
-          })}
-        </div>
+          })
+        )}
       </div>
       <ToastContainer />
     </div>

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
 import avatar from "../../assets/user (1).png";
 import hamburger from "../../assets/hamburger.png";
@@ -8,6 +8,7 @@ import "../../CSS/navbar.css";
 import { AuthContext } from "../../Context/AuthContext";
 
 const Navbar = () => {
+  const location = useLocation();
   const { currentUser } = useContext(AuthContext);
   // const nav = document.getElementsByClassName("nav");
   const _navlinks = document.getElementsByClassName("_navlinks");
@@ -31,6 +32,11 @@ const Navbar = () => {
     const currentWidth = _search[0].style.width;
     _search[0].style.width = currentWidth === "150px" ? "0px" : "150px";
   };
+
+  //------- if no user ---------
+  // if (location.pathname === "/login") {
+  //   return <></>;
+  // }
 
   return (
     <div className='sm:p-3 px-3 py-1 shadow-sm shadow-gray '>
@@ -65,7 +71,7 @@ const Navbar = () => {
             className='_search w-full sm:h-12 h-10 sm:pl-12 pl-[46px] sm:text-base text-sm sm:font-normal font-medium text-gray-500 border rounded-3xl outline-none bg-gray-50 focus:bg-white focus:border-indigo-600'
           />
           <Link to={`/profile/${currentUser?.uid}`}>
-            <div className='w-12 h-12 ml-2 sm:mr-4'>
+            <div className='w-12 h-12 ml-2 sm:mr-4 rounded-full'>
               <img src={currentUser ? currentUser?.photoURL : avatar} />
             </div>
           </Link>

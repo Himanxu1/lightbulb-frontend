@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import imageUrl from "../assets/Group 6.png";
 import { AuthContext } from "../Context/AuthContext";
 import { VouchContext } from "../Context/VouchContext";
@@ -109,7 +109,7 @@ const IdeaDescription = () => {
       .then((res) => {
         setSingleIdea(res.data?.data);
         setLoading(false);
-        //  console.log(res.data?.data);
+        console.log(res.data?.data);
       })
       .catch((err) => {
         console.log(err);
@@ -118,7 +118,7 @@ const IdeaDescription = () => {
     Axios.get(`${base_url}/api/discussions/get-by-id?ideaID=${ideaID}`)
       .then((res) => {
         // console.log(res.data.data);
-        setComments(res.data?.data);
+        // setComments(res.data?.data);
         setLoading(false);
       })
       .catch((err) => console.log(err));
@@ -153,10 +153,12 @@ const IdeaDescription = () => {
       <div className='sm:mx-8 mx-4'>
         <div className='max-w-[1000px] mx-auto md:mt-20 sm:16 mt-12  shadow-lg mb-10 shadow-gray-200 pb-20'>
           <div className='flex mx-9 justify-between'>
-            <img
-              src={userPhotoUrl ? userPhotoUrl : imageUrl}
-              className='sm:w-20 w-[65px] mt-10 shadow-md hover:border-[.1px] hover:shadow rounded-xl'
-            />
+            <Link to={`/profile/${singleIdea[0]?.userID}`}>
+              <img
+                src={userPhotoUrl ? userPhotoUrl : imageUrl}
+                className='sm:w-20 w-[65px] mt-10 shadow-md hover:border-[.1px] hover:shadow rounded-xl'
+              />
+            </Link>
             <div className='ml-6 mt-10 sm:font-bold font-medium sm:text-[16px] text-[14px]'>
               <div className='flex sm:space-x-6 space-x-3'>
                 <button className='rounded-md py-2 px-6 bg-violet-500  text-white border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent '>

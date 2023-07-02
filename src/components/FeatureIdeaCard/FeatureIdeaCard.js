@@ -106,13 +106,12 @@ const FeatureIdeaCard = (props) => {
           </Link>
         </div>
         <div className='w-10/12 mt-6'>
-          <p className='font-medium px-6 mt-4 text-[18px]'>{props.title}</p>
-          {/* <div className='flex relative'> */}
-          <p className='text-[15px] px-6 mt-2 truncate text-ellipsis whitespace-normal break-all max-h-[90px]'>
+          <p className='font-medium px-6 mt-4 overflow-hidden text-overflow-ellipsis line-clamp-2'>
+            {props.title}
+          </p>
+          <p className='text-[15.5px] px-6 mt-2 overflow-hidden text-overflow-ellipsis line-clamp-4'>
             {props.description}
           </p>
-          {/* <p className='absolute bottom-0 right-5'>...</p> */}
-          {/* </div> */}
         </div>
       </div>
       <div className='absolute bottom-10 right-10 font-bold sm:text-[16px] text-[14px]'>
