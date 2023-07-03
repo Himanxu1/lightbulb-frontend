@@ -46,7 +46,7 @@ const Login = () => {
     <div className='flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 '>
       <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
         <div className='flex justify-center items-cente'>
-          <h1 className='font-bold text-[25px] mr-4 '>Lightbulb</h1>
+          <h1 className='font-bold text-[25px] mr-4 '>Litebulb</h1>
           <img className=' h-10 w-auto' src={img} alt='Your Company' />
         </div>
         <h2 className='mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900'>
