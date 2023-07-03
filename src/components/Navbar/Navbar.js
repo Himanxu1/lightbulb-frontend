@@ -34,9 +34,11 @@ const Navbar = () => {
   };
 
   // ------- if no user ---------
-  if (location.pathname === "/Login") {
+  // useEffect(() => {
+  if (location.pathname === "/login") {
     return <></>;
   }
+  // });
 
   return (
     <div className='sm:p-3 px-3 py-1 shadow-sm shadow-gray '>
@@ -71,7 +73,7 @@ const Navbar = () => {
             className='_search w-full sm:h-12 h-10 sm:pl-12 pl-[46px] sm:text-base text-sm sm:font-normal font-medium text-gray-500 border rounded-3xl outline-none bg-gray-50 focus:bg-white focus:border-indigo-600'
           />
           {!currentUser ? (
-            <Link to={`/Login`}>
+            <Link to={`/login`}>
               <div className='w-12 h-12 ml-2 sm:mr-4 p-1'>
                 <img
                   className='rounded-full'
