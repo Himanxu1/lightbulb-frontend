@@ -10,8 +10,8 @@ const ProfileIdeaCard = (props) => {
   };
 
   return (
-    <div className='relative w-full max-w-[420px] '>
-      <div className=' flex shadow-md border shadow-gray-200 hover:shadow-lg rounded-md   h-[250px]'>
+    <div className='relative mx-auto w-full max-w-[420px] '>
+      <div className=' flex shadow-md border shadow-gray-200 hover:shadow-lg rounded-md h-[250px]'>
         <div className='mt-10 ml-6'>
           <Link to={`/profile/${props.userID}`}>
             <img

@@ -31,10 +31,12 @@ const VouchersList = ({ showVouchers, setShowVouchers, ideaId }) => {
       <div className='relative sm:min-w-[600px] w-10/12 sm:w-3/4 md:w-3/5 my-6 mx-auto'>
         <div className='rounded-lg shadow-md flex flex-col w-full bg-white'>
           <div className='p-4 h-fit max-h-96 overflow-y-auto'>
-            <h2 className='sm:text-[20px] text-[18px] font-medium mb-2'>
-              Voucher Details
-            </h2>
-            <hr className='mb-2' />
+            <div className='sticky top-0 bg-white'>
+              <h2 className='sm:text-[20px] text-[18px] font-medium mb-2'>
+                Voucher Details
+              </h2>
+              <hr className='mb-2' />
+            </div>
 
             {isLoading ? (
               <p className='text-gray-500 font-normal m-5'>Loading...</p>

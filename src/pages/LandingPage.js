@@ -68,6 +68,14 @@ const LandingPage = () => {
     });
   };
 
+  const addIdea = () => {
+    if (currentUser) {
+      setShowModal(true);
+    } else {
+      alert("Please sign in first.");
+    }
+  };
+
   const newIdeas = ideas.slice(0, 5);
   return (
     <div className='mb-28'>
@@ -86,7 +94,7 @@ const LandingPage = () => {
           <div className='sm:ml-16 mt-9 sm:mt-0 space-x-4'>
             <button
               className='bg-violet-500  rounded-3xl py-3 text-sm sm:text-base text-white font-medium px-6 hover:text-violet-500 border-2 hover:border-violet-400 hover:bg-transparent '
-              onClick={() => setShowModal(true)}
+              onClick={() => addIdea()}
             >
               add yours
             </button>
@@ -133,7 +141,7 @@ const LandingPage = () => {
         </div>
         {/* FeatureIdeaCard */}
         {/* <div className='flex mb-20 space-x-14 scrollbar-hide  mt-10 overflow-x-scroll '> */}
-        {!newIdeas.length || !currentUser ? (
+        {!newIdeas.length ? (
           <div className='w-full text-center'>Loading...</div>
         ) : (
           <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-10 '>
@@ -179,7 +187,7 @@ const LandingPage = () => {
         </div>
 
         {/* card 1 */}
-        {!ideas.length || !currentUser ? (
+        {!ideas.length ? (
           <div className='w-full text-center'>Loading...</div>
         ) : (
           <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-10 '>

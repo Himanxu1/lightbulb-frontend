@@ -109,7 +109,7 @@ const IdeaDescription = () => {
       .then((res) => {
         setSingleIdea(res.data?.data);
         setLoading(false);
-        console.log(res.data?.data);
+        // console.log(res.data?.data);
       })
       .catch((err) => {
         console.log(err);
@@ -118,7 +118,7 @@ const IdeaDescription = () => {
     Axios.get(`${base_url}/api/discussions/get-by-id?ideaID=${ideaID}`)
       .then((res) => {
         // console.log(res.data.data);
-        // setComments(res.data?.data);
+        setComments(res.data?.data);
         setLoading(false);
       })
       .catch((err) => console.log(err));
@@ -130,22 +130,26 @@ const IdeaDescription = () => {
   const userPhotoUrl = singleIdea[0]?.userPhotoUrl;
 
   const handlePostClick = () => {
-    Axios.post(`${base_url}/api/discussions/save`, {
-      comId: uuidv4(),
-      name: currentUser.displayName,
-      userID: currentUser.uid,
-      avatarUrl: currentUser.photoURL,
-      ideaID: ideaID,
-      comment: usercomment,
-      replies: [],
-    })
-      .then((res) => {
-        setUsercomment("");
-        setAdded(!added);
+    if (currentUser && currentUser?.uid) {
+      Axios.post(`${base_url}/api/discussions/save`, {
+        comId: uuidv4(),
+        name: currentUser.displayName,
+        userID: currentUser.uid,
+        avatarUrl: currentUser.photoURL,
+        ideaID: ideaID,
+        comment: usercomment,
+        replies: [],
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((res) => {
+          setUsercomment("");
+          setAdded(!added);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      alert("Please sign in first");
+    }
   };
 
   return (
@@ -205,7 +209,11 @@ const IdeaDescription = () => {
               onChange={(e) => setUsercomment(e.target.value)}
             />
             <button
-              onClick={handlePostClick}
+              onClick={() => {
+                if (usercomment.length > 0) {
+                  handlePostClick();
+                }
+              }}
               className='w-24 mt-2 sm:mt-0 ml-2 p-8 rounded-md py-3 font-medium sm:text-[16px] text-[14px] bg-black hover:bg-gray-300 text-white hover:text-black'
             >
               Post
@@ -219,6 +227,7 @@ const IdeaDescription = () => {
                     username={"max"}
                     fullname={userComment.name}
                     id={userComment.comId}
+                    ideaID={ideaID}
                     text={userComment.comment}
                     onReply={handleReply}
                     image={userComment.avatarUrl}

@@ -91,7 +91,12 @@ const ExploreIdeaCard = (props) => {
     }
   };
   const handleVouch = () => {
-    vouch(props.ideaId);
+    if (currentUser) {
+      vouch(props.ideaId);
+      // handleVouch();
+    } else {
+      alert("Please sign in first.");
+    }
   };
 
   return (

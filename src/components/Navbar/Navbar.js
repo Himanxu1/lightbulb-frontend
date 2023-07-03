@@ -33,10 +33,10 @@ const Navbar = () => {
     _search[0].style.width = currentWidth === "150px" ? "0px" : "150px";
   };
 
-  //------- if no user ---------
-  // if (location.pathname === "/login") {
-  //   return <></>;
-  // }
+  // ------- if no user ---------
+  if (location.pathname === "/Login") {
+    return <></>;
+  }
 
   return (
     <div className='sm:p-3 px-3 py-1 shadow-sm shadow-gray '>
@@ -70,11 +70,26 @@ const Navbar = () => {
             placeholder='search ideas'
             className='_search w-full sm:h-12 h-10 sm:pl-12 pl-[46px] sm:text-base text-sm sm:font-normal font-medium text-gray-500 border rounded-3xl outline-none bg-gray-50 focus:bg-white focus:border-indigo-600'
           />
-          <Link to={`/profile/${currentUser?.uid}`}>
-            <div className='w-12 h-12 ml-2 sm:mr-4 rounded-full'>
-              <img src={currentUser ? currentUser?.photoURL : avatar} />
-            </div>
-          </Link>
+          {!currentUser ? (
+            <Link to={`/Login`}>
+              <div className='w-12 h-12 ml-2 sm:mr-4 p-1'>
+                <img
+                  className='rounded-full'
+                  src={currentUser ? currentUser?.photoURL : avatar}
+                />
+              </div>
+            </Link>
+          ) : (
+            <Link to={`/profile/${currentUser?.uid}`}>
+              <div className='w-12 h-12 ml-2 sm:mr-4 p-1'>
+                <img
+                  className='rounded-full'
+                  src={currentUser ? currentUser?.photoURL : avatar}
+                />
+              </div>
+            </Link>
+          )}
+
           <div className='_icon2 _hamburger w-7 my-auto mx-1'>
             <img src={hamburger} alt='' onClick={() => showMenu()} />
           </div>

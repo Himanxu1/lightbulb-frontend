@@ -54,12 +54,12 @@ const Login = () => {
         </h2>
       </div>
 
-      <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-        <div className='flex justify-center'>
+      <div className='mt-10 mx-auto sm:w-full sm:max-w-sm'>
+        <div className='flex flex-col justify-center'>
           <button
             aria-label='Continue with google'
             role='button'
-            className='focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-2 px-4 border rounded-lg border-gray-700 flex items-center w-72 justify-center mt-4'
+            className='focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-2 px-4 border rounded-lg border-gray-700 flex items-center w-72 mx-auto justify-center mt-4'
           >
             <img
               src='https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg2.svg'
@@ -70,6 +70,14 @@ const Login = () => {
               onClick={signinwithgoogle}
             >
               Continue with Google
+            </p>
+          </button>
+          <button className='focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-2 px-4 border rounded-lg border-gray-700 flex items-center w-72 mx-auto justify-center mt-4'>
+            <p
+              class='text-base font-medium text-gray-700'
+              onClick={() => navigate("/landingpage")}
+            >
+              Skip for now
             </p>
           </button>
         </div>
