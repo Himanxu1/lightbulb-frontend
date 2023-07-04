@@ -13,6 +13,10 @@ import { auth } from "../firebase";
 import BioModal from "../components/BioModal/BioModal";
 import axios from "axios";
 
+// for notifivation
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Profile = () => {
   const { id } = useParams();
 
@@ -23,6 +27,7 @@ const Profile = () => {
   const [UserDetails, setUserDetails] = useState();
   const [bio, setBio] = useState("");
   const [show, setShow] = useState(false);
+  const [twitter, setTwitter] = useState("");
   const navigate = useNavigate();
   const base_url = process.env.REACT_APP_BACKEND_URL;
   const handleClick = (componentName) => {
@@ -42,6 +47,20 @@ const Profile = () => {
     currentRenderedComponent = <BuildCard />;
   }
 
+  //----------- notification -------------
+  const successNotify = (val) => {
+    toast.success(val, {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+
   const logout = () => {
     signOut(auth);
     navigate("/login");
@@ -52,6 +71,7 @@ const Profile = () => {
       .get(`${base_url}/api/auth?userId=${id}`)
       .then((res) => {
         setUserDetails(res.data.data[0]);
+        setTwitter(res.data.data[0].twitter);
         setBio(res.data.data[0].bio);
       })
       .catch((err) => {
@@ -61,6 +81,19 @@ const Profile = () => {
 
   const editBio = () => {
     setShow(!show);
+  };
+  const updateTwitter = () => {
+    axios
+      .put(`${base_url}/api/auth/updateTwitter?userId=${id}`, {
+        twitter: twitter,
+      })
+      .then((res) => {
+        successNotify("Twitter updated");
+        // console.log("after res " + res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   if (!UserDetails) {
@@ -110,6 +143,36 @@ const Profile = () => {
         <p className='text-center sm:text-xl text-lg sm:mt-4 mt-2 text-[18px]'>
           {bio}
         </p>
+        {(twitter || !stranger) && (
+          <div className='flex sm:flex-row flex-col space-x-2 items-center'>
+            <h1 className='sm:text-lg text-ml sm:mt-4 mt-2'>Twitter :</h1>
+            {/* {twitter ? ( */}
+            <div className='flex sm:flex-row flex-col space-x-2 items-center'>
+              <input
+                type='text'
+                value={twitter}
+                className='min-w-full px-2 py-1 text-center sm:text-lg text-base bg-gray-200 rounded-lg sm:mt-4 mt-2'
+                onChange={(e) => setTwitter(e.target.value)}
+              />
+              {!stranger && (
+                <button
+                  className='w-20 px-2 py-1 text-center sm:text-lg text-base bg-gray-400 rounded-lg sm:mt-4 mt-2 hover:bg-gray-900 text-white'
+                  onClick={() => {
+                    updateTwitter();
+                  }}
+                >
+                  update
+                </button>
+              )}
+            </div>
+            {/* ) : ( */}
+            {/* // <></> */}
+            {/* <button className='px-2 py-1 text-center sm:text-lg text-base bg-gray-200 rounded-lg sm:mt-4 mt-2 hover:bg-gray-900 hover:text-white'>
+                Add Twitter
+              </button> */}
+            {/* )} */}
+          </div>
+        )}
       </div>
       <div className='flex justify-around sm:mt-14 mt-10 md:font-medium md:text-lg text-base '>
         <Link
@@ -143,6 +206,7 @@ const Profile = () => {
       </div>
       <div className='h-[1px] bg-gray-300 mx-auto mt-1'></div>
       <div className='mb-20 pb-32'>{currentRenderedComponent}</div>
+      <ToastContainer />
     </div>
   );
 };
