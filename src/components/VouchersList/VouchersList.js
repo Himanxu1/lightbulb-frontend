@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 
+import image from "../../assets/user (1).png";
+
 const base_url = process.env.REACT_APP_BACKEND_URL;
 
 const VouchersList = ({ showVouchers, setShowVouchers, ideaId }) => {
@@ -30,8 +32,8 @@ const VouchersList = ({ showVouchers, setShowVouchers, ideaId }) => {
       <div className='fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity'></div>
       <div className='relative sm:min-w-[600px] w-10/12 sm:w-3/4 md:w-3/5 my-6 mx-auto'>
         <div className='rounded-lg shadow-md flex flex-col w-full bg-white'>
-          <div className='p-4 h-fit max-h-96 overflow-y-auto'>
-            <div className='sticky top-0 bg-white'>
+          <div className=' h-fit max-h-96 overflow-y-auto'>
+            <div className='sticky top-0 bg-white pt-4 px-4'>
               <h2 className='sm:text-[20px] text-[18px] font-medium mb-2'>
                 Voucher Details
               </h2>
@@ -53,8 +55,8 @@ const VouchersList = ({ showVouchers, setShowVouchers, ideaId }) => {
                   <Link to={`/profile/${voucher[0].userId}`}>
                     <div className='w-14 min-w-fit ml-3 '>
                       <img
-                        src={voucher[0].photoUrl}
-                        alt={voucher[0].name}
+                        src={voucher[0].photoUrl ? voucher[0].photoUrl : image}
+                        // alt={voucher[0].name}
                         className='w-10 h-10 rounded-full'
                       />
                     </div>
