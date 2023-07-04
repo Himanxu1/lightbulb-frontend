@@ -35,13 +35,13 @@ function App() {
       <AuthProvider value={{ currentUser }}>
         <UserProvider>
           <VouchProvider>
-            <div className=''>
-              <div className=' fixed w-full top-0 left-0 z-50 bg-white'>
-                {/* {currentUser && <Navbar />} */}
-                <Navbar />
-              </div>
-              <div className='sm:mt-[72px] mt-[56px]'>
-                <IdeasProvider>
+            <IdeasProvider>
+              <div className=''>
+                <div className=' fixed w-full top-0 left-0 z-50 bg-white'>
+                  {/* {currentUser && <Navbar />} */}
+                  <Navbar />
+                </div>
+                <div className='sm:mt-[72px] mt-[56px]'>
                   {/* <Navbar/> */}
                   <Routes>
                     <Route path='/' element={<Login />} />
@@ -57,9 +57,9 @@ function App() {
                       element={<IdeaDescription />}
                     />
                   </Routes>
-                </IdeasProvider>
+                </div>
               </div>
-            </div>
+            </IdeasProvider>
           </VouchProvider>
         </UserProvider>
       </AuthProvider>

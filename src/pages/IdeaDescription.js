@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Axios from "axios";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import imageUrl from "../assets/Group 6.png";
 import { AuthContext } from "../Context/AuthContext";
 import { VouchContext } from "../Context/VouchContext";
@@ -27,6 +27,8 @@ const IdeaDescription = () => {
   const [added, setAdded] = useState(false);
 
   const base_url = process.env.REACT_APP_BACKEND_URL;
+
+  const location = useLocation();
 
   useEffect(() => {
     setStranger(id === currentUser?.uid ? false : true);
@@ -122,7 +124,7 @@ const IdeaDescription = () => {
         setLoading(false);
       })
       .catch((err) => console.log(err));
-  }, [added]);
+  }, [added, location]);
 
   const title = singleIdea[0]?.title;
   const description = singleIdea[0]?.description;
