@@ -173,14 +173,17 @@ const IdeaDescription = () => {
             <Link to={`/profile/${singleIdea[0]?.userID}`}>
               <img
                 src={userPhotoUrl ? userPhotoUrl : imageUrl}
-                className='sm:w-20 w-[65px] mt-10 shadow-md hover:border-[.1px] hover:shadow rounded-xl'
+                className='sm:w-20 w-[65px] mt-10 shadow-md hover:border-[.1px] hover:shadow rounded-full'
               />
             </Link>
             <div className='ml-6 mt-10 sm:font-bold font-medium sm:text-[16px] text-[14px]'>
               <div className='flex sm:space-x-6 space-x-3'>
                 {twitterLink && (
-                  <Link to={`${twitterLink}`} target='_blank'>
-                    <button className='rounded-md py-2 bg-violet-500 px-6 text-white  border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent '>
+                  <Link
+                    to={`https://twitter.com/${twitterLink}`}
+                    target='_blank'
+                  >
+                    <button className='rounded-md py-2 bg-violet-500 px-6 text-white border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent'>
                       Build
                     </button>
                   </Link>
@@ -241,7 +244,7 @@ const IdeaDescription = () => {
               return (
                 <>
                   <Comment
-                    username={"max"}
+                    // username={"max"}
                     fullname={userComment.name}
                     id={userComment.comId}
                     ideaID={ideaID}

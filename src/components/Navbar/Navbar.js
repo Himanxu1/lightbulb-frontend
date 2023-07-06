@@ -47,7 +47,6 @@ const Navbar = () => {
       });
       setSearchedIdeas(result);
     }
-    console.log(ideas);
   }, [searchInput]);
 
   //------ searchedIdeas component

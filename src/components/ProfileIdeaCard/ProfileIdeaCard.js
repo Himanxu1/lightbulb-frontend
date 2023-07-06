@@ -16,7 +16,7 @@ const ProfileIdeaCard = (props) => {
           <Link to={`/profile/${props.userID}`}>
             <img
               src={props.userPhotoUrl ? props.userPhotoUrl : props.imageUrl}
-              className='md:w-16 sm:w-14 w-12 md:h-16 sm:h-14 h-12 shadow-md hover:border-[.1px] hover:shadow rounded-xl'
+              className='md:w-16 sm:w-14 w-12 md:h-16 sm:h-14 h-12 shadow-md hover:border-[.1px] hover:shadow rounded-full'
             />
           </Link>
         </div>

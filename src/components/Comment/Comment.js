@@ -48,9 +48,6 @@ const Comment = ({ ideaID, id, text, onReply, image, username, fullname }) => {
       })
       .catch((err) => console.log(err));
   }, []);
-  // useEffect(() => {
-  //   console.log(allReplies);
-  // }, [allReplies]);
   return (
     <>
       <div className='flex'>
@@ -58,7 +55,7 @@ const Comment = ({ ideaID, id, text, onReply, image, username, fullname }) => {
         <div className='grid ml-4'>
           <p className='font-semibold'>
             {fullname}
-            <span className='text-pink-400 ml-1'>@{username}</span>
+            {/* <span className='text-pink-400 ml-1'>@{username}</span> */}
           </p>
           <p>{text}</p>
           <p
@@ -70,6 +67,33 @@ const Comment = ({ ideaID, id, text, onReply, image, username, fullname }) => {
           </p>
 
           {/*  reply section */}
+
+          {/* replies */}
+          {allReplies[0]?.replies.map((reply) => {
+            return (
+              <>
+                <div className='flex mt-6'>
+                  <img src={reply.avatarUrl} className='w-14 h-14 rounded-md' />
+                  <div className='grid ml-4'>
+                    <p className='font-semibold'>
+                      {reply.fullname}
+                      <span className=' ml-1'>{reply.name}</span>
+                      {/* <span className='text-pink-400 ml-1 text-sm'> @{reply.name}</span> */}
+                    </p>
+                    <p>{reply.comment}</p>
+                    <p
+                      onClick={handleReply}
+                      className='flex text-[14px] cursor-pointer hover:text-gray-500 '
+                    >
+                      <BsFillReplyFill className='text-[20px]' />
+                      Reply
+                    </p>
+                  </div>
+                </div>
+              </>
+            );
+          })}
+
           {showInput && (
             <div className='flex mt-4'>
               <input
@@ -91,31 +115,6 @@ const Comment = ({ ideaID, id, text, onReply, image, username, fullname }) => {
               </button>
             </div>
           )}
-
-          {/* replies */}
-          {allReplies[0]?.replies.map((reply) => {
-            return (
-              <>
-                <div className='flex mt-6'>
-                  <img src={reply.avatarUrl} className='w-14 h-14 rounded-md' />
-                  <div className='grid ml-4'>
-                    <p className='font-semibold'>
-                      {reply.fullname}
-                      <span className='text-pink-400 ml-1'>@{reply.name}</span>
-                    </p>
-                    <p>{reply.comment}</p>
-                    <p
-                      onClick={handleReply}
-                      className='flex text-[14px] cursor-pointer hover:text-gray-500 '
-                    >
-                      <BsFillReplyFill className='text-[20px]' />
-                      Reply
-                    </p>
-                  </div>
-                </div>
-              </>
-            );
-          })}
         </div>
       </div>
     </>

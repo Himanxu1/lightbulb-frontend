@@ -3,17 +3,19 @@ import Axios from "axios";
 
 const base_url = process.env.REACT_APP_BACKEND_URL;
 
-const BioModal = ({ setBioShow, showBio, setBio, id }) => {
-  const [updatedBio, setUpdatedBio] = useState("");
+const NameModal = ({ setShowName, showName, setName, id }) => {
+  const [updatedName, setUpdatedName] = useState("");
   const handleDelete = () => {
-    setBioShow(!showBio);
+    setShowName(!showName);
   };
 
   const handleClick = () => {
-    Axios.put(`${base_url}/api/auth/update?userId=${id}`, { bio: updatedBio })
+    Axios.put(`${base_url}/api/auth/updatename?userId=${id}`, {
+      name: updatedName,
+    })
       .then((res) => {
-        setBio(res.data.data);
-        setBioShow(false);
+        setName(res.data.data);
+        setShowName(false);
       })
       .catch((err) => {
         console.log(err);
@@ -54,13 +56,13 @@ const BioModal = ({ setBioShow, showBio, setBio, id }) => {
                 className='text-base font-semibold leading-6 text-gray-900'
                 id='modal-title'
               >
-                Change Bio
+                Change Name
               </h3>
               <div className='mt-2'>
                 <input
                   type='text'
                   className='h-10 w-56 px-4 py-2 h-fit bg-gray-100 '
-                  onChange={(e) => setUpdatedBio(e.target.value)}
+                  onChange={(e) => setUpdatedName(e.target.value)}
                 />
               </div>
             </div>
@@ -88,4 +90,4 @@ const BioModal = ({ setBioShow, showBio, setBio, id }) => {
   );
 };
 
-export default BioModal;
+export default NameModal;
