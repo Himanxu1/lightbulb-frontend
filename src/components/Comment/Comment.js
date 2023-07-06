@@ -51,7 +51,7 @@ const Comment = ({ ideaID, id, text, onReply, image, username, fullname }) => {
   return (
     <>
       <div className='flex'>
-        <img src={image} className='w-14 h-14 rounded-md' />
+        <img src={image} className='w-14 h-14 rounded-full' />
         <div className='grid ml-4'>
           <p className='font-semibold'>
             {fullname}
@@ -73,7 +73,10 @@ const Comment = ({ ideaID, id, text, onReply, image, username, fullname }) => {
             return (
               <>
                 <div className='flex mt-6'>
-                  <img src={reply.avatarUrl} className='w-14 h-14 rounded-md' />
+                  <img
+                    src={reply.avatarUrl}
+                    className='w-14 h-14 rounded-full'
+                  />
                   <div className='grid ml-4'>
                     <p className='font-semibold'>
                       {reply.fullname}
