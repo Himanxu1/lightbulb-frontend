@@ -76,7 +76,10 @@ const LandingPage = () => {
     }
   };
 
-  const newIdeas = ideas.slice(0, 5);
+  const newIdeas = ideas
+    .sort((a, b) => b.vouches.length - a.vouches.length)
+    .slice(0, 5);
+
   return (
     <div className='mb-28'>
       <div
@@ -101,13 +104,11 @@ const LandingPage = () => {
             {/* Modal Compoenent */}
             {showModal && (
               <div className='fixed w-full top-20 -left-4 z-50'>
-                {/* <div className='absolute left-[1%] right-[1%]'> */}
                 <Modal
                   setShowModal={setShowModal}
                   successNotify={successNotify}
                   errNotify={errNotify}
                 />
-                {/* </div> */}
               </div>
             )}
             <button
@@ -118,12 +119,10 @@ const LandingPage = () => {
             </button>
           </div>
         </div>
-        {/* <div className=''> */}
         <img
           src={BannerImage}
           className='mx-auto lg:w-[420px] md:w-[290px] w-[250px] lg:h-[420px] md:h-[290px] h-[250px]'
         />
-        {/* </div> */}
       </div>
 
       <div className=' sm:mx-12 mx-4 md:mt-20 sm:mt-10 mt-6'>
@@ -140,7 +139,6 @@ const LandingPage = () => {
           </div>
         </div>
         {/* FeatureIdeaCard */}
-        {/* <div className='flex mb-20 space-x-14 scrollbar-hide  mt-10 overflow-x-scroll '> */}
         {!newIdeas.length ? (
           <div className='w-full text-center'>Loading...</div>
         ) : (
@@ -191,7 +189,7 @@ const LandingPage = () => {
           <div className='w-full text-center'>Loading...</div>
         ) : (
           <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-10 '>
-            {ideas.map((idea, key) => {
+            {ideas.reverse().map((idea, key) => {
               return (
                 <>
                   <ExploreIdeaCard

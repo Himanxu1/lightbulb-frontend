@@ -76,7 +76,7 @@ const CreatedCard = ({ stranger, id }) => {
       {/* <div className='flex justify-center items-center'> */}
       <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-items-center mt-10 gap-5'>
         {loading && <h1>Loading</h1>}
-        {created.map((item) => {
+        {created.reverse().map((item) => {
           return (
             <ProfileIdeaCard
               key={item._id}

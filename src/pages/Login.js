@@ -26,7 +26,7 @@ const Login = () => {
               userId: res.user.uid,
               name: res.user.displayName,
               email: res.user.email,
-              bio: "Your bio here",
+              bio: "Hey there fellow entrepreneurs.",
             })
             .then((res) => {
               console.log("user added");

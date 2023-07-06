@@ -11,6 +11,7 @@ import CreatedCard from "../components/CreatedCard/CreatedCard";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import BioModal from "../components/BioModal/BioModal";
+import NameModal from "../components/NameModal/NameModal";
 import axios from "axios";
 
 // for notifivation
@@ -25,8 +26,10 @@ const Profile = () => {
 
   const [currentComponent, setCurrentComponent] = useState("vouched");
   const [UserDetails, setUserDetails] = useState();
+  const [name, setName] = useState("");
+  const [showName, setShowName] = useState(false);
   const [bio, setBio] = useState("");
-  const [show, setShow] = useState(false);
+  const [showBio, setBioShow] = useState(false);
   const [twitter, setTwitter] = useState("");
   const navigate = useNavigate();
   const base_url = process.env.REACT_APP_BACKEND_URL;
@@ -71,17 +74,23 @@ const Profile = () => {
       .get(`${base_url}/api/auth?userId=${id}`)
       .then((res) => {
         setUserDetails(res.data.data[0]);
-        setTwitter(res.data.data[0].twitter);
+        setName(res.data.data[0].name);
         setBio(res.data.data[0].bio);
+        setTwitter(res.data.data[0].twitter);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [stranger]);
 
-  const editBio = () => {
-    setShow(!show);
+  const editName = () => {
+    setShowName(!showName);
   };
+
+  const editBio = () => {
+    setBioShow(!showBio);
+  };
+
   const updateTwitter = () => {
     axios
       .put(`${base_url}/api/auth/updateTwitter?userId=${id}`, {
@@ -105,41 +114,61 @@ const Profile = () => {
       <div className='grid place-items-center'>
         <img
           src={UserDetails?.photoUrl}
-          className='sm:w-28 w-22 sm:h-28 h-22 sm:mt-2 mt-14 rounded-xl '
+          className='sm:w-28 w-22 sm:h-28 h-22 sm:mt-2 mt-14 rounded-full'
         />
         {!stranger && (
-          <div className=' flex space-x-4 sm:text-lg text-base my-4'>
+          <div className=' flex flex-col items-center sm:text-lg text-base my-4'>
             <button
-              className=' mt-2 p-2 border border-violet-400 rounded-xl hover:bg-violet-500 hover:text-white'
+              className='w-3/5 mt-2 p-2 border border-violet-400 rounded-xl hover:bg-violet-500 hover:text-white'
               onClick={logout}
             >
               Signout
             </button>
-            <button
-              className=' mt-2 p-2 border border-violet-400 rounded-xl hover:bg-violet-500 hover:text-white'
-              onClick={editBio}
-            >
-              Edit Bio
-            </button>
-            {show && (
-              <div className='bg-gray-200'>
-                <div className='fixed w-full top-50 -left-1 z-50'>
-                  {/* <div className='absolute left-[1%] right-[1%]'> */}
-                  <BioModal
-                    id={UserDetails?.userId}
-                    show={show}
-                    setBio={setBio}
-                    setShow={setShow}
-                  />
-                  {/* </div> */}
+            <div className='flex space-x-4'>
+              <button
+                className=' mt-2 p-2 border border-violet-400 rounded-xl hover:bg-violet-500 hover:text-white'
+                onClick={editName}
+              >
+                Edit Name
+              </button>
+              {showName && (
+                <div className='bg-gray-200'>
+                  <div className='fixed w-full top-50 -left-1 z-50'>
+                    {/* <div className='absolute left-[1%] right-[1%]'> */}
+                    <NameModal
+                      id={UserDetails?.userId}
+                      showName={showName}
+                      setName={setName}
+                      setShowName={setShowName}
+                    />
+                    {/* </div> */}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+              <button
+                className=' mt-2 p-2 border border-violet-400 rounded-xl hover:bg-violet-500 hover:text-white'
+                onClick={editBio}
+              >
+                Edit Bio
+              </button>
+              {showBio && (
+                <div className='bg-gray-200'>
+                  <div className='fixed w-full top-50 -left-1 z-50'>
+                    {/* <div className='absolute left-[1%] right-[1%]'> */}
+                    <BioModal
+                      id={UserDetails?.userId}
+                      showBio={showBio}
+                      setBio={setBio}
+                      setBioShow={setBioShow}
+                    />
+                    {/* </div> */}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         )}
-        <h1 className='font-bold sm:text-xl text-lg sm:mt-4 mt-2'>
-          @{UserDetails?.name}
-        </h1>
+        <h1 className='font-bold sm:text-xl text-lg sm:mt-4 mt-2'>@{name}</h1>
         <p className='text-center sm:text-xl text-lg sm:mt-4 mt-2 text-[18px]'>
           {bio}
         </p>

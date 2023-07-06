@@ -115,7 +115,7 @@ const FeatureIdeaCard = (props) => {
           <Link to={`/profile/${props.userId}`}>
             <img
               src={userImage ? userImage : props.imageUrl}
-              className='md:w-16 sm:w-14 w-12 md:h-16 sm:h-14 h-12 shadow-md hover:border-[.1px] hover:shadow rounded-xl'
+              className='md:w-16 sm:w-14 w-12 md:h-16 sm:h-14 h-12 shadow-md hover:border-[.1px] hover:shadow rounded-full'
             />
           </Link>
         </div>
@@ -137,8 +137,8 @@ const FeatureIdeaCard = (props) => {
         {/* <button className='font-medium text-left'>Vouchers</button> */}
         <div className='flex sm:space-x-6 space-x-2'>
           {twitterLink && (
-            <Link to={`${twitterLink}`} target='_blank'>
-              <button className='rounded-md py-2 bg-violet-500 px-6 text-white  border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent '>
+            <Link to={`https://twitter.com/${twitterLink}`} target='_blank'>
+              <button className='rounded-md py-2 bg-violet-500 px-6 text-white border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent'>
                 Build
               </button>
             </Link>
