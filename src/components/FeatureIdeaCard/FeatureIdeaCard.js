@@ -16,11 +16,21 @@ const FeatureIdeaCard = (props) => {
   const [userImage, setUserImage] = useState(props.imageUrl);
   const idea = props.ideaId;
   const [isVouched, setIsVouched] = useState(false);
+  const [twitterLink, setTwitterLink] = useState("");
   const [noOfVouches, setNoOfVouches] = useState(0);
   const { vouchedData, setVouchedData } = useContext(VouchContext);
   const base_url = process.env.REACT_APP_BACKEND_URL;
 
   const [showVouchers, setShowVouchers] = useState(false);
+
+  useEffect(() => {
+    Axios.get(`${base_url}/api/auth?userId=${props.userId}`)
+      .then((res) => {
+        // console.log(res.data.data[0]?.twitter);
+        setTwitterLink(res.data.data[0]?.twitter);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   //--------- getting the idea creator image -------
   useEffect(() => {
@@ -93,7 +103,6 @@ const FeatureIdeaCard = (props) => {
   const handleVouch = () => {
     if (currentUser) {
       vouch(props.ideaId);
-      // handleVouch();
     } else {
       alert("Please sign in first.");
     }
@@ -114,19 +123,26 @@ const FeatureIdeaCard = (props) => {
           <p className='font-medium px-6 mt-4 overflow-hidden text-overflow-ellipsis line-clamp-2'>
             {props.title}
           </p>
-          <p className='text-[15.5px] px-6 mt-2 overflow-hidden text-overflow-ellipsis line-clamp-4'>
+          <p className='text-[15.5px] px-6 mt-2 overflow-hidden text-overflow-ellipsis line-clamp-3'>
             {props.description}
           </p>
+          <Link to={`/ideas/${idea}`}>
+            <p className='text-[15.5px] px-6 mt-2 text-blue-500 cursor-pointer'>
+              Read more
+            </p>
+          </Link>
         </div>
       </div>
       <div className='absolute bottom-10 right-10 font-bold sm:text-[16px] text-[14px]'>
         {/* <button className='font-medium text-left'>Vouchers</button> */}
         <div className='flex sm:space-x-6 space-x-2'>
-          <Link to={`/ideas/${props.ideaId}`}>
-            <button className='rounded-md py-2 bg-violet-500 px-6 text-white  border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent '>
-              Build
-            </button>
-          </Link>
+          {twitterLink && (
+            <Link to={`${twitterLink}`} target='_blank'>
+              <button className='rounded-md py-2 bg-violet-500 px-6 text-white  border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent '>
+                Build
+              </button>
+            </Link>
+          )}
           <div className='flex space-x-1'>
             <button
               className='rounded-md py-2  sm:px-6 px-4 border-2 border-violet-500  text-violet-500 hover:bg-violet-500 hover:text-white'
