@@ -29,7 +29,7 @@ const VouchedCard = ({ stranger, id }) => {
       setMyVouchedData(newVouchData);
       setLoad(false);
     }
-  }, [load]);
+  }, [load, stranger]);
 
   return load ? (
     <h1>Loading</h1>
