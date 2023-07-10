@@ -20,10 +20,40 @@ import "react-toastify/dist/ReactToastify.css";
 const LandingPage = () => {
   const [showModal, setShowModal] = useState(false);
   const { ideas, setIdeas } = useContext(IdeasContext);
-  // const [ideas, setIdeas] = useState([]);
+  const [exploreIdeas, setExploreIdeas] = useState([]);
   const { currentUser } = useContext(AuthContext);
   const { vouchedData } = useContext(VouchContext);
   const [isVouched, setIsVouched] = useState(false);
+
+  const [selectedTag, setSelectedTag] = useState(null);
+  const [showTags, setShowTags] = useState(false);
+
+  useEffect(() => {
+    setExploreIdeas(ideas);
+  }, [ideas]);
+
+  const tags = [
+    "SaaS",
+    "E-commerce",
+    "Health & Wellness",
+    "Ed-tech",
+    "Fintech",
+    "Sustainability",
+    "Entertainment & Media",
+    "Food & Beverage",
+    "Travel & Hospitality",
+    "Fashion & Apparel",
+    "Real Estate & Property",
+    "Automotive & Transportation",
+    "Arts & Culture",
+    "Sports & Fitness",
+    "Home & Lifestyle",
+  ];
+
+  const handleTagClick = (tag) => {
+    setSelectedTag(tag);
+    setShowTags(false);
+  };
 
   // scroll to explore
   const handleClickScroll = () => {
@@ -169,27 +199,48 @@ const LandingPage = () => {
       <div className='sm:mx-12 mx-4 md:mt-20 sm:mt-10 mt-6 '>
         <div className='flex justify-between'>
           <h1
-            className='font-bold  lg:text-2xl md:text-xl text-lg'
+            className='font-bold lg:text-2xl md:text-xl text-lg'
             id='section-1'
           >
             Explore Ideas
           </h1>
-          <div className='flex items-center'>
-            <Link>
+          <div className='relative'>
+            <button
+              onClick={() => setShowTags(!showTags)}
+              className='flex items-center focus:outline-none'
+            >
               <h1 className='mr-2 lg:text-xl md:text-lg text-base'>
                 show tags
               </h1>
-            </Link>
-            <AiFillCaretDown className='lg:text-[20px] md:text-[18px] mt-2' />
+              <AiFillCaretDown className='lg:text-[20px] md:text-[18px] mt-2' />
+            </button>
+            <>
+              {selectedTag && (
+                <div className='text-gray-400'>{selectedTag}</div>
+              )}
+            </>
+            {showTags && (
+              <div className='absolute z-50 md:w-[600px] sm:w-[500px] w-[300px] top-7 right-0 bg-white shadow rounded-md py-2 grid sm:grid-cols-3 grid-cols-2 sm:gap-4 gap-2'>
+                {tags.map((tag) => (
+                  <button
+                    key={tag}
+                    onClick={() => handleTagClick(tag)}
+                    className='text-left md:w-44 sm:w-40 sm:text-base text-sm px-4 py-2 hover:bg-gray-200 focus:outline-none'
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
         {/* card 1 */}
-        {!ideas.length ? (
+        {!exploreIdeas.length ? (
           <div className='w-full text-center'>Loading...</div>
         ) : (
           <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-10 '>
-            {ideas.reverse().map((idea, key) => {
+            {exploreIdeas.map((idea, key) => {
               return (
                 <>
                   <ExploreIdeaCard
