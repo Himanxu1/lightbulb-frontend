@@ -124,7 +124,7 @@ export default function Modal({ setShowModal, successNotify, errNotify }) {
               // ref={titleRef}
               type='text'
               className='w-full py-2 m-auto bg-gray-200 rounded-md outline-none mt-4 pl-4'
-              placeholder='title'
+              placeholder='One liner idea'
             />
             <input
               value={category}
@@ -137,7 +137,7 @@ export default function Modal({ setShowModal, successNotify, errNotify }) {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               className='resize-y bg-gray-200 outline-none pl-4 py-2 rounded-md min-w-full min-h-[100px] max-h-[150px] mt-4 mb-10'
-              placeholder='description'
+              placeholder='Problem-solution statement'
             ></textarea>
           </div>
           {/*footer*/}
