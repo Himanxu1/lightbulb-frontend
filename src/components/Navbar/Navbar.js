@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, Navigate, useLocation } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
+import litebulbLogo from "../../assets/litebulbLogo.png";
 import avatar from "../../assets/user (1).png";
 import hamburger from "../../assets/hamburger.png";
 import close from "../../assets/close.png";
@@ -87,7 +88,10 @@ const Navbar = () => {
       <div className='flex items-center justify-between lg:mx-16 md:mx-4'>
         <div className='flex lg:space-x-14 space-x-2 md:mr-9 sm:mr-4 mr-2 '>
           <Link to='/landingpage'>
-            <h3 className='font-bold md:text-2xl text-xl'>Litebulb</h3>
+            <div className='flex items-center space-x-1'>
+              <img src={litebulbLogo} alt='' className='w-6' />
+              <h3 className='font-bold md:text-2xl text-xl'>Litebulb</h3>
+            </div>
           </Link>
           <div className='nav'>
             <ul className='_navlinks flex items-center lg:space-x-14 space-x-4 md:text-xl text-lg'>
