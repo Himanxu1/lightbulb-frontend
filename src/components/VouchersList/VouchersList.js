@@ -52,10 +52,12 @@ const VouchersList = ({ showVouchers, setShowVouchers, ideaId }) => {
                   key={ind}
                   className='flex items-center font-medium sm:py-2 py-2'
                 >
-                  <Link to={`/profile/${voucher[0].userId}`}>
+                  <Link to={`/profile/${voucher[0]?.userId}`}>
                     <div className='w-14 min-w-fit ml-3 '>
                       <img
-                        src={voucher[0].photoUrl ? voucher[0].photoUrl : image}
+                        src={
+                          voucher[0]?.photoUrl ? voucher[0]?.photoUrl : image
+                        }
                         // alt={voucher[0].name}
                         className='w-10 h-10 rounded-full'
                       />
@@ -63,9 +65,11 @@ const VouchersList = ({ showVouchers, setShowVouchers, ideaId }) => {
                   </Link>
                   <div className='sm:flex w-full sm:ml-0 ml-5'>
                     <p className='w-[160px] sm:ml-5 truncate'>
-                      {voucher[0].name}
+                      {voucher[0]?.name ? voucher[0]?.name : "user name"}
                     </p>
-                    <p className='w-3/5 truncate'>{voucher[0].email}</p>
+                    <p className='w-3/5 truncate'>
+                      {voucher[0]?.email ? voucher[0]?.email : "user email"}
+                    </p>
                   </div>
                 </div>
               ))
