@@ -12,6 +12,7 @@ import Modal from "../components/Modal/Modal";
 import { IdeasContext } from "../Context/IdeasContext";
 import { AuthContext } from "../Context/AuthContext";
 import { VouchContext } from "../Context/VouchContext";
+import Axios from "axios";
 
 // for notifivation
 import { ToastContainer, toast } from "react-toastify";
@@ -28,30 +29,64 @@ const LandingPage = () => {
   const [selectedTag, setSelectedTag] = useState(null);
   const [showTags, setShowTags] = useState(false);
 
+  const base_url = process.env.REACT_APP_BACKEND_URL;
+
   useEffect(() => {
-    setExploreIdeas(ideas);
+    const sortedArray = Array.from(ideas).sort((a, b) => {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
+    // console.log(sortedArray);
+    setExploreIdeas(sortedArray);
   }, [ideas]);
 
   const tags = [
+    "Show All",
     "SaaS",
     "E-commerce",
-    "Health & Wellness",
+    "Health and Wellness",
     "Ed-tech",
     "Fintech",
     "Sustainability",
-    "Entertainment & Media",
-    "Food & Beverage",
-    "Travel & Hospitality",
-    "Fashion & Apparel",
-    "Real Estate & Property",
-    "Automotive & Transportation",
-    "Arts & Culture",
-    "Sports & Fitness",
-    "Home & Lifestyle",
+    "Entertainment and Media",
+    "Food and Beverage",
+    "Travel and Hospitality",
+    "Fashion and Apparel",
+    "Real Estate and Property",
+    "Automotive and Transportation",
+    "Arts and Culture",
+    "Sports and Fitness",
+    "Home and Lifestyle",
   ];
 
   const handleTagClick = (tag) => {
-    setSelectedTag(tag);
+    if (tag == "Show All") {
+      const sortedArray = Array.from(ideas).sort((a, b) => {
+        return (
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+      });
+      // console.log(sortedArray);
+      setExploreIdeas(sortedArray);
+      setSelectedTag(tag);
+    } else {
+      Axios.get(`${base_url}/api/ideas/getByTags?tag=${tag}`)
+        .then((res) => {
+          // console.log(res.data.data);
+          if (res.data.data.length > 0) {
+            const sortedArray = Array.from(res.data.data).sort((a, b) => {
+              return (
+                new Date(b.createdAt).getTime() -
+                new Date(a.createdAt).getTime()
+              );
+            });
+            setExploreIdeas(sortedArray);
+            setSelectedTag(tag);
+          } else {
+            errNotify("No ideas yet");
+          }
+        })
+        .catch((err) => console.log(err));
+    }
     setShowTags(false);
   };
 
