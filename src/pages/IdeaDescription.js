@@ -36,7 +36,7 @@ const IdeaDescription = () => {
   }, [id, currentUser]);
 
   useEffect(() => {
-    console.log(singleIdea[0]?.userID);
+    // console.log(singleIdea[0]?.userID);
     Axios.get(`${base_url}/api/auth?userId=${singleIdea[0]?.userID}`)
       .then((res) => {
         // console.log(res.data.data[0].twitter);
@@ -138,6 +138,7 @@ const IdeaDescription = () => {
   }, [added, location]);
 
   const title = singleIdea[0]?.title;
+  const category = singleIdea[0]?.category;
   const description = singleIdea[0]?.description;
   const images = singleIdea[0]?.images;
   const userPhotoUrl = singleIdea[0]?.userPhotoUrl;
@@ -203,6 +204,9 @@ const IdeaDescription = () => {
           <div className='mx-11 '>
             <p className='font-medium sm:mt-8 mt-6 sm:text-[20px] text-[18px]'>
               {title}
+            </p>
+            <p className='font-medium sm:mt-1 mt-1 text-gray-500 sm:text-[15px] text-[12px]'>
+              ({category})
             </p>
             <p className=' mt-2 sm:text-[16px] text-[16px]'>{description}</p>
           </div>
