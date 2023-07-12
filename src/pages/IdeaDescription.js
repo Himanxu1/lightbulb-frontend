@@ -8,6 +8,10 @@ import userImg from "../assets/user (1).png";
 import Comment from "../components/Comment/Comment";
 import { v4 as uuidv4 } from "uuid";
 
+// for notifivation
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const IdeaDescription = () => {
   const { ideaID } = useParams();
   const { currentUser } = useContext(AuthContext);
@@ -34,6 +38,32 @@ const IdeaDescription = () => {
   useEffect(() => {
     setStranger(id === currentUser?.uid ? false : true);
   }, [id, currentUser]);
+
+  //----------- notification -------------
+  const successNotify = (val) => {
+    toast.success(val, {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+  const errNotify = (val) => {
+    toast.error(val, {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
 
   useEffect(() => {
     // console.log(singleIdea[0]?.userID);
@@ -65,7 +95,7 @@ const IdeaDescription = () => {
 
   const vouch = (ideaId) => {
     const result = vouchedData.filter((item) => {
-      return item.ideaID == ideaId;
+      return item?.ideaID == ideaId;
     });
 
     if (result.length == 0) {
@@ -75,7 +105,7 @@ const IdeaDescription = () => {
         ideaID: ideaID,
       })
         .then((res) => {
-          // props.successNotify("Vouched Successfully");
+          successNotify("Vouched Successfully");
           setVouchedData([...vouchedData, res.data.data]);
           // setIsVouched(true);
         })
@@ -94,7 +124,7 @@ const IdeaDescription = () => {
         `${base_url}/api/vouches/delete-vouched?ideaID=${ideaId}&userID=${currentUser.uid}`
       )
         .then((res) => {
-          // props.errNotify("Unvouched Successfully");
+          errNotify("Unvouched Successfully");
           setVouchedData(vouchedData.filter((item) => item.ideaID !== ideaId));
           // setIsVouched(false);
         })
@@ -168,7 +198,7 @@ const IdeaDescription = () => {
 
   return (
     <>
-      <div className='sm:mx-8 mx-4'>
+      <div className='sm:mx-8 mx-1'>
         <div className='max-w-[1000px] mx-auto md:mt-20 sm:16 mt-12  shadow-lg mb-10 shadow-gray-200 pb-20'>
           <div className='flex mx-9 justify-between'>
             <Link to={`/profile/${singleIdea[0]?.userID}`}>
@@ -189,15 +219,15 @@ const IdeaDescription = () => {
                     </button>
                   </Link>
                 )}
-                {!stranger && (
-                  <button
-                    className='rounded-md py-2  px-6 border-2 border-violet-500 text-violet-500 hover:bg-violet-500 hover:text-white'
-                    onClick={handleVouch}
-                  >
-                    {isVouched ? "Vouched" : "Vouch"}
-                    <span className=''>({noOfVouches})</span>
-                  </button>
-                )}
+                {/* {!stranger && ( */}
+                <button
+                  className='rounded-md py-2 px-6 border-2 border-violet-500 text-violet-500 hover:bg-violet-500 hover:text-white'
+                  onClick={handleVouch}
+                >
+                  {isVouched ? "Vouched" : "Vouch"}
+                  <span className=''>({noOfVouches})</span>
+                </button>
+                {/* )} */}
               </div>
             </div>
           </div>
@@ -262,6 +292,7 @@ const IdeaDescription = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };

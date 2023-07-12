@@ -56,7 +56,7 @@ const FeatureIdeaCard = (props) => {
 
   const vouch = (ideaId) => {
     const result = vouchedData.filter((item) => {
-      return item.ideaID == ideaId;
+      return item?.ideaID == ideaId;
     });
 
     if (result.length == 0) {
