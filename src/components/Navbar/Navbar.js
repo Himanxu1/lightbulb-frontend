@@ -122,7 +122,7 @@ const Navbar = () => {
               type='text'
               placeholder='search ideas'
               onInput={(e) => setSeachInput(e.target.value)}
-              className='_search w-full sm:h-12 h-10 sm:pl-12 pl-[46px] sm:text-base text-sm sm:font-normal font-medium text-gray-500 border rounded-3xl outline-none bg-gray-50 focus:bg-white focus:border-indigo-600'
+              className='_search w-[150px] sm:h-12 h-10 sm:pl-12 pl-[46px] sm:text-base text-sm sm:font-normal font-medium text-gray-500 border rounded-3xl outline-none bg-gray-50 focus:bg-white focus:border-indigo-600'
             />
             <div className='absolute top-14 bg-white px-4 w-full rounded-lg'>
               {/* Display SearchedIdeas component when there are searched ideas */}
