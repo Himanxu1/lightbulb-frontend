@@ -117,29 +117,81 @@ export default function Modal({ setShowModal, successNotify, errNotify }) {
               ))}
             </div>
           </div>
-          <div className='w-11/12 md:text-base text-sm mx-auto grid place-items-center'>
+          <div className='w-11/12 md:text-base text-sm  mx-auto grid place-items-center'>
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              // ref={titleRef}
               type='text'
               className='w-full py-2 m-auto bg-gray-200 rounded-md outline-none mt-4 pl-4'
               placeholder='One liner idea'
             />
-            <input
+            <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              type='text'
-              className='w-full py-2 pl-4 m-auto bg-gray-200 rounded-md outline-none mt-4 pl-4'
-              placeholder='category'
-            />
+              className={`w-full py-2 pl-4 m-auto bg-gray-200 rounded-md outline-none mt-4 ${
+                category === "" ? "text-gray-400" : "text-black"
+              }`}
+            >
+              <option value='' disabled>
+                Select a category
+              </option>
+              <option className='text-black' value='SaaS'>
+                SaaS
+              </option>
+              <option className='text-black' value='E-commerce'>
+                E-commerce
+              </option>
+              <option className='text-black' value='Health and Wellness'>
+                Health and Wellness
+              </option>
+              <option className='text-black' value='Ed-tech'>
+                Ed-tech
+              </option>
+              <option className='text-black' value='Fintech'>
+                Fintech
+              </option>
+              <option className='text-black' value='Sustainability'>
+                Sustainability
+              </option>
+              <option className='text-black' value='Entertainment and Media'>
+                Entertainment and Media
+              </option>
+              <option className='text-black' value='Food and Beverage'>
+                Food and Beverage
+              </option>
+              <option className='text-black' value='Travel and Hospitality'>
+                Travel and Hospitality
+              </option>
+              <option className='text-black' value='Fashion and Apparel'>
+                Fashion and Apparel
+              </option>
+              <option className='text-black' value='Real Estate and Property'>
+                Real Estate and Property
+              </option>
+              <option
+                className='text-black'
+                value='Automotive and Transportation'
+              >
+                Automotive and Transportation
+              </option>
+              <option className='text-black' value='Arts and Culture'>
+                Arts and Culture
+              </option>
+              <option className='text-black' value='Sports and Fitness'>
+                Sports and Fitness
+              </option>
+              <option className='text-black' value='Home and Lifestyle'>
+                Home and Lifestyle
+              </option>
+            </select>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               className='resize-y bg-gray-200 outline-none pl-4 py-2 rounded-md min-w-full min-h-[100px] max-h-[150px] mt-4 mb-10'
-              placeholder='Problem-solution statement'
+              placeholder='Problem-solution statement'
             ></textarea>
           </div>
+
           {/*footer*/}
           <div className='flex items-center justify-end p-2 border-t border-solid border-slate-200 rounded-b'>
             <button

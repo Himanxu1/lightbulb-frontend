@@ -12,6 +12,7 @@ import Modal from "../components/Modal/Modal";
 import { IdeasContext } from "../Context/IdeasContext";
 import { AuthContext } from "../Context/AuthContext";
 import { VouchContext } from "../Context/VouchContext";
+import Axios from "axios";
 
 // for notifivation
 import { ToastContainer, toast } from "react-toastify";
@@ -20,10 +21,74 @@ import "react-toastify/dist/ReactToastify.css";
 const LandingPage = () => {
   const [showModal, setShowModal] = useState(false);
   const { ideas, setIdeas } = useContext(IdeasContext);
-  // const [ideas, setIdeas] = useState([]);
+  const [exploreIdeas, setExploreIdeas] = useState([]);
   const { currentUser } = useContext(AuthContext);
   const { vouchedData } = useContext(VouchContext);
   const [isVouched, setIsVouched] = useState(false);
+
+  const [selectedTag, setSelectedTag] = useState(null);
+  const [showTags, setShowTags] = useState(false);
+
+  const base_url = process.env.REACT_APP_BACKEND_URL;
+
+  useEffect(() => {
+    const sortedArray = Array.from(ideas).sort((a, b) => {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
+    // console.log(sortedArray);
+    setExploreIdeas(sortedArray);
+  }, [ideas]);
+
+  const tags = [
+    "Show All",
+    "SaaS",
+    "E-commerce",
+    "Health and Wellness",
+    "Ed-tech",
+    "Fintech",
+    "Sustainability",
+    "Entertainment and Media",
+    "Food and Beverage",
+    "Travel and Hospitality",
+    "Fashion and Apparel",
+    "Real Estate and Property",
+    "Automotive and Transportation",
+    "Arts and Culture",
+    "Sports and Fitness",
+    "Home and Lifestyle",
+  ];
+
+  const handleTagClick = (tag) => {
+    if (tag == "Show All") {
+      const sortedArray = Array.from(ideas).sort((a, b) => {
+        return (
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+      });
+      // console.log(sortedArray);
+      setExploreIdeas(sortedArray);
+      setSelectedTag(tag);
+    } else {
+      Axios.get(`${base_url}/api/ideas/getByTags?tag=${tag}`)
+        .then((res) => {
+          // console.log(res.data.data);
+          if (res.data.data.length > 0) {
+            const sortedArray = Array.from(res.data.data).sort((a, b) => {
+              return (
+                new Date(b.createdAt).getTime() -
+                new Date(a.createdAt).getTime()
+              );
+            });
+            setExploreIdeas(sortedArray);
+            setSelectedTag(tag);
+          } else {
+            errNotify("No ideas yet");
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+    setShowTags(false);
+  };
 
   // scroll to explore
   const handleClickScroll = () => {
@@ -169,27 +234,48 @@ const LandingPage = () => {
       <div className='sm:mx-12 mx-4 md:mt-20 sm:mt-10 mt-6 '>
         <div className='flex justify-between'>
           <h1
-            className='font-bold  lg:text-2xl md:text-xl text-lg'
+            className='font-bold lg:text-2xl md:text-xl text-lg'
             id='section-1'
           >
             Explore Ideas
           </h1>
-          <div className='flex items-center'>
-            <Link>
+          <div className='relative'>
+            <button
+              onClick={() => setShowTags(!showTags)}
+              className='flex items-center focus:outline-none'
+            >
               <h1 className='mr-2 lg:text-xl md:text-lg text-base'>
                 show tags
               </h1>
-            </Link>
-            <AiFillCaretDown className='lg:text-[20px] md:text-[18px] mt-2' />
+              <AiFillCaretDown className='lg:text-[20px] md:text-[18px] mt-2' />
+            </button>
+            <>
+              {selectedTag && (
+                <div className='text-gray-400'>{selectedTag}</div>
+              )}
+            </>
+            {showTags && (
+              <div className='absolute z-50 md:w-[600px] sm:w-[500px] w-[300px] top-7 right-0 bg-white shadow rounded-md py-2 grid sm:grid-cols-3 grid-cols-2 sm:gap-4 gap-2'>
+                {tags.map((tag) => (
+                  <button
+                    key={tag}
+                    onClick={() => handleTagClick(tag)}
+                    className='text-left md:w-44 sm:w-40 sm:text-base text-sm px-4 py-2 hover:bg-gray-200 focus:outline-none'
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
         {/* card 1 */}
-        {!ideas.length ? (
+        {!exploreIdeas.length ? (
           <div className='w-full text-center'>Loading...</div>
         ) : (
           <div className='grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-10 '>
-            {ideas.reverse().map((idea, key) => {
+            {exploreIdeas.map((idea, key) => {
               return (
                 <>
                   <ExploreIdeaCard
