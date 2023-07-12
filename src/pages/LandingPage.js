@@ -159,9 +159,9 @@ const LandingPage = () => {
             Explore <br />
             <p className='mt-2'>Startup Ideas</p>
           </h1>
-          <div className='sm:ml-16 mt-9 sm:mt-0 space-x-4'>
+          <div className='sm:ml-16 mt-9 sm:mt-0 flex md:items-start items-center flex-wrap space-x-4 '>
             <button
-              className='bg-violet-500  rounded-3xl py-3 text-sm sm:text-base text-white font-medium px-6 hover:text-violet-500 border-2 hover:border-violet-400 hover:bg-transparent '
+              className='bg-violet-500  rounded-3xl my-2 py-3 text-sm sm:text-base text-white font-medium px-6 hover:text-violet-500 border-2 hover:border-violet-400 hover:bg-transparent '
               onClick={() => addIdea()}
             >
               add yours
@@ -177,10 +177,22 @@ const LandingPage = () => {
               </div>
             )}
             <button
-              className='border-2 rounded-3xl p-2  text-sm sm:text-base border-violet-500 text-violet-500 font-medium hover:bg-violet-500 hover:text-white'
+              className='border-2 rounded-3xl my-2 p-2  text-sm sm:text-base border-violet-500 text-violet-500 font-medium hover:bg-violet-500 hover:text-white'
               onClick={handleClickScroll}
             >
               explore Ideas
+            </button>
+            <button className='my-2 '>
+              <a
+                href='https://www.producthunt.com/posts/litebulb?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-litebulb'
+                target='_blank'
+              >
+                <img
+                  src='https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=404256&theme=light'
+                  alt='Litebulb - Get&#0032;your&#0032;ideas&#0032;out&#0032;there | Product Hunt'
+                  className='w-250px][ h-[40px]'
+                />
+              </a>
             </button>
           </div>
         </div>
