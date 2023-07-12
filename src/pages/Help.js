@@ -46,13 +46,11 @@ const Help = () => {
     {
       question: "How can I get started with Litebulb?",
       answer:
-        "To get started, simply visit our website [Insert Website Link] and sign up for an account. Once registered, you can explore problem statements, connect with other entrepreneurs, and start building meaningful relationships within the Litebulb community.",
+        "To get started, simply visit our website http://litebulb.xyz and sign up for an account. Once registered, you can explore problem statements, connect with other entrepreneurs, and start building meaningful relationships within the Litebulb community.",
     },
     {
       question: "Where can I find support if I have further questions?",
-      answer: `If you have any additional questions or need support, please reach out to our dedicated customer support team at [Insert Customer Support Email]. We're here to assist you on your entrepreneurial journey. 
-make object ot these faqs then
-render them here in help component import React from "react".`,
+      answer: `If you have any additional questions or need support, please reach out to our dedicated customer support team at shanzilx101@gmail.com . We're here to assist you on your entrepreneurial journey. make object ot these faqs then render them here in help component import React from "react".`,
     },
   ];
 
