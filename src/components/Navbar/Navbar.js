@@ -96,14 +96,14 @@ const Navbar = () => {
           <div className='nav'>
             <ul className='_navlinks flex items-center lg:space-x-14 space-x-4 md:text-xl text-lg'>
               <i className='_icon1 fa fa-times' onClick={() => hideMenu()}></i>
-              <Link to='/community'>
+              <Link to='https://discord.gg/4DDDDeSHjR'>
                 <li>Community</li>
               </Link>
-              <Link to='/explore'>
-                <li>explore</li>
+              <Link to='https://tally.so/r/3qaavk'>
+                <li>For Investors</li>
               </Link>
               <Link to='/help'>
-                <li>help</li>
+                <li>Help</li>
               </Link>
             </ul>
           </div>

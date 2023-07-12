@@ -17,7 +17,7 @@ const VouchersList = ({ showVouchers, setShowVouchers, ideaId }) => {
   useEffect(() => {
     Axios.get(`${base_url}/api/ideas/vouchersList?ideaID=${ideaId}`)
       .then((res) => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
         setVouchersData(res.data.data);
         setIsLoading(false);
       })
