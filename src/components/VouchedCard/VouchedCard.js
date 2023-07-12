@@ -41,17 +41,17 @@ const VouchedCard = ({ stranger, id }) => {
         </h1>
       ) : (
         <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-items-center mt-10 gap-5'>
-          {myVouchedData.map((item) => {
+          {myVouchedData?.map((item) => {
             return (
-              <div key={item.userID} className='w-full'>
+              <div key={item?.userID} className='w-full'>
                 <ProfileIdeaCard
-                  key={item.userID}
-                  userID={item.userID}
-                  title={item.title}
-                  description={item.description}
+                  key={item?.userID}
+                  userID={item?.userID}
+                  title={item?.title}
+                  description={item?.description}
                   imageUrl={image1}
-                  userPhotoUrl={item.userPhotoUrl}
-                  ideaID={item.ideaID}
+                  userPhotoUrl={item?.userPhotoUrl}
+                  ideaID={item?.ideaID}
                 />
               </div>
             );
