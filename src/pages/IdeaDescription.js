@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Axios from "axios";
 import { useParams, Link, useLocation } from "react-router-dom";
+import LinkModal from "../components/LinkModal/LinkModal";
 import imageUrl from "../assets/Group 6.png";
 import { AuthContext } from "../Context/AuthContext";
 import { VouchContext } from "../Context/VouchContext";
@@ -11,12 +12,14 @@ import { v4 as uuidv4 } from "uuid";
 // for notifivation
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { MdOutlineShare } from "react-icons/md";
 
 const IdeaDescription = () => {
   const { ideaID } = useParams();
   const { currentUser } = useContext(AuthContext);
   const [id, setId] = useState("");
   const [stranger, setStranger] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const { vouchedData, setVouchedData } = useContext(VouchContext);
   const [isVouched, setIsVouched] = useState(false);
@@ -63,6 +66,10 @@ const IdeaDescription = () => {
       progress: undefined,
       theme: "colored",
     });
+  };
+
+  const handleClose = (e) => {
+    setShowModal(false);
   };
 
   useEffect(() => {
@@ -227,7 +234,29 @@ const IdeaDescription = () => {
                   {isVouched ? "Vouched" : "Vouch"}
                   <span className=''>({noOfVouches})</span>
                 </button>
+
+                {/*-------------- share btn ------------------*/}
+                <button
+                  className='flex space-x-2 px-2 rounded-lg bg-violet-500 items-center text-white border-2 hover:bg-white hover:text-violet-500 hover:border-violet-500'
+                  onClick={() => {
+                    setShowModal(true);
+                  }}
+                >
+                  <MdOutlineShare />
+                  <span>Share</span>
+                </button>
                 {/* )} */}
+
+                {/*------------- modal to copy link -------------*/}
+                <div className='fixed w-full top-20 -left-4 z-50'>
+                  <LinkModal
+                    notify={successNotify}
+                    ideaID={ideaID}
+                    visible={showModal}
+                    setVisible={setShowModal}
+                    handleClose={handleClose}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -238,6 +267,7 @@ const IdeaDescription = () => {
             <p className='font-medium sm:mt-1 mt-1 text-gray-500 sm:text-[15px] text-[12px]'>
               ({category})
             </p>
+
             <p className=' mt-2 sm:text-[16px] text-[16px]'>{description}</p>
           </div>
           {/* <div className='flex px-6 mx-12 mt-12 overflow-x-scroll scrollbar-hide '> */}

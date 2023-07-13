@@ -182,7 +182,7 @@ const LandingPage = () => {
             >
               explore Ideas
             </button>
-            <button className='my-2 '>
+            {/* <button className='my-2 '>
               <a
                 href='https://www.producthunt.com/posts/litebulb?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-litebulb'
                 target='_blank'
@@ -193,7 +193,7 @@ const LandingPage = () => {
                   className='w-250px][ h-[40px]'
                 />
               </a>
-            </button>
+            </button> */}
           </div>
         </div>
         <img
