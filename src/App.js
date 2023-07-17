@@ -17,6 +17,8 @@ import IdeaDescription from "./pages/IdeaDescription";
 import { VouchProvider } from "./Context/VouchContext";
 import { UserProvider } from "./Context/UserContext";
 
+import { Analytics } from "@vercel/analytics/react";
+
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   //  console.log(currentUser?.photoURL)
@@ -31,39 +33,42 @@ function App() {
 
   // console.log(currentUser);
   return (
-    <Router>
-      <AuthProvider value={{ currentUser }}>
-        <UserProvider>
-          <VouchProvider>
-            <IdeasProvider>
-              <div className=''>
-                <div className=' fixed w-full top-0 left-0 z-50 bg-white'>
-                  {/* {currentUser && <Navbar />} */}
-                  <Navbar />
+    <>
+      <Router>
+        <AuthProvider value={{ currentUser }}>
+          <UserProvider>
+            <VouchProvider>
+              <IdeasProvider>
+                <div className=''>
+                  <div className=' fixed w-full top-0 left-0 z-50 bg-white'>
+                    {/* {currentUser && <Navbar />} */}
+                    <Navbar />
+                  </div>
+                  <div className='sm:mt-[72px] mt-[56px]'>
+                    {/* <Navbar/> */}
+                    <Routes>
+                      <Route path='/' element={<Login />} />
+                      <Route path='/landingpage' element={<LandingPage />} />
+                      <Route path='/profile/:id' element={<Profile />} />
+                      <Route path='/login' element={<Login />} />
+                      {/* <Route path="/signup" element={<SignUp />} /> */}
+                      <Route path='/community' element={<Community />} />
+                      <Route path='/explore' element={<Explore />} />
+                      <Route path='/help' element={<Help />} />
+                      <Route
+                        path='/ideas/:ideaID'
+                        element={<IdeaDescription />}
+                      />
+                    </Routes>
+                  </div>
                 </div>
-                <div className='sm:mt-[72px] mt-[56px]'>
-                  {/* <Navbar/> */}
-                  <Routes>
-                    <Route path='/' element={<Login />} />
-                    <Route path='/landingpage' element={<LandingPage />} />
-                    <Route path='/profile/:id' element={<Profile />} />
-                    <Route path='/login' element={<Login />} />
-                    {/* <Route path="/signup" element={<SignUp />} /> */}
-                    <Route path='/community' element={<Community />} />
-                    <Route path='/explore' element={<Explore />} />
-                    <Route path='/help' element={<Help />} />
-                    <Route
-                      path='/ideas/:ideaID'
-                      element={<IdeaDescription />}
-                    />
-                  </Routes>
-                </div>
-              </div>
-            </IdeasProvider>
-          </VouchProvider>
-        </UserProvider>
-      </AuthProvider>
-    </Router>
+              </IdeasProvider>
+            </VouchProvider>
+          </UserProvider>
+        </AuthProvider>
+      </Router>
+      <Analytics />
+    </>
   );
 }
 
