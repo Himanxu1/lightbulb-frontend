@@ -207,14 +207,14 @@ const IdeaDescription = () => {
     <>
       <div className='sm:mx-8 mx-1'>
         <div className='max-w-[1000px] mx-auto md:mt-20 sm:16 mt-12  shadow-lg mb-10 shadow-gray-200 pb-20'>
-          <div className='flex mx-9 justify-between'>
+          <div className='sm:flex sm:mx-9 mx-5 justify-between'>
             <Link to={`/profile/${singleIdea[0]?.userID}`}>
               <img
                 src={userPhotoUrl ? userPhotoUrl : imageUrl}
                 className='sm:w-20 w-[65px] mt-10 shadow-md hover:border-[.1px] hover:shadow rounded-full'
               />
             </Link>
-            <div className='ml-6 mt-10 sm:font-bold font-medium sm:text-[16px] text-[14px]'>
+            <div className='sm:ml-6 sm:mt-10 mt-4 sm:font-bold font-medium sm:text-[16px] text-[14px]'>
               <div className='flex sm:space-x-6 space-x-3'>
                 {twitterLink && (
                   <Link
@@ -260,7 +260,7 @@ const IdeaDescription = () => {
               </div>
             </div>
           </div>
-          <div className='mx-11 '>
+          <div className='sm:mx-11  mx-6'>
             <p className='font-medium sm:mt-8 mt-6 sm:text-[20px] text-[18px]'>
               {title}
             </p>
@@ -284,24 +284,28 @@ const IdeaDescription = () => {
         {/* Comment Section */}
         {loading && <h1>Loading</h1>}
         <div className='grid max-w-[800px] mx-auto px-10 sm:px-3 md:px-0 mb-20'>
-          <div className='relative flex sm:flex-row flex-col md:space-x-8 w-full '>
-            <input
-              className='outline-none border-b-2 h-12 w-full bg-transparent '
-              type='text'
-              placeholder='Share your thought on our Idea...'
-              value={usercomment}
-              onChange={(e) => setUsercomment(e.target.value)}
-            />
-            <button
-              onClick={() => {
-                if (usercomment.length > 0) {
-                  handlePostClick();
-                }
-              }}
-              className='w-24 mt-2 sm:mt-0 ml-2 p-8 rounded-md py-3 font-medium sm:text-[16px] text-[14px] bg-black hover:bg-gray-300 text-white hover:text-black'
-            >
-              Post
-            </button>
+          <div className='relative flex flex-col sm:flex-row md:space-x-8 w-full'>
+            <div className='sm:flex-grow'>
+              <input
+                className='outline-none border-b-2 h-12 w-full bg-transparent'
+                type='text'
+                placeholder='Share your thought on our Idea...'
+                value={usercomment}
+                onChange={(e) => setUsercomment(e.target.value)}
+              />
+            </div>
+            <div className='sm:mt-2 mt-2 ml-auto'>
+              <button
+                onClick={() => {
+                  if (usercomment.length > 0) {
+                    handlePostClick();
+                  }
+                }}
+                className='sm:w-24 w-16 sm:py-3 py-2 rounded-md font-medium sm:text-[16px] text-[14px] bg-black hover:bg-gray-300 text-white hover:text-black'
+              >
+                Post
+              </button>
+            </div>
           </div>
           <div className='grid ml-10 mt-10 gap-y-6'>
             {comments?.map((userComment) => {

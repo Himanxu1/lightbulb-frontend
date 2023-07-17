@@ -89,8 +89,10 @@ const Navbar = () => {
         <div className='flex lg:space-x-14 space-x-2 md:mr-9 sm:mr-4 mr-2 '>
           <Link to='/landingpage'>
             <div className='flex items-center space-x-1'>
-              <img src={litebulbLogo} alt='' className='w-6' />
-              <h3 className='font-bold md:text-2xl text-xl'>Litebulb</h3>
+              <img src={litebulbLogo} alt='' className='sm:w-6 w-5' />
+              <h3 className='font-bold md:text-2xl sm:text-xl text-lg'>
+                Litebulb
+              </h3>
             </div>
           </Link>
           <div className='nav'>
@@ -135,7 +137,7 @@ const Navbar = () => {
           </div>
           {!currentUser ? (
             <Link to={`/login`}>
-              <div className='w-12 h-12 ml-2 sm:mr-4 p-1'>
+              <div className='w-12 h-12 sm:ml-2 sm:mr-4 p-1'>
                 <img
                   className='rounded-full'
                   src={currentUser ? currentUser?.photoURL : avatar}
@@ -144,7 +146,7 @@ const Navbar = () => {
             </Link>
           ) : (
             <Link to={`/profile/${currentUser?.uid}`}>
-              <div className='w-12 h-12 ml-2 sm:mr-4 p-1'>
+              <div className='w-12 h-12 sm:ml-2 sm:mr-4 p-1'>
                 <img
                   className='rounded-full'
                   src={currentUser ? currentUser?.photoURL : avatar}
