@@ -4,6 +4,7 @@ import LandingPage from "./pages/LandingPage";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./pages/Login";
+import AddIdea from "./pages/AddIdea";
 import SignUp from "./pages/SignUp";
 import { AuthContext, AuthProvider } from "./Context/AuthContext";
 import { useState, useEffect } from "react";
@@ -50,6 +51,7 @@ function App() {
                       <Route path='/' element={<Login />} />
                       <Route path='/landingpage' element={<LandingPage />} />
                       <Route path='/profile/:id' element={<Profile />} />
+                      <Route path='/AddIdea' element={<AddIdea />} />
                       <Route path='/login' element={<Login />} />
                       {/* <Route path="/signup" element={<SignUp />} /> */}
                       <Route path='/community' element={<Community />} />
