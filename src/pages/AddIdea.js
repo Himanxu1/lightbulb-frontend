@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { useWindowSize } from "@uidotdev/usehooks";
 import { MdOutlineClose, MdExpandMore } from "react-icons/md";
 import { AiOutlineFileAdd } from "react-icons/ai";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -24,6 +25,8 @@ function AddIdea() {
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [isDragOver, setIsDragOver] = useState(false);
+
+  const size = useWindowSize();
 
   const handleFile = (e) => {
     setUploadedImages([...uploadedImages, ...e.target.files]);
@@ -105,7 +108,7 @@ function AddIdea() {
     });
   };
 
-  const dropArea = document.getElementById("dropArea");
+  const dropArea = document.getElementById("md-dropArea");
 
   const handleDragEnter = (e) => {
     e.preventDefault();
@@ -139,6 +142,10 @@ function AddIdea() {
     navigate(location.state.prevPath);
   };
 
+  // useEffect(() => {
+  //   console.log(uploadedImages.length);
+  // }, [uploadedImages]);
+
   return (
     <div className="mb-36">
       <div className="flex justify-between items-center  sm:w-10/12 w-11/12 mx-auto">
@@ -152,154 +159,189 @@ function AddIdea() {
       <div className="h-[1.3px] bg-gray-300"></div>
       <div className="md:my-7 sm:w-10/12 w-11/12 mx-auto">
         {/*------ media input -------*/}
-        <div className="flex md:flex-row flex-col justify-between md:my-14 sm:my-8 my-4">
+        <div className="flex md:flex-row flex-col justify-between md:mt-14 sm:mt-8 mt-4">
           <h3 className="py-2 md:text-xl sm:text-lg font-medium text-black  ">
             Media
           </h3>
           {uploadedImages == 0 ? (
-            <div
-              onDragEnter={handleDragEnter}
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-              onDrop={handleDrop}
-              id="dropArea"
-              class="flex justify-center items-center md:w-4/6 h-[200px] md:text-xl sm:text-lg text-gray-500 rounded-xl border-2 border-gray-300 border-dashed bg-violet-50"
-            >
-              <div>
-                Drag & drop an image or{" "}
-                <label className="text-violet-600">
-                  Browse
-                  <input
-                    type="file"
-                    multiple="multiple"
-                    onChange={handleFile}
-                    className="hidden cursor-pointer"
-                  />
-                </label>
+            <div className="md:w-4/6">
+              <div id="md-dropArea">
+                <div
+                  onDragEnter={handleDragEnter}
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
+                  class="flex justify-center items-center h-[200px] md:text-xl sm:text-lg text-gray-500 rounded-xl border-2 border-gray-300 border-dashed bg-violet-50"
+                >
+                  <div>
+                    Drag & drop an image or{" "}
+                    <label className="text-violet-600">
+                      Browse
+                      <input
+                        type="file"
+                        multiple="multiple"
+                        onChange={handleFile}
+                        className="hidden cursor-pointer"
+                      />
+                    </label>
+                  </div>
+                </div>
               </div>
+              <p className="md:my-8 sm:my-4 my-2 md:text-xl sm:text-lg">
+                Add some relevant images/screesnhot to better visibility of the
+                idea. Everyone loves visual details.
+              </p>
             </div>
           ) : (
-            <div className="flex  md:w-4/6">
-              <div className="flex flex-wrap gap-x-4 gap-y-5 px-4">
-                <div>
-                  <label className="text-violet-600">
-                    <div
-                      onDragEnter={handleDragEnter}
-                      onDragOver={handleDragOver}
-                      onDragLeave={handleDragLeave}
-                      onDrop={handleDrop}
-                      id="dropArea"
-                      class="flex justify-center items-center md:w-28 sm:w-20 w-16 md:h-24 sm:h-20 h-16 px-4 text-center text-4xl text-violet-600 rounded-xl border-2 border-gray-300 border-dashed bg-violet-50"
-                    >
-                      <AiOutlineFileAdd />
-                    </div>
-                    <input
-                      type="file"
-                      multiple="multiple"
-                      onChange={handleFile}
-                      className="hidden cursor-pointer"
+            <div className="md:w-4/6">
+              <div className="flex">
+                <div className="flex flex-wrap gap-x-4 gap-y-5 px-4">
+                  <div>
+                    <label className="text-violet-600">
+                      <div
+                        onDragEnter={handleDragEnter}
+                        onDragOver={handleDragOver}
+                        onDragLeave={handleDragLeave}
+                        onDrop={handleDrop}
+                        class="flex justify-center items-center md:w-28 w-20 w-16 md:h-24 h-20 h-16 px-4 text-center text-4xl text-violet-600 rounded-xl border-2 border-gray-300 border-dashed bg-violet-50"
+                      >
+                        <AiOutlineFileAdd />
+                      </div>
+                      <input
+                        type="file"
+                        multiple="multiple"
+                        onChange={handleFile}
+                        className="hidden cursor-pointer"
+                      />
+                    </label>
+                  </div>
+                  {uploadedImages.reverse().map((idea, index) => (
+                    <img
+                      src={URL.createObjectURL(idea)}
+                      alt=""
+                      key={index}
+                      // className="md:w-32 md:h-28 object-cover object-center rounded-xl"
+                      className="md:w-28 w-20 w-16 md:h-24 h-20 h-16 object-cover object-center rounded-xl"
                     />
-                  </label>
+                  ))}
                 </div>
-                {uploadedImages.map((idea, index) => (
-                  <img
-                    src={URL.createObjectURL(idea)}
-                    alt=""
-                    key={index}
-                    // className="md:w-32 md:h-28 object-cover object-center rounded-xl"
-                    className="md:w-28 sm:w-20 w-16 md:h-24 sm:h-20 h-16 object-cover object-center rounded-xl"
-                  />
-                ))}
               </div>
+              <p className="md:my-8 sm:my-4 my-2 md:text-xl sm:text-lg">
+                Add some relevant images/screesnhot to better visibility of the
+                idea. Everyone loves visual details.
+              </p>
             </div>
           )}
         </div>
         {/*------ break line -------*/}
         <div className="h-[1.3px] bg-gray-300"></div>
         {/*------  One Line Idea input -------*/}
-        <div className="flex md:flex-row flex-col justify-between mmd:my-14 sm:my-8 my-4">
+        <div className="flex md:flex-row flex-col justify-between mmd:mt-14 sm:mt-8 mt-4">
           <h3 className="py-2 md:text-xl sm:text-lg font-medium text-black  ">
             One Line Idea
           </h3>
-          <input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            type="text"
-            className="md:w-4/6 py-3 md:text-xl sm:text-lg bg-gray-50 rounded-lg border-2 border-gray-600 placeholder:text-gray-400 outline-none pl-4"
-            placeholder="Explain your idea in one line"
-          />
+          <div className="md:w-4/6">
+            <input
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              type="text"
+              className="w-full py-3 md:text-xl sm:text-lg bg-gray-50 rounded-lg border-2 border-gray-600 placeholder:text-gray-400 outline-none pl-4"
+              placeholder="Explain your idea in one line"
+            />
+            <div className="md:my-8 sm:my-4 my-2 md:text-xl sm:text-lg">
+              <p>For example, Scan mood to get food</p>
+              <br />
+              <p>
+                This Idea will be used to highlight the product you want to
+                built & help you in attracting potential users/builders.
+              </p>
+            </div>
+          </div>
         </div>
         {/*------ break line -------*/}
         <div className="h-[1.3px] bg-gray-300"></div>
         {/*------  Category input -------*/}
-        <div className="flex md:flex-row flex-col justify-between md:my-14 sm:my-8 my-4">
+        <div className="flex md:flex-row flex-col justify-between md:mt-14 sm:mt-8 mt-4">
           <h3 className="py-2 md:text-xl sm:text-lg font-medium text-black  ">
             Category
           </h3>
-          <div className="flex justify-between md:w-4/6 md:text-xl sm:text-lg bg-gray-50 rounded-lg border-2 border-gray-600 placeholder:text-gray-400">
-            {/* <p className=" py-3 text-gray-500">
+          <div className="md:w-4/6">
+            <div className="flex justify-between md:text-xl sm:text-lg bg-gray-50 rounded-lg border-2 border-gray-600 placeholder:text-gray-400">
+              {/* <p className=" py-3 text-gray-500">
               Select the industry in which your idea fits the best
             </p>
             <MdExpandMore className="text-4xl my-auto" /> */}
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className={`w-full mx-4 py-3 bg-gray-50 rounded-md outline-none ${
-                category === "" ? "text-gray-400" : "text-black"
-              }`}
-            >
-              <option value="" disabled>
-                Select the industry in which your idea fits the best
-              </option>
-              <option className="text-black" value="SaaS">
-                SaaS
-              </option>
-              <option className="text-black" value="E-commerce">
-                E-commerce
-              </option>
-              <option className="text-black" value="Health and Wellness">
-                Health and Wellness
-              </option>
-              <option className="text-black" value="Ed-tech">
-                Ed-tech
-              </option>
-              <option className="text-black" value="Fintech">
-                Fintech
-              </option>
-              <option className="text-black" value="Sustainability">
-                Sustainability
-              </option>
-              <option className="text-black" value="Entertainment and Media">
-                Entertainment and Media
-              </option>
-              <option className="text-black" value="Food and Beverage">
-                Food and Beverage
-              </option>
-              <option className="text-black" value="Travel and Hospitality">
-                Travel and Hospitality
-              </option>
-              <option className="text-black" value="Fashion and Apparel">
-                Fashion and Apparel
-              </option>
-              <option className="text-black" value="Real Estate and Property">
-                Real Estate and Property
-              </option>
-              <option
-                className="text-black"
-                value="Automotive and Transportation"
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className={`w-full mx-4 py-3 bg-gray-50 rounded-md outline-none ${
+                  category === "" ? "text-gray-400" : "text-black"
+                }`}
               >
-                Automotive and Transportation
-              </option>
-              <option className="text-black" value="Arts and Culture">
-                Arts and Culture
-              </option>
-              <option className="text-black" value="Sports and Fitness">
-                Sports and Fitness
-              </option>
-              <option className="text-black" value="Home and Lifestyle">
-                Home and Lifestyle
-              </option>
-            </select>
+                <option value="" disabled>
+                  Select the industry in which your idea fits the best
+                </option>
+                <option className="text-black" value="SaaS">
+                  SaaS
+                </option>
+                <option className="text-black" value="E-commerce">
+                  E-commerce
+                </option>
+                <option className="text-black" value="Health and Wellness">
+                  Health and Wellness
+                </option>
+                <option className="text-black" value="Ed-tech">
+                  Ed-tech
+                </option>
+                <option className="text-black" value="Fintech">
+                  Fintech
+                </option>
+                <option className="text-black" value="Sustainability">
+                  Sustainability
+                </option>
+                <option className="text-black" value="Entertainment and Media">
+                  Entertainment and Media
+                </option>
+                <option className="text-black" value="Food and Beverage">
+                  Food and Beverage
+                </option>
+                <option className="text-black" value="Travel and Hospitality">
+                  Travel and Hospitality
+                </option>
+                <option className="text-black" value="Fashion and Apparel">
+                  Fashion and Apparel
+                </option>
+                <option className="text-black" value="Real Estate and Property">
+                  Real Estate and Property
+                </option>
+                <option
+                  className="text-black"
+                  value="Automotive and Transportation"
+                >
+                  Automotive and Transportation
+                </option>
+                <option className="text-black" value="Arts and Culture">
+                  Arts and Culture
+                </option>
+                <option className="text-black" value="Sports and Fitness">
+                  Sports and Fitness
+                </option>
+                <option className="text-black" value="Home and Lifestyle">
+                  Home and Lifestyle
+                </option>
+              </select>
+            </div>
+            <div className="md:my-8 sm:my-4 my-2 md:text-xl sm:text-lg">
+              <p>
+                For example, The idea of “Scan mood to get food” will be best
+                suited for Food & Beverage Industry
+              </p>
+              <br />
+              <p>
+                For example, The idea of “Scan mood to get food” will be best
+                suited for Food & Beverage Industry
+              </p>
+            </div>
           </div>
         </div>
         {/*------ break line -------*/}
@@ -307,15 +349,22 @@ function AddIdea() {
         {/*------  Problem Statement input -------*/}
         <div className="flex md:flex-row flex-col justify-between mmd:my-14 sm:my-8 my-4">
           <h3 className="py-2 md:text-xl sm:text-lg font-medium text-black  ">
-            Problem Statement{" "}
+            Problem Statement
           </h3>
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            type="text"
-            className=" md:w-4/6 py-3 min-h-[150px] max-h-[300px] md:text-xl sm:text-lg bg-gray-50 rounded-lg border-2 border-gray-600 placeholder:text-gray-400 outline-none pl-4"
-            placeholder="Explain the problem statement in detail."
-          />
+          <div className="md:w-4/6">
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              type="text"
+              className="w-full py-3 min-h-[150px] max-h-[300px] md:text-xl sm:text-lg bg-gray-50 rounded-lg border-2 border-gray-600 placeholder:text-gray-400 outline-none pl-4"
+              placeholder="Explain the problem statement in detail."
+            />
+            <p className="md:my-8 sm:my-4 my-2 md:text-xl sm:text-lg">
+              Here you can show how much you’re interested in this problem
+              space. Go as detailed as you can, share a few instances and
+              suggest how you can go for solving it.
+            </p>
+          </div>
         </div>
         {/*------ break line -------*/}
         <div className="h-[1.3px] bg-gray-300"></div>
