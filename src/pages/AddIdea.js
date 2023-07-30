@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { MdOutlineClose, MdExpandMore } from "react-icons/md";
+import { AiOutlineFileAdd } from "react-icons/ai";
 import { useNavigate, useLocation } from "react-router-dom";
 import FormData from "form-data";
 import Axios from "axios";
@@ -118,7 +119,7 @@ function AddIdea() {
           Share your idea
         </h3>
         <button onClick={handleExit}>
-          <MdOutlineClose className="md:text-4xl sm:text-3xl text-2xl text-gray-700 text-red-500" />
+          <MdOutlineClose className="md:text-4xl sm:text-3xl text-2xl text-gray-700" />
         </button>
       </div>
       <div className="h-[1.3px] bg-gray-300"></div>
@@ -144,24 +145,21 @@ function AddIdea() {
               </div>
             </div>
           ) : (
-            <div className="flex w-4/6">
-              <div class="flex justify-center items-center px-4 text-center h-[200px] md:text-xl sm:text-lg text-gray-500 rounded-xl border-2 border-gray-300 border-dashed bg-violet-50">
+            <div className="flex justify-center md:w-4/6">
+              <div className="flex flex-wrap gap-x-4 gap-y-5 px-4">
                 <div>
-                  Drag & drop an image or{" "}
-                  <div className="">
-                    <label className="text-violet-600">
-                      Browse
-                      <input
-                        type="file"
-                        multiple="multiple"
-                        onChange={handleFile}
-                        className="hidden cursor-pointer"
-                      />
-                    </label>
-                  </div>
+                  <label className="text-violet-600">
+                    <div class="flex justify-center items-center md:w-28 sm:w-20 w-16 md:h-24 sm:h-20 h-16 px-4 text-center text-4xl text-violet-600 rounded-xl border-2 border-gray-300 border-dashed bg-violet-50">
+                      <AiOutlineFileAdd />
+                    </div>
+                    <input
+                      type="file"
+                      multiple="multiple"
+                      onChange={handleFile}
+                      className="hidden cursor-pointer"
+                    />
+                  </label>
                 </div>
-              </div>
-              <div className="h-[200px] flex flex-col gap-x-4 gap-y-5 flex-wrap px-4">
                 {uploadedImages.map((idea, index) => (
                   <img
                     src={URL.createObjectURL(idea)}
