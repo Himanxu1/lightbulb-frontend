@@ -114,22 +114,22 @@ function AddIdea() {
   return (
     <div className="mb-36">
       <div className="flex justify-between items-center  sm:w-10/12 w-11/12 mx-auto">
-        <h3 className=" py-5 my-auto md:text-2xl sm:text-xl font-semibold text-gray-500  ">
+        <h3 className="md:py-5 sm:py-3 py-2 my-auto md:text-2xl sm:text-xl text-lg  font-semibold text-gray-500">
           Share your idea
         </h3>
         <button onClick={handleExit}>
-          <MdOutlineClose className="text-4xl text-gray-700" />
+          <MdOutlineClose className="md:text-4xl sm:text-3xl text-2xl text-gray-700 text-red-500" />
         </button>
       </div>
       <div className="h-[1.3px] bg-gray-300"></div>
-      <div className="my-7 sm:w-10/12 w-11/12 mx-auto">
+      <div className="md:my-7 sm:w-10/12 w-11/12 mx-auto">
         {/*------ media input -------*/}
-        <div className="flex md:flex-row flex-col justify-between my-14">
+        <div className="flex md:flex-row flex-col justify-between md:my-14 sm:my-8 my-4">
           <h3 className="py-2 md:text-xl sm:text-lg font-medium text-black  ">
             Media
           </h3>
           {uploadedImages == 0 ? (
-            <div class="flex justify-center items-center md:w-4/6 h-[200px] text-lg text-gray-500 rounded-xl border-2 border-gray-300 border-dashed bg-violet-50">
+            <div class="flex justify-center items-center md:w-4/6 h-[200px] md:text-xl sm:text-lg text-gray-500 rounded-xl border-2 border-gray-300 border-dashed bg-violet-50">
               <div>
                 Drag & drop an image or{" "}
                 <label className="text-violet-600">
@@ -145,7 +145,7 @@ function AddIdea() {
             </div>
           ) : (
             <div className="flex w-4/6">
-              <div class="flex justify-center items-center px-4 text-center h-[200px] text-lg text-gray-500 rounded-xl border-2 border-gray-300 border-dashed bg-violet-50">
+              <div class="flex justify-center items-center px-4 text-center h-[200px] md:text-xl sm:text-lg text-gray-500 rounded-xl border-2 border-gray-300 border-dashed bg-violet-50">
                 <div>
                   Drag & drop an image or{" "}
                   <div className="">
@@ -178,7 +178,7 @@ function AddIdea() {
         {/*------ break line -------*/}
         <div className="h-[1.3px] bg-gray-300"></div>
         {/*------  One Line Idea input -------*/}
-        <div className="flex md:flex-row flex-col justify-between my-14">
+        <div className="flex md:flex-row flex-col justify-between mmd:my-14 sm:my-8 my-4">
           <h3 className="py-2 md:text-xl sm:text-lg font-medium text-black  ">
             One Line Idea
           </h3>
@@ -186,18 +186,18 @@ function AddIdea() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             type="text"
-            className="md:w-4/6 py-3 text-lg bg-gray-50 rounded-lg border-2 border-gray-600 placeholder:text-gray-400 outline-none pl-4"
+            className="md:w-4/6 py-3 md:text-xl sm:text-lg bg-gray-50 rounded-lg border-2 border-gray-600 placeholder:text-gray-400 outline-none pl-4"
             placeholder="Explain your idea in one line"
           />
         </div>
         {/*------ break line -------*/}
         <div className="h-[1.3px] bg-gray-300"></div>
         {/*------  Category input -------*/}
-        <div className="flex md:flex-row flex-col justify-between my-14">
+        <div className="flex md:flex-row flex-col justify-between md:my-14 sm:my-8 my-4">
           <h3 className="py-2 md:text-xl sm:text-lg font-medium text-black  ">
             Category
           </h3>
-          <div className="flex justify-between md:w-4/6 text-lg bg-gray-50 rounded-lg border-2 border-gray-600 placeholder:text-gray-400">
+          <div className="flex justify-between md:w-4/6 md:text-xl sm:text-lg bg-gray-50 rounded-lg border-2 border-gray-600 placeholder:text-gray-400">
             {/* <p className=" py-3 text-gray-500">
               Select the industry in which your idea fits the best
             </p>
@@ -266,7 +266,7 @@ function AddIdea() {
         {/*------ break line -------*/}
         <div className="h-[1.3px] bg-gray-300"></div>
         {/*------  Problem Statement input -------*/}
-        <div className="flex md:flex-row flex-col justify-between my-14">
+        <div className="flex md:flex-row flex-col justify-between mmd:my-14 sm:my-8 my-4">
           <h3 className="py-2 md:text-xl sm:text-lg font-medium text-black  ">
             Problem Statement{" "}
           </h3>
@@ -274,22 +274,22 @@ function AddIdea() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             type="text"
-            className=" md:w-4/6 py-3 min-h-[150px] max-h-[300px] text-lg bg-gray-50 rounded-lg border-2 border-gray-600 placeholder:text-gray-400 outline-none pl-4"
+            className=" md:w-4/6 py-3 min-h-[150px] max-h-[300px] md:text-xl sm:text-lg bg-gray-50 rounded-lg border-2 border-gray-600 placeholder:text-gray-400 outline-none pl-4"
             placeholder="Explain the problem statement in detail."
           />
         </div>
         {/*------ break line -------*/}
         <div className="h-[1.3px] bg-gray-300"></div>
         {/*------  buttons -------*/}
-        <div className="flex gap-8 justify-end my-8">
+        <div className="flex sm:gap-8 gap-4 justify-end md:my-8 my-4">
           <button
             onClick={handleExit}
-            className="py-3 px-8 text-xl font-semibold rounded-lg border-2 border-gray-400"
+            className="py-3 sm:px-8 px-3 md:text-xl sm:text-lg text-sm font-semibold rounded-lg border-2 border-gray-400"
           >
             Discard Idea
           </button>
           <button
-            className="py-3 px-8 text-xl text-white bg-black  font-semibold rounded-lg border-2 border-gray-400"
+            className="py-3 sm:px-8 px-3 md:text-xl sm:text-lg text-sm text-white bg-black  font-semibold rounded-lg border-2 border-gray-400"
             onClick={handleUpload}
           >
             Upload to the Community
