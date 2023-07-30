@@ -120,13 +120,17 @@ function AddIdea() {
 
   const handleDragLeave = () => {
     setIsDragOver(false);
-    dropArea.classList.remove("border-blue-500", "border-2");
+    if (dropArea.classList.contains("border-blue-500")) {
+      dropArea.classList.remove("border-blue-500", "border-2");
+    }
   };
 
   const handleDrop = (e) => {
     e.preventDefault();
     setIsDragOver(false);
-    dropArea.classList.remove("border-blue-500", "border-2");
+    if (dropArea.classList.contains("border-blue-500")) {
+      dropArea.classList.remove("border-blue-500", "border-2");
+    }
 
     setUploadedImages([...uploadedImages, ...e.dataTransfer.files]);
   };
