@@ -23,6 +23,7 @@ function AddIdea() {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
+  const [isDragOver, setIsDragOver] = useState(false);
 
   const handleFile = (e) => {
     setUploadedImages([...uploadedImages, ...e.target.files]);
@@ -65,10 +66,6 @@ function AddIdea() {
         .catch((err) => {
           console.log(err);
         });
-      // console.log(formData);
-      // setTitle("");
-      // setCategory("");
-      // setDescription("");
     } else {
       if (!title) {
         errNotify("Enter Title");
@@ -108,6 +105,32 @@ function AddIdea() {
     });
   };
 
+  const dropArea = document.getElementById("dropArea");
+
+  const handleDragEnter = (e) => {
+    e.preventDefault();
+    dropArea.classList.add("border-blue-500", "border-2");
+
+    setIsDragOver(true);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const handleDragLeave = () => {
+    setIsDragOver(false);
+    dropArea.classList.remove("border-blue-500", "border-2");
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragOver(false);
+    dropArea.classList.remove("border-blue-500", "border-2");
+
+    setUploadedImages([...uploadedImages, ...e.dataTransfer.files]);
+  };
+
   const handleExit = () => {
     navigate(location.state.prevPath);
   };
@@ -119,7 +142,7 @@ function AddIdea() {
           Share your idea
         </h3>
         <button onClick={handleExit}>
-          <MdOutlineClose className="md:text-4xl sm:text-3xl text-2xl text-gray-700" />
+          <MdOutlineClose className="md:text-4xl sm:text-3xl text-2xl text-red-500" />
         </button>
       </div>
       <div className="h-[1.3px] bg-gray-300"></div>
@@ -130,7 +153,14 @@ function AddIdea() {
             Media
           </h3>
           {uploadedImages == 0 ? (
-            <div class="flex justify-center items-center md:w-4/6 h-[200px] md:text-xl sm:text-lg text-gray-500 rounded-xl border-2 border-gray-300 border-dashed bg-violet-50">
+            <div
+              onDragEnter={handleDragEnter}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              id="dropArea"
+              class="flex justify-center items-center md:w-4/6 h-[200px] md:text-xl sm:text-lg text-gray-500 rounded-xl border-2 border-gray-300 border-dashed bg-violet-50"
+            >
               <div>
                 Drag & drop an image or{" "}
                 <label className="text-violet-600">
@@ -145,11 +175,18 @@ function AddIdea() {
               </div>
             </div>
           ) : (
-            <div className="flex justify-center md:w-4/6">
+            <div className="flex  md:w-4/6">
               <div className="flex flex-wrap gap-x-4 gap-y-5 px-4">
                 <div>
                   <label className="text-violet-600">
-                    <div class="flex justify-center items-center md:w-28 sm:w-20 w-16 md:h-24 sm:h-20 h-16 px-4 text-center text-4xl text-violet-600 rounded-xl border-2 border-gray-300 border-dashed bg-violet-50">
+                    <div
+                      onDragEnter={handleDragEnter}
+                      onDragOver={handleDragOver}
+                      onDragLeave={handleDragLeave}
+                      onDrop={handleDrop}
+                      id="dropArea"
+                      class="flex justify-center items-center md:w-28 sm:w-20 w-16 md:h-24 sm:h-20 h-16 px-4 text-center text-4xl text-violet-600 rounded-xl border-2 border-gray-300 border-dashed bg-violet-50"
+                    >
                       <AiOutlineFileAdd />
                     </div>
                     <input
