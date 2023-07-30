@@ -338,8 +338,9 @@ function AddIdea() {
               </p>
               <br />
               <p>
-                For example, The idea of “Scan mood to get food” will be best
-                suited for Food & Beverage Industry
+                This data point will help you in landing in front of right
+                target audience. You can also find builders having interest in
+                similar industry.
               </p>
             </div>
           </div>
