@@ -360,7 +360,7 @@ function AddIdea() {
                 placeholder="Explain the problem statement in detail."
               />
               <button
-                className="absolute bottom-4 right-3 py-2 md:px-5 sm:px-3  px-2 md:text-lg text-sm text-white hover:text-violet-700 bg-violet-400 hover:bg-white font-semibold rounded-lg border-2 border-violet-400 ease-out duration-200"
+                className="absolute bottom-4 right-3 py-2 md:px-5 sm:px-3  px-2 myFont md:text-lg text-sm text-white hover:text-violet-700 bg-violet-400 hover:bg-white font-semibold rounded-lg border-2 border-violet-400 ease-out duration-200"
                 onClick={handleUpload}
               >
                 Generate Using AI
@@ -387,7 +387,7 @@ function AddIdea() {
                 placeholder="Write down your solution."
               />
               <button
-                className="absolute bottom-4 right-3 py-2 md:px-5 sm:px-3  px-2 md:text-lg text-sm text-white hover:text-violet-700 bg-violet-400 hover:bg-white font-semibold rounded-lg border-2 border-violet-400 ease-out duration-200"
+                className="absolute bottom-4 right-3 py-2 md:px-5 sm:px-3  px-2 myFont md:text-lg text-sm text-white hover:text-violet-700 bg-violet-400 hover:bg-white font-semibold rounded-lg border-2 border-violet-400 ease-out duration-200"
                 onClick={handleUpload}
               >
                 Generate Using AI
@@ -405,12 +405,12 @@ function AddIdea() {
         <div className="flex sm:gap-8 gap-4 justify-end md:my-8 my-4">
           <button
             onClick={handleExit}
-            className="py-3 sm:px-8 px-3 md:text-xl sm:text-lg text-sm font-semibold rounded-lg hover:text-white hover:bg-black border-2 border-gray-400 hover:border-black ease-out duration-200"
+            className="py-3 sm:px-8 px-3 myFont md:text-xl sm:text-lg text-sm font-semibold rounded-lg hover:text-white hover:bg-black border-2 border-gray-400 hover:border-black ease-out duration-200"
           >
             Discard Idea
           </button>
           <button
-            className="py-3 sm:px-8 px-3 md:text-xl sm:text-lg text-sm text-white hover:text-violet-700 bg-violet-400 hover:bg-white font-semibold rounded-lg border-2 border-violet-400 ease-out duration-200"
+            className="py-3 sm:px-8 px-3 myFont md:text-xl sm:text-lg text-sm text-white hover:text-violet-700 bg-violet-400 hover:bg-white font-semibold rounded-lg border-2 border-violet-400 ease-out duration-200"
             onClick={handleUpload}
           >
             Upload to the Community
