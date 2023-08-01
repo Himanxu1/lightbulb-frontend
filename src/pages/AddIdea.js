@@ -149,7 +149,7 @@ function AddIdea() {
   return (
     <div className="mb-36">
       <div className="flex justify-between items-center  sm:w-10/12 w-11/12 mx-auto">
-        <h3 className="md:py-5 sm:py-3 py-2 my-auto md:text-2xl sm:text-xl text-lg  font-semibold text-gray-500">
+        <h3 className="md:py-5 sm:py-3 py-2 my-auto md:text-2xl sm:text-xl text-lg  font-medium text-gray-500">
           Share your idea
         </h3>
         <button onClick={handleExit}>
@@ -187,7 +187,7 @@ function AddIdea() {
                   </div>
                 </div>
               </div>
-              <p className="md:my-8 sm:my-4 my-2 md:text-xl sm:text-lg">
+              <p className="md:my-8 sm:my-4 my-2 md:text-xl sm:text-lg text-gray-500">
                 Add some relevant images/screesnhot to better visibility of the
                 idea. Everyone loves visual details.
               </p>
@@ -226,7 +226,7 @@ function AddIdea() {
                   ))}
                 </div>
               </div>
-              <p className="md:my-8 sm:my-4 my-2 md:text-xl sm:text-lg">
+              <p className="md:my-8 sm:my-4 my-2 md:text-xl sm:text-lg text-gray-500">
                 Add some relevant images/screesnhot to better visibility of the
                 idea. Everyone loves visual details.
               </p>
@@ -248,9 +248,8 @@ function AddIdea() {
               className="w-full py-3 md:text-xl sm:text-lg bg-gray-50 rounded-lg border-2 border-gray-600 placeholder:text-gray-400 outline-none pl-4"
               placeholder="Explain your idea in one line"
             />
-            <div className="md:my-8 sm:my-4 my-2 md:text-xl sm:text-lg">
+            <div className="flex flex-col sm:space-y-4 space-y-2 md:my-8 sm:my-4 my-2 md:text-xl sm:text-lg text-gray-500">
               <p>For example, Scan mood to get food</p>
-              <br />
               <p>
                 This Idea will be used to highlight the product you want to
                 built & help you in attracting potential users/builders.
@@ -331,12 +330,11 @@ function AddIdea() {
                 </option>
               </select>
             </div>
-            <div className="md:my-8 sm:my-4 my-2 md:text-xl sm:text-lg">
+            <div className="flex flex-col sm:space-y-4 space-y-2 md:my-8 sm:my-4 my-2 md:text-xl sm:text-lg text-gray-500">
               <p>
                 For example, The idea of “Scan mood to get food” will be best
                 suited for Food & Beverage Industry
               </p>
-              <br />
               <p>
                 This data point will help you in landing in front of right
                 target audience. You can also find builders having interest in
@@ -353,17 +351,51 @@ function AddIdea() {
             Problem Statement
           </h3>
           <div className="md:w-4/6">
-            <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              type="text"
-              className="w-full py-3 min-h-[150px] max-h-[300px] md:text-xl sm:text-lg bg-gray-50 rounded-lg border-2 border-gray-600 placeholder:text-gray-400 outline-none pl-4"
-              placeholder="Explain the problem statement in detail."
-            />
-            <p className="md:my-8 sm:my-4 my-2 md:text-xl sm:text-lg">
+            <div className=" relative">
+              <textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                type="text"
+                className="w-full py-3 min-h-[150px] max-h-[300px] md:text-xl sm:text-lg bg-gray-50 rounded-lg border-2 border-gray-600 placeholder:text-gray-400 outline-none pl-4"
+                placeholder="Explain the problem statement in detail."
+              />
+              <button
+                className="absolute bottom-4 right-3 py-2 md:px-5 sm:px-3  px-2 md:text-lg text-sm text-white hover:text-violet-700 bg-violet-400 hover:bg-white font-semibold rounded-lg border-2 border-violet-400 ease-out duration-200"
+                onClick={handleUpload}
+              >
+                Generate Using AI
+              </button>
+            </div>
+            <p className="md:my-8 sm:my-4 my-2 md:text-xl sm:text-lg text-gray-500">
               Here you can show how much you’re interested in this problem
-              space. Go as detailed as you can, share a few instances and
-              suggest how you can go for solving it.
+              space. Go as detailed as you can.
+            </p>
+          </div>
+        </div>
+        {/*------  Problem solution input -------*/}
+        <div className="flex md:flex-row flex-col justify-between mmd:my-14 sm:my-8 my-4">
+          <h3 className="py-2 md:text-xl sm:text-lg font-medium text-black  ">
+            Problem Solution
+          </h3>
+          <div className="md:w-4/6">
+            <div className="relative">
+              <textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                type="text"
+                className="relative w-full py-3 min-h-[150px] max-h-[300px] md:text-xl sm:text-lg bg-gray-50 rounded-lg border-2 border-gray-600 placeholder:text-gray-400 outline-none pl-4"
+                placeholder="Write down your solution."
+              />
+              <button
+                className="absolute bottom-4 right-3 py-2 md:px-5 sm:px-3  px-2 md:text-lg text-sm text-white hover:text-violet-700 bg-violet-400 hover:bg-white font-semibold rounded-lg border-2 border-violet-400 ease-out duration-200"
+                onClick={handleUpload}
+              >
+                Generate Using AI
+              </button>
+            </div>
+            <p className="md:my-8 sm:my-4 my-2 md:text-xl sm:text-lg text-gray-500">
+              Discovering solutions is a key trait of a builder, share a few
+              instances and suggest how you can go about solving it.
             </p>
           </div>
         </div>
@@ -373,12 +405,12 @@ function AddIdea() {
         <div className="flex sm:gap-8 gap-4 justify-end md:my-8 my-4">
           <button
             onClick={handleExit}
-            className="py-3 sm:px-8 px-3 md:text-xl sm:text-lg text-sm font-semibold rounded-lg border-2 border-gray-400"
+            className="py-3 sm:px-8 px-3 md:text-xl sm:text-lg text-sm font-semibold rounded-lg hover:text-white hover:bg-black border-2 border-gray-400 hover:border-black ease-out duration-200"
           >
             Discard Idea
           </button>
           <button
-            className="py-3 sm:px-8 px-3 md:text-xl sm:text-lg text-sm text-white bg-black  font-semibold rounded-lg border-2 border-gray-400"
+            className="py-3 sm:px-8 px-3 md:text-xl sm:text-lg text-sm text-white hover:text-violet-700 bg-violet-400 hover:bg-white font-semibold rounded-lg border-2 border-violet-400 ease-out duration-200"
             onClick={handleUpload}
           >
             Upload to the Community

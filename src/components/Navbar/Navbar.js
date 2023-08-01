@@ -1,3 +1,4 @@
+import "../../CSS/Navbar.css";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, Navigate, useLocation } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
@@ -5,7 +6,6 @@ import litebulbLogo from "../../assets/litebulbLogo.png";
 import avatar from "../../assets/user (1).png";
 import hamburger from "../../assets/hamburger.png";
 import close from "../../assets/close.png";
-import "../../CSS/navbar.css";
 import { AuthContext } from "../../Context/AuthContext";
 import { IdeasContext } from "../../Context/IdeasContext";
 
@@ -53,20 +53,20 @@ const Navbar = () => {
   //------ searchedIdeas component
   const SearchedIdeas = ({ searchedIdeas }) => {
     return (
-      <div className='pb-2'>
+      <div className="pb-2">
         <ul>
           {searchedIdeas.map((idea) => (
             <li key={idea.ideaID}>
-              <div className='flex space-x-3 items-center my-1 cursor-pointer'>
+              <div className="flex space-x-3 items-center my-1 cursor-pointer">
                 <img
                   src={idea ? idea.userPhotoUrl : ""}
-                  className='w-8 h-8 shadow-md hover:border-[.1px] hover:shadow rounded-full'
+                  className="w-8 h-8 shadow-md hover:border-[.1px] hover:shadow rounded-full"
                 />
                 <Link
                   to={`/ideas/${idea.ideaID}`}
                   onClick={() => setSeachInput("")}
                 >
-                  <div className='title line-clamp-1 hover:underline'>
+                  <div className="title line-clamp-1 hover:underline">
                     {idea.title}
                   </div>
                 </Link>
@@ -84,79 +84,79 @@ const Navbar = () => {
   }
 
   return (
-    <div className='sm:p-3 px-3 py-1 shadow-sm shadow-gray '>
-      <div className='flex items-center justify-between lg:mx-16 md:mx-4'>
-        <div className='flex lg:space-x-14 space-x-2 md:mr-9 sm:mr-4 mr-2 '>
-          <Link to='/landingpage'>
-            <div className='flex items-center space-x-1'>
-              <img src={litebulbLogo} alt='' className='sm:w-6 w-5' />
-              <h3 className='font-bold md:text-2xl sm:text-xl text-lg'>
+    <div className="sm:p-3 px-3 py-1 shadow-sm shadow-gray ">
+      <div className="flex items-center justify-between lg:mx-16 md:mx-4">
+        <div className="flex lg:space-x-14 space-x-2 md:mr-9 sm:mr-4 mr-2 ">
+          <Link to="/landingpage">
+            <div className="flex items-center space-x-1">
+              <img src={litebulbLogo} alt="" className="sm:w-6 w-5" />
+              <h3 className="myFont font-bold md:text-2xl sm:text-xl text-lg">
                 Litebulb
               </h3>
             </div>
           </Link>
-          <div className='nav'>
-            <ul className='_navlinks flex items-center lg:space-x-14 space-x-4 md:text-xl text-lg'>
-              <i className='_icon1 fa fa-times' onClick={() => hideMenu()}></i>
-              <Link to='https://discord.gg/4DDDDeSHjR'>
-                <li>Community</li>
+          <div className="nav">
+            <ul className="_navlinks flex items-center lg:space-x-14 space-x-4 md:text-xl text-lg">
+              <i className="_icon1 fa fa-times" onClick={() => hideMenu()}></i>
+              <Link to="https://discord.gg/4DDDDeSHjR">
+                <li className="myFont">Community</li>
               </Link>
-              <Link to='https://tally.so/r/3qaavk'>
-                <li>For Investors</li>
+              <Link to="https://tally.so/r/3qaavk">
+                <li className="myFont">For Investors</li>
               </Link>
-              <Link to='/help'>
-                <li>Help</li>
+              <Link to="/help">
+                <li className="myFont">Help</li>
               </Link>
             </ul>
           </div>
         </div>
-        <div className='relative flex items-center'>
+        <div className="relative flex items-center">
           <BiSearch
-            className='absolute top-0 bottom-0 sm:w-6 w-5 sm:h-6 h-5 my-auto left-3'
+            className="absolute top-0 bottom-0 sm:w-6 w-5 sm:h-6 h-5 my-auto left-3"
             onClick={() => {
               toggleSearch();
               searchIdeas();
             }}
           />
-          <div className='flex flex-col'>
+          <div className="flex flex-col">
             <input
               value={searchInput}
-              type='text'
-              placeholder='search ideas'
+              type="text"
+              placeholder="search ideas"
               onInput={(e) => setSeachInput(e.target.value)}
-              className='_search w-[150px] sm:h-12 h-10 sm:pl-12 pl-[46px] sm:text-base text-sm sm:font-normal font-medium text-gray-500 border rounded-3xl outline-none bg-gray-50 focus:bg-white focus:border-indigo-600'
+              className="myFont _search w-[150px] sm:h-12 h-10 sm:pl-12 pl-[46px] sm:text-base text-sm sm:font-normal font-medium text-gray-500 border rounded-3xl outline-none bg-gray-50 focus:bg-white focus:border-indigo-600"
             />
-            <div className='absolute top-14 bg-white px-4 w-full rounded-lg'>
+            <div className="absolute top-14 bg-white px-4 w-full rounded-lg">
               {/* Display SearchedIdeas component when there are searched ideas */}
               {searchedIdeas.length > 0 ? (
                 <SearchedIdeas searchedIdeas={searchedIdeas} />
               ) : searchInput.length > 0 ? (
-                <div className='text-gray-500'>No ideas found.</div>
+                <div className="text-gray-500">No ideas found.</div>
               ) : null}
             </div>
           </div>
           {!currentUser ? (
             <Link to={`/login`}>
-              <div className='w-12 h-12 sm:ml-2 sm:mr-4 p-1'>
+              <div className="w-12 h-12 sm:ml-2 sm:mr-4 p-1">
                 <img
-                  className='rounded-full'
+                  className="rounded-full"
                   src={currentUser ? currentUser?.photoURL : avatar}
                 />
               </div>
             </Link>
           ) : (
             <Link to={`/profile/${currentUser?.uid}`}>
-              <div className='w-12 h-12 sm:ml-2 sm:mr-4 p-1'>
+              <div className="w-12 h-12 sm:ml-2 sm:mr-4 p-1">
                 <img
-                  className='rounded-full'
+                  className="rounded-full"
                   src={currentUser ? currentUser?.photoURL : avatar}
                 />
               </div>
             </Link>
           )}
 
-          <div className='_icon2 _hamburger w-7 my-auto mx-1'>
-            <img src={hamburger} alt='' onClick={() => showMenu()} />
+          <div className="_icon2 _hamburger w-7 my-auto mx-1">
+            <img src={hamburger} alt="" onClick={() => showMenu()} />
           </div>
         </div>
       </div>

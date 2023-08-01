@@ -40,25 +40,25 @@ function App() {
           <UserProvider>
             <VouchProvider>
               <IdeasProvider>
-                <div className=''>
-                  <div className=' fixed w-full top-0 left-0 z-50 bg-white'>
+                <div className="">
+                  <div className="fixed w-full top-0 left-0 z-50 bg-white">
                     {/* {currentUser && <Navbar />} */}
                     <Navbar />
                   </div>
-                  <div className='sm:mt-[72px] mt-[56px]'>
+                  <div className="sm:mt-[72px] mt-[56px]">
                     {/* <Navbar/> */}
                     <Routes>
-                      <Route path='/' element={<Login />} />
-                      <Route path='/landingpage' element={<LandingPage />} />
-                      <Route path='/profile/:id' element={<Profile />} />
-                      <Route path='/AddIdea' element={<AddIdea />} />
-                      <Route path='/login' element={<Login />} />
+                      <Route path="/" element={<Login />} />
+                      <Route path="/landingpage" element={<LandingPage />} />
+                      <Route path="/profile/:id" element={<Profile />} />
+                      <Route path="/AddIdea" element={<AddIdea />} />
+                      <Route path="/login" element={<Login />} />
                       {/* <Route path="/signup" element={<SignUp />} /> */}
-                      <Route path='/community' element={<Community />} />
-                      <Route path='/explore' element={<Explore />} />
-                      <Route path='/help' element={<Help />} />
+                      <Route path="/community" element={<Community />} />
+                      <Route path="/explore" element={<Explore />} />
+                      <Route path="/help" element={<Help />} />
                       <Route
-                        path='/ideas/:ideaID'
+                        path="/ideas/:ideaID"
                         element={<IdeaDescription />}
                       />
                     </Routes>
