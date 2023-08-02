@@ -205,50 +205,50 @@ const IdeaDescription = () => {
 
   return (
     <>
-      <div className='sm:mx-8 mx-1'>
-        <div className='max-w-[1000px] mx-auto md:mt-20 sm:16 mt-12  shadow-lg mb-10 shadow-gray-200 pb-20'>
-          <div className='sm:flex sm:mx-9 mx-5 justify-between'>
+      <div className="sm:mx-8 mx-1">
+        <div className="max-w-[1000px] mx-auto md:mt-20 sm:16 mt-12  shadow-lg mb-10 shadow-gray-200 pb-20">
+          <div className="sm:flex sm:mx-9 mx-5 justify-between">
             <Link to={`/profile/${singleIdea[0]?.userID}`}>
               <img
                 src={userPhotoUrl ? userPhotoUrl : imageUrl}
-                className='sm:w-20 w-[65px] mt-10 shadow-md hover:border-[.1px] hover:shadow rounded-full'
+                className="sm:w-20 w-[65px] mt-10 shadow-md hover:border-[.1px] hover:shadow rounded-full"
               />
             </Link>
-            <div className='sm:ml-6 sm:mt-10 mt-4 sm:font-bold font-medium sm:text-[16px] text-[14px]'>
-              <div className='flex sm:space-x-6 space-x-3'>
+            <div className="sm:ml-6 sm:mt-10 mt-4 sm:font-bold font-medium sm:text-[16px] text-[14px]">
+              <div className="flex sm:space-x-6 space-x-3">
                 {twitterLink && (
                   <Link
                     to={`https://twitter.com/${twitterLink}`}
-                    target='_blank'
+                    target="_blank"
                   >
-                    <button className='rounded-md py-2 bg-violet-500 px-6 text-white border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent'>
+                    <button className="myFont  rounded-md py-2 bg-violet-500 px-6 text-white border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent">
                       Build
                     </button>
                   </Link>
                 )}
                 {/* {!stranger && ( */}
                 <button
-                  className='rounded-md py-2 px-6 border-2 border-violet-500 text-violet-500 hover:bg-violet-500 hover:text-white'
+                  className="myFont rounded-md py-2 px-6 border-2 border-violet-500 text-violet-500 hover:bg-violet-500 hover:text-white"
                   onClick={handleVouch}
                 >
-                  {isVouched ? "Vouched" : "Vouch"}
-                  <span className=''>({noOfVouches})</span>
+                  {isVouched ? "Vouched " : "Vouch "}
+                  <span className="myFont">({noOfVouches})</span>
                 </button>
 
                 {/*-------------- share btn ------------------*/}
                 <button
-                  className='flex space-x-2 px-2 rounded-lg bg-violet-500 items-center text-white border-2 hover:bg-white hover:text-violet-500 hover:border-violet-500'
+                  className="flex space-x-2 px-2 rounded-lg bg-violet-500 items-center text-white border-2 hover:bg-white hover:text-violet-500 hover:border-violet-500"
                   onClick={() => {
                     setShowModal(true);
                   }}
                 >
                   <MdOutlineShare />
-                  <span>Share</span>
+                  <p className="myFont">Share</p>
                 </button>
                 {/* )} */}
 
                 {/*------------- modal to copy link -------------*/}
-                <div className='fixed w-full top-20 -left-4 z-50'>
+                <div className="fixed w-full top-20 -left-4 z-50">
                   <LinkModal
                     notify={successNotify}
                     ideaID={ideaID}
@@ -260,22 +260,24 @@ const IdeaDescription = () => {
               </div>
             </div>
           </div>
-          <div className='sm:mx-11  mx-6'>
-            <p className='font-medium sm:mt-8 mt-6 sm:text-[20px] text-[18px]'>
+          <div className="sm:mx-11  mx-6">
+            <p className="font-medium sm:mt-8 mt-6 sm:text-3xl text-2xl">
               {title}
             </p>
-            <p className='font-medium sm:mt-1 mt-1 text-gray-500 sm:text-[15px] text-[12px]'>
+            <p className="font-medium sm:mt-1 mt-1 text-gray-500 sm:text-[18px] text-[16px]">
               ({category})
             </p>
 
-            <p className=' mt-2 sm:text-[16px] text-[16px]'>{description}</p>
+            <p className=" mt-2  md:text-2xl sm:text-xl text-xl">
+              {description}
+            </p>
           </div>
           {/* <div className='flex px-6 mx-12 mt-12 overflow-x-scroll scrollbar-hide '> */}
-          <div className='grid grid-cols-3 gap-6 place-items-center px-6 mx-auto mt-12 overflow-x-scroll scrollbar-hide '>
+          <div className="grid grid-cols-3 gap-6 place-items-center px-6 mx-auto mt-12 overflow-x-scroll scrollbar-hide ">
             {images?.map((img) => {
               return (
                 <>
-                  <img src={img} className='w-66 h-56 rounded-xl' />
+                  <img src={img} className="w-66 h-56 rounded-xl" />
                 </>
               );
             })}
@@ -283,31 +285,31 @@ const IdeaDescription = () => {
         </div>
         {/* Comment Section */}
         {loading && <h1>Loading</h1>}
-        <div className='grid max-w-[800px] mx-auto px-10 sm:px-3 md:px-0 mb-20'>
-          <div className='relative flex flex-col sm:flex-row md:space-x-8 w-full'>
-            <div className='sm:flex-grow'>
+        <div className="grid max-w-[800px] mx-auto px-10 sm:px-3 md:px-0 mb-20">
+          <div className="relative flex flex-col sm:flex-row md:space-x-8 w-full">
+            <div className="sm:flex-grow">
               <input
-                className='outline-none border-b-2 h-12 w-full bg-transparent'
-                type='text'
-                placeholder='Share your thought on our Idea...'
+                className="outline-none border-b-2 h-12 w-full bg-transparent"
+                type="text"
+                placeholder="Share your thought on our Idea..."
                 value={usercomment}
                 onChange={(e) => setUsercomment(e.target.value)}
               />
             </div>
-            <div className='sm:mt-2 mt-2 ml-auto'>
+            <div className="sm:mt-2 mt-2 ml-auto">
               <button
                 onClick={() => {
                   if (usercomment.length > 0) {
                     handlePostClick();
                   }
                 }}
-                className='sm:w-24 w-16 sm:py-3 py-2 rounded-md font-medium sm:text-[16px] text-[14px] bg-black hover:bg-gray-300 text-white hover:text-black'
+                className="sm:w-24 w-16 sm:py-3 py-2 rounded-md font-medium sm:text-[16px] text-[14px] bg-black hover:bg-gray-300 text-white hover:text-black"
               >
                 Post
               </button>
             </div>
           </div>
-          <div className='grid ml-10 mt-10 gap-y-6'>
+          <div className="grid ml-10 mt-10 gap-y-6">
             {comments?.map((userComment) => {
               return (
                 <>

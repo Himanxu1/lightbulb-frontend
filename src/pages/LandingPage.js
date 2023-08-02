@@ -161,15 +161,16 @@ const LandingPage = () => {
             Explore <br />
             <p className="mt-2">Startup Ideas</p>
           </h1>
-          <div className="sm:ml-16 mt-9 sm:mt-0 flex md:items-start items-center flex-wrap space-x-4 ">
+          <div className="w-full sm:ml-16 mt-9 sm:mt-0 flex md:items-start sm:items-center flex-wrap space-x-4 ">
             <button
-              className="bg-violet-500  rounded-3xl my-2 py-3 text-sm sm:text-base text-white font-medium px-6 hover:text-violet-500 border-2 hover:border-violet-400 hover:bg-transparent "
+              // className="myFont bg-violet-500 rounded-3xl my-2 py-3 text-sm sm:text-base text-white font-medium px-6 hover:text-violet-500 border-2 hover:border-violet-400 hover:bg-transparent "
+              className="myFont md:w-36 sm:w-32 w-28 border-2 rounded-3xl my-2 p-2 text-base md:text-lg text-white bg-violet-500 border-violet-500 text-violet-500 font-medium hover:bg-transparent hover:text-violet-500"
               onClick={() => addIdea()}
             >
               add yours
             </button>
             <button
-              className="border-2 rounded-3xl my-2 p-2  text-sm sm:text-base border-violet-500 text-violet-500 font-medium hover:bg-violet-500 hover:text-white"
+              className="myFont md:w-36 w-32 border-2 rounded-3xl my-2 p-2 text-base md:text-lg border-violet-500 text-violet-500 font-medium hover:bg-violet-500 hover:text-white"
               onClick={handleClickScroll}
             >
               explore Ideas
@@ -196,7 +197,7 @@ const LandingPage = () => {
 
       <div className=" sm:mx-12 mx-4 md:mt-20 sm:mt-10 mt-6">
         <div className="flex justify-between">
-          <h1 className="font-bold lg:text-2xl md:text-xl text-lg">
+          <h1 className="myFont font-bold lg:text-2xl md:text-xl text-lg">
             Featured Ideas
           </h1>
           <div>
@@ -238,7 +239,7 @@ const LandingPage = () => {
       <div className="sm:mx-12 mx-4 md:mt-20 sm:mt-10 mt-6 ">
         <div className="flex justify-between">
           <h1
-            className="font-bold lg:text-2xl md:text-xl text-lg"
+            className="myFont font-bold lg:text-2xl md:text-xl text-lg"
             id="section-1"
           >
             Explore Ideas

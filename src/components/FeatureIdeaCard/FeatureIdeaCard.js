@@ -109,59 +109,59 @@ const FeatureIdeaCard = (props) => {
   };
 
   return (
-    <div className='relative flex flex-col shadow-md border shadow-gray-100 hover:shadow-lg rounded-md  h-[280px]'>
-      <div className='flex'>
-        <div className='mt-10 ml-6'>
+    <div className="relative flex flex-col shadow-md border shadow-gray-100 hover:shadow-lg rounded-md  h-[280px]">
+      <div className="flex">
+        <div className="mt-10 ml-6">
           <Link to={`/profile/${props.userId}`}>
             <img
               src={userImage ? userImage : props.imageUrl}
-              className='md:w-16 sm:w-14 w-12 md:h-16 sm:h-14 h-12 shadow-md hover:border-[.1px] hover:shadow rounded-full'
+              className="md:w-16 sm:w-14 w-12 md:h-16 sm:h-14 h-12 shadow-md hover:border-[.1px] hover:shadow rounded-full"
             />
           </Link>
         </div>
-        <div className='w-10/12 mt-6'>
-          <p className='font-medium px-6 mt-4 overflow-hidden text-overflow-ellipsis line-clamp-2'>
+        <div className="w-10/12 mt-6">
+          <p className="font-medium text-xl px-6 mt-4 overflow-hidden text-overflow-ellipsis line-clamp-2">
             {props.title}
           </p>
-          <p className='text-[15.5px] px-6 mt-2 overflow-hidden text-overflow-ellipsis line-clamp-3'>
+          <p className="text-lg px-6 mt-2 overflow-hidden text-overflow-ellipsis line-clamp-3">
             {props.description}
           </p>
           <Link to={`/ideas/${idea}`}>
-            <p className='text-[15.5px] px-6 mt-2 text-blue-500 cursor-pointer'>
+            <p className="text-[15.5px] px-6 mt-2 text-blue-500 cursor-pointer">
               Read more
             </p>
           </Link>
         </div>
       </div>
-      <div className='absolute bottom-10 right-10 font-bold sm:text-[16px] text-[14px]'>
+      <div className="absolute bottom-10 right-10 font-bold sm:text-[16px] text-[14px]">
         {/* <button className='font-medium text-left'>Vouchers</button> */}
-        <div className='flex sm:space-x-6 space-x-2'>
+        <div className="flex sm:space-x-6 space-x-2">
           {twitterLink && (
-            <Link to={`https://twitter.com/${twitterLink}`} target='_blank'>
-              <button className='rounded-md py-2 bg-violet-500 px-6 text-white border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent'>
+            <Link to={`https://twitter.com/${twitterLink}`} target="_blank">
+              <button className="myFont rounded-md py-2 bg-violet-500 px-6 text-white border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent">
                 Build
               </button>
             </Link>
           )}
-          <div className='flex space-x-1'>
+          <div className="flex space-x-1">
             <button
-              className='rounded-md py-2  sm:px-6 px-4 border-2 border-violet-500  text-violet-500 hover:bg-violet-500 hover:text-white'
+              className="myFont rounded-md py-2  sm:px-6 px-4 border-2 border-violet-500  text-violet-500 hover:bg-violet-500 hover:text-white"
               onClick={handleVouch}
             >
-              {isVouched ? "Vouched" : "Vouch"}
-              <span className=''>({noOfVouches})</span>
+              {isVouched ? "Vouched " : "Vouch "}
+              <span className="myFont ">({noOfVouches})</span>
             </button>
             <button
-              className='rounded-md px-3 border-2 border-violet-500  text-violet-500 hover:bg-violet-500 hover:text-white'
+              className="rounded-md px-3 border-2 border-violet-500  text-violet-500 hover:bg-violet-500 hover:text-white"
               onClick={() => setShowVouchers(!showVouchers)}
             >
-              <div className='text-xl '>
+              <div className="text-xl ">
                 <FaListUl />
               </div>
             </button>
             {showVouchers && (
-              <div className='bg-gray-200'>
-                <div className='fixed top-44 lg:left-28 md:left-1 left-1 lg:w-4/5 w-full min-w-fit z-50'>
+              <div className="bg-gray-200">
+                <div className="fixed top-44 lg:left-28 md:left-1 left-1 lg:w-4/5 w-full min-w-fit z-50">
                   <VouchersList
                     showVouchers={showVouchers}
                     setShowVouchers={setShowVouchers}
