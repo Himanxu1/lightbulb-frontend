@@ -1,4 +1,4 @@
-import "../../CSS/Navbar.css";
+import "../../CSS/navbar.css";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, Navigate, useLocation } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
