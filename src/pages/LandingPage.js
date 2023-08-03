@@ -197,12 +197,12 @@ const LandingPage = () => {
 
       <div className=" sm:mx-12 mx-4 md:mt-20 sm:mt-10 mt-6">
         <div className="flex justify-between">
-          <h1 className="myFont font-bold lg:text-2xl md:text-xl text-lg">
+          <h1 className="myFont font-semibold lg:text-2xl text-xl">
             Featured Ideas
           </h1>
           <div>
             <Link className="">
-              <h1 className="mr-2 lg:text-xl md:text-lg text-base border-b-2  border-gray-500">
+              <h1 className="myFont mr-2 lg:text-lg md:text-md text-base border-b-2  border-gray-500">
                 view all featured ideas
               </h1>
             </Link>
@@ -239,7 +239,7 @@ const LandingPage = () => {
       <div className="sm:mx-12 mx-4 md:mt-20 sm:mt-10 mt-6 ">
         <div className="flex justify-between">
           <h1
-            className="myFont font-bold lg:text-2xl md:text-xl text-lg"
+            className="myFont font-semibold lg:text-2xl text-xl"
             id="section-1"
           >
             Explore Ideas
@@ -249,7 +249,7 @@ const LandingPage = () => {
               onClick={() => setShowTags(!showTags)}
               className="flex items-center focus:outline-none"
             >
-              <h1 className="mr-2 lg:text-xl md:text-lg text-base">
+              <h1 className="myFont mr-2 lg:text-lg md:text-md text-base border-b-2  border-gray-500">
                 show tags
               </h1>
               <AiFillCaretDown className="lg:text-[20px] md:text-[18px] mt-2" />

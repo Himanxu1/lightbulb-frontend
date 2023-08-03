@@ -206,7 +206,7 @@ const IdeaDescription = () => {
   return (
     <>
       <div className="sm:mx-8 mx-1">
-        <div className="max-w-[1000px] mx-auto md:mt-20 sm:16 mt-12  shadow-lg mb-10 shadow-gray-200 pb-20">
+        <div className="max-w-[1000px] mx-auto md:mt-20 sm:16 mt-12 rounded-xl border border-gray-200 mb-10 shadow-sm shadow-gray-200 pb-20">
           <div className="sm:flex sm:mx-9 mx-5 justify-between">
             <Link to={`/profile/${singleIdea[0]?.userID}`}>
               <img
@@ -237,7 +237,7 @@ const IdeaDescription = () => {
 
                 {/*-------------- share btn ------------------*/}
                 <button
-                  className="flex space-x-2 px-2 rounded-lg bg-violet-500 items-center text-white border-2 hover:bg-white hover:text-violet-500 hover:border-violet-500"
+                  className="flex space-x-2 px-2 pr-3 rounded-lg bg-violet-500 items-center text-white border-2 hover:bg-white hover:text-violet-500 border-violet-500"
                   onClick={() => {
                     setShowModal(true);
                   }}
@@ -261,23 +261,25 @@ const IdeaDescription = () => {
             </div>
           </div>
           <div className="sm:mx-11  mx-6">
-            <p className="font-medium sm:mt-8 mt-6 sm:text-3xl text-2xl">
+            <p className="font-medium sm:mt-8 mt-6 sm:text-2xl text-xl">
               {title}
             </p>
-            <p className="font-medium sm:mt-1 mt-1 text-gray-500 sm:text-[18px] text-[16px]">
+            <p className="myFont sm:mt-1 mt-1 text-gray-500 sm:text-[15px] text-[13px]">
               ({category})
             </p>
 
-            <p className=" mt-2  md:text-2xl sm:text-xl text-xl">
-              {description}
-            </p>
+            <p className=" mt-1 sm:text-xl text-lg">{description}</p>
           </div>
           {/* <div className='flex px-6 mx-12 mt-12 overflow-x-scroll scrollbar-hide '> */}
-          <div className="grid grid-cols-3 gap-6 place-items-center px-6 mx-auto mt-12 overflow-x-scroll scrollbar-hide ">
+          {/* <div className="grid grid-cols-3 gap-6 place-items-center px-6 mx-auto mt-12 overflow-x-scroll scrollbar-hide "> */}
+          <div className="flex flex-wrap px-6 mx-auto mt-12 overflow-x-scroll scrollbar-hide ">
             {images?.map((img) => {
               return (
                 <>
-                  <img src={img} className="w-66 h-56 rounded-xl" />
+                  <img
+                    src={img}
+                    className="w-66 h-56 m-2 rounded-xl border-2"
+                  />
                 </>
               );
             })}
@@ -289,7 +291,7 @@ const IdeaDescription = () => {
           <div className="relative flex flex-col sm:flex-row md:space-x-8 w-full">
             <div className="sm:flex-grow">
               <input
-                className="outline-none border-b-2 h-12 w-full bg-transparent"
+                className="myFont outline-none border-b-2 h-12 w-full bg-transparent"
                 type="text"
                 placeholder="Share your thought on our Idea..."
                 value={usercomment}

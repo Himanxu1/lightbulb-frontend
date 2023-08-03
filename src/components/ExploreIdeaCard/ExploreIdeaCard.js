@@ -109,7 +109,7 @@ const ExploreIdeaCard = (props) => {
   };
 
   return (
-    <div className="relative flex flex-col shadow-md border shadow-gray-100 hover:shadow-lg rounded-md  h-[280px]">
+    <div className="relative flex flex-col border hover:border-gray-300 hover:shadow-sm rounded-md  h-[300px]">
       <div className="flex">
         <div className="mt-10 ml-6">
           <Link to={`/profile/${props.userId}`}>

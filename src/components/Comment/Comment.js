@@ -50,19 +50,19 @@ const Comment = ({ ideaID, id, text, onReply, image, username, fullname }) => {
   }, []);
   return (
     <>
-      <div className='flex'>
-        <img src={image} className='w-14 h-14 rounded-full' />
-        <div className='grid ml-4'>
-          <p className='font-semibold'>
+      <div className="flex">
+        <img src={image} className="w-14 h-14 rounded-full" />
+        <div className="grid ml-4">
+          <p className="myFont font-semibold">
             {fullname}
             {/* <span className='text-pink-400 ml-1'>@{username}</span> */}
           </p>
           <p>{text}</p>
           <p
             onClick={handleReply}
-            className='flex text-[14px] cursor-pointer hover:text-gray-500 '
+            className="flex text-[14px] cursor-pointer hover:text-gray-500 "
           >
-            <BsFillReplyFill className='text-[20px]' />
+            <BsFillReplyFill className="text-[20px]" />
             Reply
           </p>
 
@@ -72,23 +72,23 @@ const Comment = ({ ideaID, id, text, onReply, image, username, fullname }) => {
           {allReplies[0]?.replies.map((reply) => {
             return (
               <>
-                <div className='flex mt-6'>
+                <div className="flex mt-6">
                   <img
                     src={reply.avatarUrl}
-                    className='w-14 h-14 rounded-full'
+                    className="w-14 h-14 rounded-full"
                   />
-                  <div className='grid ml-4'>
-                    <p className='font-semibold'>
+                  <div className="grid ml-4">
+                    <p className="font-semibold">
                       {reply.fullname}
-                      <span className=' ml-1'>{reply.name}</span>
+                      <span className="myFont  ml-1">{reply.name}</span>
                       {/* <span className='text-pink-400 ml-1 text-sm'> @{reply.name}</span> */}
                     </p>
                     <p>{reply.comment}</p>
                     <p
                       onClick={handleReply}
-                      className='flex text-[14px] cursor-pointer hover:text-gray-500 '
+                      className="flex text-[14px] cursor-pointer hover:text-gray-500 "
                     >
-                      <BsFillReplyFill className='text-[20px]' />
+                      <BsFillReplyFill className="text-[20px]" />
                       Reply
                     </p>
                   </div>
@@ -98,16 +98,16 @@ const Comment = ({ ideaID, id, text, onReply, image, username, fullname }) => {
           })}
 
           {showInput && (
-            <div className='flex mt-4'>
+            <div className="flex mt-4">
               <input
-                text='text'
-                placeholder='reply'
-                className='bg-gray-200 outline-none border-b-2 w-72 pl-2'
+                text="text"
+                placeholder="reply"
+                className="bg-gray-200 outline-none border-b-2 w-72 pl-2"
                 value={replyText}
                 onChange={(e) => setReplyText(e.target.value)}
               />
               <button
-                className='text-[18px] px-4 bg-black text-white rounded-md ml-2'
+                className="text-[18px] px-4 bg-black text-white rounded-md ml-2"
                 onClick={() => {
                   if (replyText.length > 0) {
                     handleReplyPost();
