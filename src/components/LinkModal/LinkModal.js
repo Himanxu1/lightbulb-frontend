@@ -16,14 +16,14 @@ const LinkModal = ({ ideaID, visible, setVisible, handleClose, notify }) => {
   };
 
   function openWhatsAppShare() {
-    const text = `Hello, check out this amazing idea! Link: https://lightbulb-frontend.vercel.app/ideas/${ideaID}`;
+    const text = `Hello, check out this amazing idea! Link: https://www.litebulb.xyz/ideas/${ideaID}`;
     const url = `https://wa.me?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank");
   }
 
   function openEmailShare() {
     const subject = "Check out this amazing idea";
-    const body = `Here is the Link https://lightbulb-frontend.vercel.app/ideas/${ideaID}`;
+    const body = `Here is the Link https://www.litebulb.xyz/ideas/${ideaID}`;
 
     window.location.href = `mailto:?subject=${encodeURIComponent(
       subject
@@ -31,7 +31,7 @@ const LinkModal = ({ ideaID, visible, setVisible, handleClose, notify }) => {
   }
 
   function openTelegramShare() {
-    const url = ` https://lightbulb-frontend.vercel.app/ideas/${ideaID}`;
+    const url = ` https://www.litebulb.xyz/ideas/${ideaID}`;
     const text = "Check out this amazing idea";
 
     window.open(
@@ -43,11 +43,12 @@ const LinkModal = ({ ideaID, visible, setVisible, handleClose, notify }) => {
   }
 
   const openTwitterShare = () => {
-    const shareContent = "Check out this awesome content! #MyAwesomeApp";
+    const baseUrl = "https://www.litebulb.xyz";
+    const fullLink = `${baseUrl}/ideas/${ideaID}`;
 
-    const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-      shareContent
-    )}`;
+    const encodedLink = encodeURIComponent(fullLink);
+
+    const tweetUrl = `https://twitter.com/intent/tweet?url=${encodedLink}&text=Check%20out%20this%20awesome%20idea!`;
 
     window.open(tweetUrl, "_blank");
   };
