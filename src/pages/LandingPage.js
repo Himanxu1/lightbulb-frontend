@@ -157,13 +157,14 @@ const LandingPage = () => {
         }}
       >
         <div className="grid w-1/2  sm:mx-auto  lg:pl-14 pl-12">
-          <h1 className=" mt-12 sm:mt-20 sm:w-96 w-64 lg:ml-16 lg:text-6xl text-4xl font-bold bg-gradient-to-r from-purple-300 via-purple-500 to-purple-600 text-transparent bg-clip-text">
+          <p
+            className="mt-12 sm:mt-20 xl:w-[600px] lg:w-[550px] md:w-[400px] sm:w-[300px] w-64 lg:ml-16 lg:text-6xl text-4xl font-bold bg-gradient-to-r from-purple-300 via-purple-500 to-purple-600 text-transparent bg-clip-text"
+            style={{ lineHeight: "1.2" }}
+          >
             let’s get your ideas out there!
-            <br />
-            {/* <p className="mt-2">Startup Ideas</p> */}
-          </h1>
+          </p>
 
-          <div className="w-full lg:ml-16 mt-9 sm:mt-0 flex md:items-start sm:items-center flex-wrap space-x-4 ">
+          <div className="w-full lg:ml-16 mt-9 sm:mt-0 flex md:items-start sm:items-center flex-wrap space-x-4">
             <button
               className="myFont md:w-36 sm:w-32 w-28 border-2 rounded-3xl my-2 p-2 text-base md:text-lg text-white bg-violet-500 border-violet-500 text-violet-500 font-medium hover:bg-transparent hover:text-violet-500"
               onClick={() => addIdea()}
