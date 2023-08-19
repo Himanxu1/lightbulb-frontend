@@ -6,7 +6,7 @@ import image2 from "../assets/Group 16.png";
 import image3 from "../assets/Cactus 2 by Streamlinehq.png";
 import image4 from "../assets/Ram by Streamlinehq.png";
 import FeatureIdeaCard from "../components/FeatureIdeaCard/FeatureIdeaCard";
-import BannerImage from "../assets/landingImage.png";
+import BannerImage from "../assets/mascot1.png";
 import { AiFillCaretDown } from "react-icons/ai";
 import Modal from "../components/Modal/Modal";
 import { IdeasContext } from "../Context/IdeasContext";
@@ -150,10 +150,10 @@ const LandingPage = () => {
   return (
     <div className="mb-28">
       <div
-        className="relative flex flex-col sm:flex-row  w-full "
+        className="relative flex flex-col sm:flex-row mx-10 myShadow rounded-3xl"
         style={{
           background:
-            "linear-gradient(109.52deg, rgba(140, 100, 255, 0.010109) 23.62%, rgba(144, 105, 255, 0) 23.62%, rgba(66, 0, 255, 0.21) 105.39%, rgba(144, 105, 255, 0.21) 111.72%)",
+            "linear-gradient(-200.52deg, rgba(140, 100, 255, 0.010109) 23.62%, rgba(144, 105, 255, 0) 23.62%, rgba(66, 0, 255, 0.21) 105.39%, rgba(144, 105, 255, 0.21) 111.72%)",
         }}
       >
         <div className="grid w-1/2  sm:mx-auto  lg:pl-14 pl-12">
@@ -163,7 +163,6 @@ const LandingPage = () => {
           </h1>
           <div className="w-full sm:ml-16 mt-9 sm:mt-0 flex md:items-start sm:items-center flex-wrap space-x-4 ">
             <button
-              // className="myFont bg-violet-500 rounded-3xl my-2 py-3 text-sm sm:text-base text-white font-medium px-6 hover:text-violet-500 border-2 hover:border-violet-400 hover:bg-transparent "
               className="myFont md:w-36 sm:w-32 w-28 border-2 rounded-3xl my-2 p-2 text-base md:text-lg text-white bg-violet-500 border-violet-500 text-violet-500 font-medium hover:bg-transparent hover:text-violet-500"
               onClick={() => addIdea()}
             >
@@ -175,23 +174,12 @@ const LandingPage = () => {
             >
               explore Ideas
             </button>
-            {/* <button className='my-2 '>
-              <a
-                href='https://www.producthunt.com/posts/litebulb?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-litebulb'
-                target='_blank'
-              >
-                <img
-                  src='https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=404256&theme=light'
-                  alt='Litebulb - Get&#0032;your&#0032;ideas&#0032;out&#0032;there | Product Hunt'
-                  className='w-250px][ h-[40px]'
-                />
-              </a>
-            </button> */}
+            {/* <button className='my-2 '>  <a href='https://www.producthunt.com/posts/litebulb?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-litebulb'target='_blank' <img src='https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=404256&theme=light'alt='Litebulb - Get&#0032;your&#0032;ideas&#0032;out&#0032;there | Product Hunt' className='w-250px][ h-[40px]'/> </button> */}
           </div>
         </div>
         <img
           src={BannerImage}
-          className="mx-auto lg:w-[420px] md:w-[290px] w-[250px] lg:h-[420px] md:h-[290px] h-[250px]"
+          className="mx-auto lg:w-[460px] md:w-[310px] w-[260px] lg:h-[420px] md:h-[290px] h-[250px]"
         />
       </div>
 
