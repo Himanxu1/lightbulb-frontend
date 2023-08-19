@@ -212,7 +212,7 @@ const LandingPage = () => {
         {!newIdeas.length ? (
           <div className="w-full text-center">Loading...</div>
         ) : (
-          <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-10 ">
+          <div className="grid xl:grid-cols-2 md:grid-cols-2 grid-cols-1 xl:gap-12 gap-7 mt-10 ">
             {newIdeas.map((idea, key) => {
               return (
                 <FeatureIdeaCard
@@ -279,7 +279,7 @@ const LandingPage = () => {
         {!exploreIdeas.length ? (
           <div className="w-full text-center">Loading...</div>
         ) : (
-          <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-10 ">
+          <div className="grid xl:grid-cols-2 md:grid-cols-2 grid-cols-1 xl:gap-12 gap-7 mt-10 ">
             {exploreIdeas.map((idea, key) => {
               return (
                 <>

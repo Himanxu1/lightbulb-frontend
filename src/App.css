@@ -10,3 +10,6 @@
   font-family: 'Inter', sans-serif;
 }
 
+.myShadow {
+  box-shadow: 0 0 20px rgba(176, 176, 176, 0.2);
+}

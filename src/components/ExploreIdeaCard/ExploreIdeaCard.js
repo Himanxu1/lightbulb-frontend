@@ -109,25 +109,25 @@ const ExploreIdeaCard = (props) => {
   };
 
   return (
-    <div className="relative flex flex-col border hover:border-gray-300 hover:shadow-sm rounded-md  h-[300px]">
+    <div className="relative flex flex-col myShadow rounded-3xl h-[300px]">
       <div className="flex">
-        <div className="mt-10 ml-6">
+        <div className="mt-10 ml-8">
           <Link to={`/profile/${props.userId}`}>
             <img
               src={userImage ? userImage : props.imageUrl}
-              className="md:w-16 sm:w-14 w-12 md:h-16 sm:h-14 h-12 shadow-md hover:border-[.1px] hover:shadow rounded-full"
+              className="md:w-16 sm:w-14 w-12 md:h-16 sm:h-14 h-12 shadow-md hover:border-[.1px] hover:shadow rounded-2xl"
             />
           </Link>
         </div>
         <div className="w-10/12 mt-6">
-          <p className="font-medium text-xl px-6 mt-4 overflow-hidden text-overflow-ellipsis line-clamp-2">
+          <p className="font-medium text-gray-800 text-xl px-7 mt-4 overflow-hidden text-overflow-ellipsis line-clamp-2">
             {props.title}
           </p>
-          <p className="text-lg px-6 mt-2 overflow-hidden text-overflow-ellipsis line-clamp-3">
+          <p className="text-[17px] text-gray-600 px-7 mt-2 overflow-hidden text-overflow-ellipsis line-clamp-3">
             {props.description}
           </p>
           <Link to={`/ideas/${idea}`}>
-            <p className="text-[15.5px] px-6 mt-2 text-blue-500 cursor-pointer">
+            <p className="text-[15.5px] px-7 mt-1 font-[500] text-gray-500 underline underline-offset-2 cursor-pointer">
               Read more
             </p>
           </Link>
@@ -138,21 +138,21 @@ const ExploreIdeaCard = (props) => {
         <div className="flex sm:space-x-6 space-x-2">
           {twitterLink && (
             <Link to={`https://twitter.com/${twitterLink}`} target="_blank">
-              <button className="rounded-md py-2 bg-violet-500 px-6 text-white border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent">
+              <button className="rounded-xl py-2 bg-violet-500 px-6 text-white border-2 hover:text-violet-500 hover:border-violet-400 hover:bg-transparent">
                 Build
               </button>
             </Link>
           )}
           <div className="flex space-x-1">
             <button
-              className="myFont rounded-md py-2  sm:px-6 px-4 border-2 border-violet-500  text-violet-500 hover:bg-violet-500 hover:text-white"
+              className="myFont rounded-xl py-2  sm:px-6 px-4 border-2 border-violet-500  text-violet-500 hover:bg-violet-500 hover:text-white"
               onClick={handleVouch}
             >
               {isVouched ? "Vouched " : "Vouch "}
               <span className="myFont ">({noOfVouches})</span>
             </button>
             <button
-              className="rounded-md px-3 border-2 border-violet-500  text-violet-500 hover:bg-violet-500 hover:text-white"
+              className="rounded-xl px-3 border-2 border-violet-500  text-violet-500 hover:bg-violet-500 hover:text-white"
               onClick={() => setShowVouchers(!showVouchers)}
             >
               <div className="text-xl ">
