@@ -274,12 +274,21 @@ const LandingPage = () => {
             )}
           </div>
         </div>
-
+        {/* <div className="my-4 ">
+          {tags.map((tag) => (
+            <button
+              key={tag}
+              className="my-1 mx-3 px-4 py-[1.5px] text-sm border-2 bg-gray-300 rounded-xl"
+            >
+              {tag}
+            </button>
+          ))}
+        </div> */}
         {/* card 1 */}
         {!exploreIdeas.length ? (
           <div className="w-full text-center">Loading...</div>
         ) : (
-          <div className="grid xl:grid-cols-2 md:grid-cols-2 grid-cols-1 xl:gap-12 gap-7 mt-10 ">
+          <div className="grid xl:grid-cols-2 md:grid-cols-2 grid-cols-1 xl:gap-12 gap-7 mt-8 ">
             {exploreIdeas.map((idea, key) => {
               return (
                 <>

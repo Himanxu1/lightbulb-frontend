@@ -86,7 +86,8 @@ const CreatedCard = ({ stranger, id }) => {
         </div>
       )}
       {/* <div className='flex justify-center items-center'> */}
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-items-center mt-10 gap-5">
+      {/* <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-items-center mt-10 gap-5"> */}
+      <div className="grid xl:grid-cols-2 md:grid-cols-2 grid-cols-1 xl:gap-12 gap-7 mt-10 ">
         {loading && <h1>Loading</h1>}
         {created.reverse().map((item) => {
           return (

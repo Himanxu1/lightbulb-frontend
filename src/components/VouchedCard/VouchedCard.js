@@ -36,14 +36,15 @@ const VouchedCard = ({ stranger, id }) => {
   ) : (
     <div>
       {myVouchedData.length === 0 ? (
-        <h1 className='text-center mt-10 pb-10'>
+        <h1 className="text-center mt-10 pb-10">
           Haven't vouched any idea yet
         </h1>
       ) : (
-        <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-items-center mt-10 gap-5'>
+        // <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-items-center mt-10 gap-5'>
+        <div className="grid xl:grid-cols-2 md:grid-cols-2 grid-cols-1 xl:gap-12 gap-7 mt-10 ">
           {myVouchedData.map((item) => {
             return (
-              <div key={item?.userID} className='w-full'>
+              <div key={item?.userID} className="w-full">
                 <ProfileIdeaCard
                   key={item?.userID}
                   userID={item?.userID}

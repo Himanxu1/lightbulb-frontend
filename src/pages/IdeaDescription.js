@@ -206,12 +206,12 @@ const IdeaDescription = () => {
   return (
     <>
       <div className="sm:mx-8 mx-1">
-        <div className="max-w-[1000px] mx-auto md:mt-20 sm:16 mt-12 rounded-xl border border-gray-200 mb-10 shadow-sm shadow-gray-200 pb-20">
+        <div className="max-w-[1000px] mx-auto md:mt-20 sm:16 mt-12 rounded-2xl mb-10 myShadow pb-20">
           <div className="sm:flex sm:mx-9 mx-5 justify-between">
             <Link to={`/profile/${singleIdea[0]?.userID}`}>
               <img
                 src={userPhotoUrl ? userPhotoUrl : imageUrl}
-                className="sm:w-20 w-[65px] mt-10 shadow-md hover:border-[.1px] hover:shadow rounded-full"
+                className="sm:w-20 w-[65px] mt-10 shadow-md hover:border-[.1px] hover:shadow rounded-2xl"
               />
             </Link>
             <div className="sm:ml-6 sm:mt-10 mt-4 sm:font-bold font-medium sm:text-[16px] text-[14px]">
@@ -261,14 +261,16 @@ const IdeaDescription = () => {
             </div>
           </div>
           <div className="sm:mx-11  mx-6">
-            <p className="font-medium sm:mt-8 mt-6 sm:text-2xl text-xl">
+            <p className="font-medium text-gray-800 sm:mt-8 mt-6 sm:text-2xl text-xl">
               {title}
             </p>
             <p className="myFont sm:mt-1 mt-1 text-gray-500 sm:text-[15px] text-[13px]">
               ({category})
             </p>
 
-            <p className=" mt-1 sm:text-xl text-lg">{description}</p>
+            <p className=" mt-1 sm:text-xl text-gray-600 text-lg">
+              {description}
+            </p>
           </div>
           {/* <div className='flex px-6 mx-12 mt-12 overflow-x-scroll scrollbar-hide '> */}
           {/* <div className="grid grid-cols-3 gap-6 place-items-center px-6 mx-auto mt-12 overflow-x-scroll scrollbar-hide "> */}
