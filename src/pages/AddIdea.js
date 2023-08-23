@@ -351,20 +351,22 @@ function AddIdea() {
             Problem Statement
           </h3>
           <div className="md:w-4/6">
-            <div className=" relative">
+            <div className="flex flex-col items-end">
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 type="text"
-                className="w-full py-3 min-h-[150px] max-h-[300px] md:text-xl sm:text-lg bg-gray-50 rounded-lg border-2 border-gray-600 placeholder:text-gray-400 outline-none pl-4"
-                placeholder="Explain the problem statement in detail."
+                className="relative w-full py-3 min-h-[150px] max-h-[300px] md:text-xl sm:text-lg bg-gray-50 rounded-tl-lg rounded-tr-lg border-t-2 border-l-2 border-r-2 border-gray-600 placeholder:text-gray-400 outline-none pl-4"
+                placeholder="Write down your solution."
               />
-              <button
-                className="absolute bottom-4 right-3 py-2 md:px-5 sm:px-3  px-2 myFont md:text-lg text-sm text-white hover:text-violet-700 bg-violet-400 hover:bg-white font-semibold rounded-lg border-2 border-violet-400 ease-out duration-200"
-                onClick={handleUpload}
-              >
-                Generate Using AI
-              </button>
+              <div className="relative md:h-[68px] h-[60px] w-full bg-gray-50 rounded-bl-lg rounded-br-lg border-b-2 border-l-2 border-r-2 border-gray-600">
+                <button
+                  className="absolute right-3 top-2 py-2 md:px-5 sm:px-3  px-2 myFont md:text-lg text-sm text-white hover:text-violet-700 bg-violet-400 hover:bg-white font-semibold rounded-lg border-2 border-violet-400 ease-out duration-200"
+                  onClick={handleUpload}
+                >
+                  Generate Using AI
+                </button>
+              </div>
             </div>
             <p className="md:my-8 sm:my-4 my-2 md:text-xl sm:text-lg text-gray-500">
               Here you can show how much you’re interested in this problem
@@ -378,20 +380,22 @@ function AddIdea() {
             Problem Solution
           </h3>
           <div className="md:w-4/6">
-            <div className="relative">
+            <div className="flex flex-col items-end">
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 type="text"
-                className="relative w-full py-3 min-h-[150px] max-h-[300px] md:text-xl sm:text-lg bg-gray-50 rounded-lg border-2 border-gray-600 placeholder:text-gray-400 outline-none pl-4"
+                className="relative w-full py-3 min-h-[150px] max-h-[300px] md:text-xl sm:text-lg bg-gray-50 rounded-tl-lg rounded-tr-lg border-t-2 border-l-2 border-r-2 border-gray-600 placeholder:text-gray-400 outline-none pl-4"
                 placeholder="Write down your solution."
               />
-              <button
-                className="absolute bottom-4 right-3 py-2 md:px-5 sm:px-3  px-2 myFont md:text-lg text-sm text-white hover:text-violet-700 bg-violet-400 hover:bg-white font-semibold rounded-lg border-2 border-violet-400 ease-out duration-200"
-                onClick={handleUpload}
-              >
-                Generate Using AI
-              </button>
+              <div className="relative md:h-[68px] h-[60px] w-full bg-gray-50 rounded-bl-lg rounded-br-lg border-b-2 border-l-2 border-r-2 border-gray-600">
+                <button
+                  className="absolute right-3 top-2 py-2 md:px-5 sm:px-3  px-2 myFont md:text-lg text-sm text-white hover:text-violet-700 bg-violet-400 hover:bg-white font-semibold rounded-lg border-2 border-violet-400 ease-out duration-200"
+                  onClick={handleUpload}
+                >
+                  Generate Using AI
+                </button>
+              </div>
             </div>
             <p className="md:my-8 sm:my-4 my-2 md:text-xl sm:text-lg text-gray-500">
               Discovering solutions is a key trait of a builder, share a few
