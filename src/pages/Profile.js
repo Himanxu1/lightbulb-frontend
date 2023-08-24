@@ -106,34 +106,34 @@ const Profile = () => {
   };
 
   if (!UserDetails) {
-    return <div className='w-full mt-36 text-center'>Loading...</div>;
+    return <div className="w-full mt-36 text-center">Loading...</div>;
   }
 
   return (
-    <div className='relative md:mt-20 sm:mt-10 mt-0 md:mx-12 sm:mx-8 mx-4'>
-      <div className='grid place-items-center'>
+    <div className="relative md:mt-20 sm:mt-10 mt-0 md:mx-12 sm:mx-8 mx-4">
+      <div className="grid place-items-center">
         <img
           src={UserDetails?.photoUrl}
-          className='sm:w-28 w-22 sm:h-28 h-22 sm:mt-2 mt-14 rounded-full'
+          className="sm:w-28 w-22 sm:h-28 h-22 sm:mt-2 mt-14 rounded-full"
         />
         {!stranger && (
-          <div className=' flex flex-col items-center sm:text-lg text-base my-4'>
+          <div className=" flex flex-col items-center sm:text-lg text-base my-4">
             <button
-              className='w-3/5 mt-2 p-2 border border-violet-400 rounded-xl hover:bg-violet-500 hover:text-white'
+              className="w-3/5 mt-2 p-2 border border-violet-400 rounded-xl hover:bg-violet-500 hover:text-white"
               onClick={logout}
             >
               Signout
             </button>
-            <div className='flex space-x-4'>
+            <div className="flex space-x-4">
               <button
-                className=' mt-2 p-2 border border-violet-400 rounded-xl hover:bg-violet-500 hover:text-white'
+                className=" mt-2 p-2 border border-violet-400 rounded-xl hover:bg-violet-500 hover:text-white"
                 onClick={editName}
               >
                 Edit Name
               </button>
               {showName && (
-                <div className='bg-gray-200'>
-                  <div className='fixed w-full top-50 -left-1 z-50'>
+                <div className="bg-gray-200">
+                  <div className="fixed w-full top-50 -left-1 z-50">
                     {/* <div className='absolute left-[1%] right-[1%]'> */}
                     <NameModal
                       id={UserDetails?.userId}
@@ -146,14 +146,14 @@ const Profile = () => {
                 </div>
               )}
               <button
-                className=' mt-2 p-2 border border-violet-400 rounded-xl hover:bg-violet-500 hover:text-white'
+                className=" mt-2 p-2 border border-violet-400 rounded-xl hover:bg-violet-500 hover:text-white"
                 onClick={editBio}
               >
                 Edit Bio
               </button>
               {showBio && (
-                <div className='bg-gray-200'>
-                  <div className='fixed w-full top-50 -left-1 z-50'>
+                <div className="bg-gray-200">
+                  <div className="fixed w-full top-50 -left-1 z-50">
                     {/* <div className='absolute left-[1%] right-[1%]'> */}
                     <BioModal
                       id={UserDetails?.userId}
@@ -168,24 +168,24 @@ const Profile = () => {
             </div>
           </div>
         )}
-        <h1 className='font-bold sm:text-xl text-lg sm:mt-4 mt-2'>@{name}</h1>
-        <p className='text-center sm:text-xl text-lg sm:mt-4 mt-2 text-[18px]'>
+        <h1 className="font-bold sm:text-xl text-lg sm:mt-4 mt-2">@{name}</h1>
+        <p className="text-center sm:text-xl text-lg sm:mt-4 mt-2 text-[18px]">
           {bio}
         </p>
         {(twitter || !stranger) && (
-          <div className='flex sm:flex-row flex-col space-x-2 items-center'>
-            <h1 className='sm:text-lg text-ml sm:mt-4 mt-2'>Twitter :</h1>
+          <div className="flex sm:flex-row flex-col space-x-2 items-center">
+            <h1 className="sm:text-lg text-ml sm:mt-4 mt-2">Twitter :</h1>
             {/* {twitter ? ( */}
-            <div className='flex sm:flex-row flex-col space-x-2 items-center'>
+            <div className="flex sm:flex-row flex-col space-x-2 items-center">
               <input
-                type='text'
+                type="text"
                 value={twitter}
-                className='min-w-full px-2 py-1 text-center sm:text-lg text-base bg-gray-200 rounded-lg sm:mt-4 mt-2'
+                className="min-w-full px-2 py-1 text-center sm:text-lg text-base bg-gray-200 rounded-lg sm:mt-4 mt-2"
                 onChange={(e) => setTwitter(e.target.value)}
               />
               {!stranger && (
                 <button
-                  className='w-20 px-2 py-1 text-center sm:text-lg text-base bg-gray-400 rounded-lg sm:mt-4 mt-2 hover:bg-gray-900 text-white'
+                  className="w-20 px-2 py-1 text-center sm:text-lg text-base bg-gray-400 rounded-lg sm:mt-4 mt-2 hover:bg-gray-900 text-white"
                   onClick={() => {
                     updateTwitter();
                   }}
@@ -203,7 +203,7 @@ const Profile = () => {
           </div>
         )}
       </div>
-      <div className='flex justify-around sm:mt-14 mt-10 md:font-medium md:text-lg text-base '>
+      <div className="flex justify-around sm:mt-14 mt-10 md:font-medium md:text-lg text-base ">
         <Link
           // className='flex items-center text-gray-400'
           className={`flex items-center  ${
@@ -211,8 +211,8 @@ const Profile = () => {
           }`}
           onClick={() => handleClick("vouched")}
         >
-          <h1 className='mr-2 ml-4'>Vouched</h1>
-          <IoBulbOutline className='text-[22px]' />
+          <h1 className="mr-2 ml-4">Vouched</h1>
+          <IoBulbOutline className="text-[22px]" />
         </Link>
         <Link
           className={`flex items-center  ${
@@ -220,8 +220,8 @@ const Profile = () => {
           }`}
           onClick={() => handleClick("created")}
         >
-          <h1 className=''>Created</h1>
-          <BsPen className='ml-2' />
+          <h1 className="">Created</h1>
+          <BsPen className="ml-2" />
         </Link>
         <Link
           className={`flex items-center  ${
@@ -229,12 +229,12 @@ const Profile = () => {
           }`}
           onClick={() => handleClick("build")}
         >
-          <h1 className='mr-2'>Build</h1>
-          <IoBuildOutline className='' />
+          <h1 className="mr-2">Build</h1>
+          <IoBuildOutline className="" />
         </Link>
       </div>
-      <div className='h-[1px] bg-gray-300 mx-auto mt-1'></div>
-      <div className='mb-20 pb-32'>{currentRenderedComponent}</div>
+      <div className="h-[1px] bg-gray-300 mx-auto mt-1"></div>
+      <div className="mb-20 pb-32">{currentRenderedComponent}</div>
       <ToastContainer />
     </div>
   );

@@ -6,6 +6,7 @@ import litebulbLogo from "../../assets/litebulbLogo.png";
 import avatar from "../../assets/user (1).png";
 import hamburger from "../../assets/hamburger.png";
 import close from "../../assets/close.png";
+import LoginModal from "../LoginModal/LoginModal";
 import { AuthContext } from "../../Context/AuthContext";
 import { IdeasContext } from "../../Context/IdeasContext";
 
@@ -17,6 +18,7 @@ const Navbar = () => {
   const [showSeach, setShowSearch] = useState(false);
   const [searchInput, setSeachInput] = useState("");
   const [searchedIdeas, setSearchedIdeas] = useState([]);
+  const [showLog, setShowLog] = useState(false);
 
   // const nav = document.getElementsByClassName("nav");
   const _navlinks = document.getElementsByClassName("_navlinks");
@@ -78,16 +80,20 @@ const Navbar = () => {
     );
   };
 
+  const ShowLoginModal = () => {
+    setShowLog(!showLog);
+  };
+
   // ------- if no user ---------
-  if (location.pathname === "/login") {
-    return <></>;
-  }
+  // if (location.pathname === "/login") {
+  //   return <></>;
+  // }
 
   return (
-    <div className="sm:p-3 px-3 py-1 shadow-sm shadow-gray ">
+    <div className="relative sm:p-3 px-3 py-1 shadow-sm shadow-gray ">
       <div className="flex items-center justify-between lg:mx-16 md:mx-4">
         <div className="flex lg:space-x-14 space-x-2 md:mr-9 sm:mr-4 mr-2 ">
-          <Link to="/landingpage">
+          <Link to="/">
             <div className="flex items-center space-x-1">
               <img src={litebulbLogo} alt="" className="sm:w-6 w-5" />
               <h3 className="myFont font-bold md:text-2xl sm:text-xl text-lg">
@@ -136,15 +142,18 @@ const Navbar = () => {
             </div>
           </div>
           {!currentUser ? (
-            <Link to={`/login`}>
-              <div className="w-12 h-12 sm:ml-2 sm:mr-4 p-1">
-                <img
-                  className="rounded-full"
-                  src={currentUser ? currentUser?.photoURL : avatar}
-                />
-              </div>
-            </Link>
+            // <Link to={`/login`}>
+            <div
+              className="w-12 h-12 sm:ml-2 sm:mr-4 p-1"
+              onClick={ShowLoginModal}
+            >
+              <img
+                className="rounded-full"
+                src={currentUser ? currentUser?.photoURL : avatar}
+              />
+            </div>
           ) : (
+            // </Link>
             <Link to={`/profile/${currentUser?.uid}`}>
               <div className="w-12 h-12 sm:ml-2 sm:mr-4 p-1">
                 <img
@@ -160,6 +169,15 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      {showLog && (
+        <div className="bg-gray-200">
+          <div className="fixed w-full sm:top-[80px] top-[200px] -left-1 z-50">
+            {/* <div className='absolute left-[1%] right-[1%]'> */}
+            <LoginModal showLog={showLog} setShowLog={setShowLog} />
+            {/* </div> */}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
