@@ -66,7 +66,7 @@ const Profile = () => {
 
   const logout = () => {
     signOut(auth);
-    navigate("/login");
+    navigate("/");
   };
 
   useEffect(() => {

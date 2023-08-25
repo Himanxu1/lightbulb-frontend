@@ -59,24 +59,22 @@ const Login = () => {
           <button
             aria-label="Continue with google"
             role="button"
+            onClick={signinwithgoogle}
             className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-2 px-4 border rounded-lg border-gray-700 flex items-center w-72 mx-auto justify-center mt-4"
           >
             <img
               src="https://tuk-cdn.s3.amazonaws.com/can-uploader/sign_in-svg2.svg"
               alt="google"
             />
-            <p
-              class="myFont text-base font-medium ml-4 text-gray-700"
-              onClick={signinwithgoogle}
-            >
+            <p class="myFont text-base font-medium ml-4 text-gray-700">
               Continue with Google
             </p>
           </button>
-          <button className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-2 px-4 border rounded-lg border-gray-700 flex items-center w-72 mx-auto justify-center mt-4">
-            <p
-              class="myFont text-base font-medium text-gray-700"
-              onClick={() => navigate("/")}
-            >
+          <button
+            onClick={() => navigate("/")}
+            className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-2 px-4 border rounded-lg border-gray-700 flex items-center w-72 mx-auto justify-center mt-4"
+          >
+            <p class="myFont text-base font-medium text-gray-700">
               Skip for now
             </p>
           </button>
