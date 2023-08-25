@@ -65,8 +65,13 @@ const Profile = () => {
   };
 
   const logout = () => {
-    signOut(auth);
-    navigate("/");
+    signOut(auth)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Error signing out:", error);
+      });
   };
 
   useEffect(() => {

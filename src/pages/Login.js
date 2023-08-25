@@ -71,8 +71,8 @@ const Login = () => {
             </p>
           </button>
           <button
-            onClick={() => navigate("/")}
             className="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-2 px-4 border rounded-lg border-gray-700 flex items-center w-72 mx-auto justify-center mt-4"
+            onClick={() => navigate("/")}
           >
             <p class="myFont text-base font-medium text-gray-700">
               Skip for now
